@@ -11,4 +11,8 @@ function __init__()
     @initcxx
 end
 
+function Base.show(io::IO, pt::Plaintext)
+    print(io, to_string(pt))
+end
+
 end # module OpenFHE
