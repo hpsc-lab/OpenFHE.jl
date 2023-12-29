@@ -11,8 +11,8 @@ function __init__()
     @initcxx
 end
 
-function Base.show(io::IO, pt::Plaintext)
-    print(io, to_string(pt))
+function Base.show(io::IO, pt::CxxWrap.CxxWrapCore.SmartPointer{<:PlaintextImpl})
+    print(io, _to_string_plaintext(pt))
 end
 
 end # module OpenFHE
