@@ -26,9 +26,9 @@ the BSD 2-Clause license.
 
 Contributions by the community are very welcome! A good start would be to compare the
 `examples` folder in OpenFHE.jl
-([link](https://github.com/sloede/OpenFHE.jl/tree/main/examples)
+([link](https://github.com/sloede/OpenFHE.jl/tree/main/examples))
 and in OpenFHE
-([link](https://github.com/openfheorg/openfhe-development/tree/main/src/pke/examples) and to
+([link](https://github.com/openfheorg/openfhe-development/tree/main/src/pke/examples)) and to
 port a missing example file to OpenFHE.jl. In case some OpenFHE functionality is not yet
 exposed by [openfhe-julia](https://github.com/sloede/openfhe-julia), it would have to be
 added there first.
