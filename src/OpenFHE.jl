@@ -14,18 +14,30 @@ end
 
 # CCParams and its functions
 export CCParams, CryptoContextCKKSRNS, SetMultiplicativeDepth, SetScalingModSize,
-       SetBatchSize
+       SetBatchSize, SetSecretKeyDist, SetSecurityLevel, SetSecurityLevel, SetRingDim,
+       SetScalingTechnique, SetFirstModSize, SetMultiplicativeDepth, SetNumLargeDigits,
+       SetKeySwitchTechnique
+
+# FHECKKSRNS
+export GetBootstrapDepth
 
 # CryptoContext and its functions
 export GenCryptoContext, Enable, GetRingDimension, KeyGen, EvalMultKeyGen, EvalRotateKeyGen,
-       MakeCKKSPackedPlaintext, Encrypt, EvalAdd, EvalSub, EvalMult, EvalRotate, Decrypt
+       MakeCKKSPackedPlaintext, Encrypt, EvalAdd, EvalSub, EvalMult, EvalRotate, Decrypt,
+       EvalBootstrapSetup, EvalBootstrapKeyGen, EvalBootstrap
 
 # Plaintext and its functions
 export Plaintext, SetLength, GetLogPrecision
 
-# PKESchemeFeature
+# Enums
 export PKESchemeFeature, PKE, KEYSWITCH, PRE, LEVELEDSHE, ADVANCEDSHE, MULTIPARTY, FHE,
        SCHEMESWITCH
+export ScalingTechnique, FIXEDMANUAL, FIXEDAUTO, FLEXIBLEAUTO, FLEXIBLEAUTOEXT, NORESCALE,
+       INVALID_RS_TECHNIQUE
+export SecretKeyDist, GAUSSIAN, UNIFORM_TERNARY, SPARSE_TERNARY
+export DistributionType, HEStd_uniform, HEStd_error, HEStd_ternary
+export SecurityLevel, HEStd_128_classic, HEStd_192_classic, HEStd_256_classic,
+       HEStd_128_quantum, HEStd_192_quantum, HEStd_256_quantum, HEStd_NotSet
 
 
 function Base.show(io::IO, pt::CxxWrap.CxxWrapCore.SmartPointer{<:PlaintextImpl})
@@ -46,6 +58,9 @@ for (WrappedT, fun) in [
     :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :EvalMult,
     :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :EvalRotate,
     :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :Decrypt,
+    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :EvalBootstrapSetup,
+    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :EvalBootstrapKeyGen,
+    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :EvalBootstrap,
     :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.PlaintextImpl}) => :SetLength,
     :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.PlaintextImpl}) => :GetLogPrecision,
 ]
