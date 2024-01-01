@@ -1,8 +1,13 @@
 module TestCKKS
 
 using Test
+using OpenFHE
 
 @testset verbose=true showtiming=true "CCParams" begin
+    multDepth = 1
+    scaleModSize = 50
+    batchSize = 8
+
     @test_nowarn CCParams{CryptoContextCKKSRNS}()
     parameters = CCParams{CryptoContextCKKSRNS}()
 
