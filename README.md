@@ -1,6 +1,10 @@
 # OpenFHE.jl
 
+[![Docs-stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://openfhe-jl.lakemper.eu/stable)
+[![Docs-dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://openfhe-jl.lakemper.eu/dev)
 [![Build Status](https://github.com/sloede/OpenFHE.jl/workflows/CI/badge.svg)](https://github.com/sloede/OpenFHE.jl/actions?query=workflow%3ACI)
+[![Coveralls](https://coveralls.io/repos/github/sloede/OpenFHE.jl/badge.svg)](https://coveralls.io/github/sloede/OpenFHE.jl)
+[![Codecov](https://codecov.io/gh/sloede/OpenFHE.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/sloede/OpenFHE.jl)
 [![License: MIT](https://img.shields.io/badge/License-MIT-success.svg)](https://opensource.org/license/mit/)
 
 OpenFHE.jl is a Julia wrapper package for
