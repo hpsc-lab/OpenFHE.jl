@@ -2,9 +2,10 @@ module OpenFHE
 
 using CxxWrap # need to use everything to avoid `UndefVarError`s
 using Preferences: @load_preference
+using openfhe_julia_jll: libopenfhe_julia
 
 # Load library path from preferences and wrap OpenFHE module
-const openfhe_julia_library = @load_preference("openfhe_julia_library", "openfhe_julia")
+const openfhe_julia_library = @load_preference("openfhe_julia_library", libopenfhe_julia)
 @wrapmodule(() -> openfhe_julia_library)
 
 function __init__()
