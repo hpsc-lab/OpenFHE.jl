@@ -65,9 +65,32 @@ for (WrappedT, fun) in [
     :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.PlaintextImpl}) => :SetLength,
     :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.PlaintextImpl}) => :GetLogPrecision,
 ]
-    @eval function $fun(arg::$WrappedT, args...)
-        $fun(arg[], args...)
+    @eval function $fun(arg::$WrappedT, args...; kwargs...)
+        $fun(arg[], args...; kwargs...)
     end
+end
+
+
+# More convenience methods
+function MakeCKKSPackedPlaintext(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
+                                 value::Vector{Float64};
+                                 scaleDeg = 1,
+                                 level = 0,
+                                 params = OpenFHE.CxxWrap.StdLib.SharedPtr{OpenFHE.ILDCRTParams{OpenFHE.ubint{UInt64}}}(),
+                                 slots = 0)
+    MakeCKKSPackedPlaintext(context, CxxWrap.StdVector(value), scaleDeg, level, params, slots)
+end
+
+function EvalRotateKeyGen(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
+                          privateKey,
+                          indexList::Vector{<:Integer};
+                          publicKey = OpenFHE.CxxWrap.StdLib.SharedPtr{OpenFHE.PublicKeyImpl{OpenFHE.DCRTPoly}}())
+    indexList_ = CxxWrap.StdVector{Int32}()
+    CxxWrap.StdLib.resize(indexList_, length(indexList))
+    for i in eachindex(indexList)
+        indexList_[i] = indexList[i]
+    end
+    EvalRotateKeyGen(context, privateKey, indexList_, publicKey)
 end
 
 
