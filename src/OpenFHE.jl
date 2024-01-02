@@ -30,6 +30,9 @@ export GenCryptoContext, Enable, GetRingDimension, KeyGen, EvalMultKeyGen, EvalR
 # Plaintext and its functions
 export Plaintext, SetLength, GetLogPrecision
 
+# Ciphertext and its functions
+export GetLevel
+
 # Enums
 export PKESchemeFeature, PKE, KEYSWITCH, PRE, LEVELEDSHE, ADVANCEDSHE, MULTIPARTY, FHE,
        SCHEMESWITCH
@@ -41,12 +44,9 @@ export SecurityLevel, HEStd_128_classic, HEStd_192_classic, HEStd_256_classic,
        HEStd_128_quantum, HEStd_192_quantum, HEStd_256_quantum, HEStd_NotSet
 
 
-function Base.show(io::IO, pt::CxxWrap.CxxWrapCore.SmartPointer{<:PlaintextImpl})
-    print(io, _to_string_plaintext(pt))
-end
-
 # Convenience methods to avoid having to dereference smart pointers
 for (WrappedT, fun) in [
+    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CiphertextImpl{OpenFHE.DCRTPoly}}) => :GetLevel,
     :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :Enable,
     :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :GetRingDimension,
     :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :KeyGen,
@@ -69,5 +69,12 @@ for (WrappedT, fun) in [
         $fun(arg[], args...)
     end
 end
+
+
+# Actual implementations
+function Base.show(io::IO, pt::CxxWrap.CxxWrapCore.SmartPointer{<:PlaintextImpl})
+    print(io, _to_string_plaintext(pt))
+end
+
 
 end # module OpenFHE
