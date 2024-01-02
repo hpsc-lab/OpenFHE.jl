@@ -54,14 +54,16 @@ x = [0.25, 0.5, 0.75, 1.0, 2.0, 3.0, 4.0, 5.0]
 encodedLength = length(x)
 
 # We start with a depleted ciphertext that has used up all of its levels.
-ptxt = MakeCKKSPackedPlaintext(cryptoContext, x, 1, depth - 1)
+# ptxt = MakeCKKSPackedPlaintext(cryptoContext, x, 1, depth - 1)
+ptxt = MakeCKKSPackedPlaintext(cryptoContext, x)
 
 SetLength(ptxt, encodedLength)
 println("Input: ", ptxt)
 
 ciph = Encrypt(cryptoContext, pubkey, ptxt)
 
-println("Initial number of levels remaining: ", depth - GetLevel(ciph))
+# println("Initial number of levels remaining: ", depth - GetLevel(ciph))
+println("Initial number of levels remaining: unknown")
 
 # Perform the bootstrapping operation. The goal is to increase the number of levels
 # remaining for HE computation.
@@ -70,7 +72,8 @@ println("Initial number of levels remaining: ", depth - GetLevel(ciph))
 # FIXME: The follwoing line currently causes a segmentation fault:
 ciphertextAfter = EvalBootstrap(cryptoContext, ciph, 1, 0)
 
-println("Number of levels remaining after bootstrapping: ", depth - GetLevel(ciphertextAfter))
+# println("Number of levels remaining after bootstrapping: ", depth - GetLevel(ciphertextAfter))
+println("Number of levels remaining after bootstrapping: unknown")
 prinltn()
 
 result = Plaintext()
