@@ -19,10 +19,7 @@ SetFirstModSize(parameters, firstMod)
 levelBudget = [4, 4]
 
 levelsAvailableAfterBootstrap = 10
-# TODO: add `GetBootstrapDepth` that accepts a Julia vector of `Int`s
-# depth = levelsAvailableAfterBootstrap + GetBootstrapDepth(levelBudget, secretKeyDist)
-levelBudget_ = OpenFHE.StdVector(UInt32.(levelBudget))
-depth = levelsAvailableAfterBootstrap + GetBootstrapDepth(levelBudget_, secretKeyDist)
+depth = levelsAvailableAfterBootstrap + GetBootstrapDepth(levelBudget, secretKeyDist)
 SetMultiplicativeDepth(parameters, depth)
 
 cryptoContext = GenCryptoContext(parameters)
@@ -39,10 +36,7 @@ numSlots = div(ringDim,  2)
 println("CKKS scheme is using ring dimension ", ringDim)
 println()
 
-# TODO: add `EvalBootstrapSetup` that allow omitting the default arguments
-# TODO: add `EvalBootstrapSetup` that accepts a Julia vector of `Int`s
-# EvalBootstrapSetup(cryptoContext, levelBudget)
-EvalBootstrapSetup(cryptoContext, levelBudget_, OpenFHE.StdVector(UInt32[1, 1]), 0, 0, true)
+EvalBootstrapSetup(cryptoContext; levelBudget)
 
 keyPair = KeyGen(cryptoContext)
 pubkey = OpenFHE.public_key(keyPair)
@@ -54,7 +48,7 @@ x = [0.25, 0.5, 0.75, 1.0, 2.0, 3.0, 4.0, 5.0]
 encodedLength = length(x)
 
 # We start with a depleted ciphertext that has used up all of its levels.
-ptxt = MakeCKKSPackedPlaintext(cryptoContext, x, 1, depth - 1)
+ptxt = MakeCKKSPackedPlaintext(cryptoContext, x; scaleDeg = 1, level = depth - 1)
 
 SetLength(ptxt, encodedLength)
 println("Input: ", ptxt)
@@ -65,15 +59,12 @@ println("Initial number of levels remaining: ", depth - GetLevel(ciph))
 
 # Perform the bootstrapping operation. The goal is to increase the number of levels
 # remaining for HE computation.
-# TODO: Add `EvalBootstrap` that allows omitting the default arguments
-# ciphertextAfter = EvalBootstrap(cryptoContext, ciph)
-# FIXME: The follwoing line currently causes a segmentation fault:
-ciphertextAfter = EvalBootstrap(cryptoContext, ciph, 1, 0)
+ciphertextAfter = EvalBootstrap(cryptoContext, ciph)
 
 println("Number of levels remaining after bootstrapping: ", depth - GetLevel(ciphertextAfter))
-prinltn()
+println()
 
 result = Plaintext()
-Decrypt(cryptoContext, privkey, ciphertextAfter, OpenFHE.CxxPtr(result));
+Decrypt(cryptoContext, privkey, ciphertextAfter, result);
 SetLength(result, encodedLength)
 println("Output after bootstrapping \n\t", result)

@@ -72,6 +72,8 @@ end
 
 
 # More convenience methods
+
+# Allow passing Julia vectors and provide default arguments
 function MakeCKKSPackedPlaintext(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
                                  value::Vector{Float64};
                                  scaleDeg = 1,
@@ -81,16 +83,48 @@ function MakeCKKSPackedPlaintext(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.Cry
     MakeCKKSPackedPlaintext(context, CxxWrap.StdVector(value), scaleDeg, level, params, slots)
 end
 
+# Allow passing Julia vectors of arbitrary integer type and provide default arguments
 function EvalRotateKeyGen(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
                           privateKey,
                           indexList::Vector{<:Integer};
                           publicKey = OpenFHE.CxxWrap.StdLib.SharedPtr{OpenFHE.PublicKeyImpl{OpenFHE.DCRTPoly}}())
-    indexList_ = CxxWrap.StdVector{Int32}()
-    CxxWrap.StdLib.resize(indexList_, length(indexList))
-    for i in eachindex(indexList)
-        indexList_[i] = indexList[i]
-    end
-    EvalRotateKeyGen(context, privateKey, indexList_, publicKey)
+    EvalRotateKeyGen(context, privateKey, CxxWrap.StdVector(Int32.(indexList)), publicKey)
+end
+
+# Allow passing Julia vectors of arbitrary integer type and provide default arguments
+function EvalBootstrapSetup(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}};
+                            levelBudget = [5, 4],
+                            dim1 = [0, 0],
+                            slots = 0,
+                            correctionFactor = 0,
+                            precompute = true)
+    EvalBootstrapSetup(context,
+                       CxxWrap.StdVector(UInt32.(levelBudget)),
+                       CxxWrap.StdVector(UInt32.(dim1)),
+                       slots,
+                       correctionFactor,
+                       precompute)
+end
+
+# Provide default arguments
+function EvalBootstrap(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
+                       ciphertext;
+                       numIterations = 1,
+                       precision = 0)
+    EvalBootstrap(context, ciphertext, numIterations, precision)
+end
+
+# Allow passing regular Plaintext without wrapping in pointer first
+function Decrypt(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
+                 key_or_cipher1,
+                 key_or_cipher2,
+                 result::CxxWrap.CxxWrapCore.SmartPointer{<:PlaintextImpl})
+    Decrypt(context, key_or_cipher1, key_or_cipher2, CxxPtr(result))
+end
+
+# Allow passing Julia vectors of arbitrary integer type
+function GetBootstrapDepth(levelBudget::Vector{<:Integer}, secretKeyDist)
+    GetBootstrapDepth(CxxWrap.StdVector(UInt32.(levelBudget)), secretKeyDist)
 end
 
 
