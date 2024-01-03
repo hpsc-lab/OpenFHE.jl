@@ -53,13 +53,13 @@ ptxt = MakeCKKSPackedPlaintext(cryptoContext, x; scaleDeg = 1, level = depth - 1
 SetLength(ptxt, encodedLength)
 println("Input: ", ptxt)
 
-ciph = Encrypt(cryptoContext, pubkey, ptxt)
+ciphertext = Encrypt(cryptoContext, pubkey, ptxt)
 
-println("Initial number of levels remaining: ", depth - GetLevel(ciph))
+println("Initial number of levels remaining: ", depth - GetLevel(ciphertext))
 
 # Perform the bootstrapping operation. The goal is to increase the number of levels
 # remaining for HE computation.
-ciphertextAfter = EvalBootstrap(cryptoContext, ciph)
+ciphertextAfter = EvalBootstrap(cryptoContext, ciphertext)
 
 println("Number of levels remaining after bootstrapping: ", depth - GetLevel(ciphertextAfter))
 println()
