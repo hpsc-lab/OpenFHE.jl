@@ -1,0 +1,14 @@
+{
+    "title": "OpenFHE.jl",
+    "description": "Fully homomorphic encryption in Julia using OpenFHE",
+    "license": "MIT",
+    "upload_type": "software",
+    "creators": [
+        {
+            "affiliation": "Applied and Computational Mathematics, RWTH Aachen University, Germany",
+            "name": "Schlottke-Lakemper, Michael",
+            "orcid": "0000-0002-3195-2536"
+        }
+    ],
+    "access_right": "open"
+}
