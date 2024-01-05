@@ -7,7 +7,7 @@ Create a new `CCParams` object to store parameters for CKKS-encrypted operations
 CCParams
 
 """
-   SetMultiplicativeDepth(parameters::CCParams, depth::Integer)
+    SetMultiplicativeDepth(parameters::CCParams, depth::Integer)
 
 Set multiplicative depth for a given set of parameters.
 """
