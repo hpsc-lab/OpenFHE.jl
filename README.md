@@ -95,6 +95,21 @@ julia> delete_preferences!(UUID("77ce9b8e-ecf5-45d1-bd8a-d31f384f2f95"), # UUID 
                            "libopenfhe_julia"; force = true)
 ```
 
+### Naming conventions
+To make switching back and forth between the C++ library and the OpenFHE.jl easier,
+OpenFHE.jl tries to use the same type and function names as OpenFHE. Since `CamelCase` is
+used for types and functions in OpenFHE, the same style is used in OpenFHE.jl, even though
+this is contrary to typical Julia best practices (where `CamelCase` is only used for types
+and `snake_case` is used for functions).
+
+Furthermore, all OpenFHE types are wrapped by corresponding CxxWrap.jl types, that can
+sometimes be very verbose. To reduce clutter in the Julia REPL, OpenFHE.jl thus often uses a
+simpler canonical output when printing an object. For example, the output of
+`GenCryptoContext(parameters)` is an object of type
+`CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}`, but when `show`ing the
+object we just print `SharedPtr{CryptoContext{DCRTPoly}}()`. To find out what the actual
+underlying type is, use `typef`.
+
 
 ## Referencing
 If you use OpenFHE.jl in your own research, please cite this repository as follows:
