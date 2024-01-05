@@ -6,5 +6,4 @@ CurrentModule = OpenFHE
 
 ```@autodocs
 Modules = [OpenFHE]
-Private = false
 ```
