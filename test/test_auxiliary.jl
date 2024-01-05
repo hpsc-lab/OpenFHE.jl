@@ -8,8 +8,9 @@ using OpenFHE
 end
 
 @testset verbose=true showtiming=true "set_library!" begin
-    @test_nowarn OpenFHE.set_library!(OpenFHE.library_path())
-    @test_nowarn OpenFHE.set_library!()
+    msg = "[ Info: Please restart Julia and reload OpenFHE.jl for the library changes to take effect\n"
+    @test_warn msg OpenFHE.set_library!(OpenFHE.library_path())
+    @test_warn msg OpenFHE.set_library!()
 end
 
 end # module
