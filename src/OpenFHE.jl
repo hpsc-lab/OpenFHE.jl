@@ -17,8 +17,7 @@ end
 # CCParams and its functions
 export CCParams, CryptoContextCKKSRNS, SetMultiplicativeDepth, SetScalingModSize,
        SetBatchSize, SetSecretKeyDist, SetSecurityLevel, SetSecurityLevel, SetRingDim,
-       SetScalingTechnique, SetFirstModSize, SetMultiplicativeDepth, SetNumLargeDigits,
-       SetKeySwitchTechnique
+       SetScalingTechnique, SetFirstModSize, SetNumLargeDigits, SetKeySwitchTechnique
 
 # FHECKKSRNS
 export GetBootstrapDepth
@@ -47,24 +46,24 @@ export SecurityLevel, HEStd_128_classic, HEStd_192_classic, HEStd_256_classic,
 
 # Convenience methods to avoid having to dereference smart pointers
 for (WrappedT, fun) in [
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CiphertextImpl{OpenFHE.DCRTPoly}}) => :GetLevel,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :Enable,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :GetRingDimension,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :KeyGen,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :EvalMultKeyGen,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :EvalRotateKeyGen,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :MakeCKKSPackedPlaintext,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :Encrypt,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :EvalAdd,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :EvalSub,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :EvalMult,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :EvalRotate,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :Decrypt,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :EvalBootstrapSetup,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :EvalBootstrapKeyGen,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}}) => :EvalBootstrap,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.PlaintextImpl}) => :SetLength,
-    :(CxxWrap.StdLib.SharedPtrAllocated{OpenFHE.PlaintextImpl}) => :GetLogPrecision,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CiphertextImpl{DCRTPoly}}) => :GetLevel,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :Enable,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :GetRingDimension,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :KeyGen,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalMultKeyGen,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalRotateKeyGen,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :MakeCKKSPackedPlaintext,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :Encrypt,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalAdd,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalSub,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalMult,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalRotate,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :Decrypt,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalBootstrapSetup,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalBootstrapKeyGen,
+    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalBootstrap,
+    :(CxxWrap.StdLib.SharedPtrAllocated{PlaintextImpl}) => :SetLength,
+    :(CxxWrap.StdLib.SharedPtrAllocated{PlaintextImpl}) => :GetLogPrecision,
 ]
     @eval function $fun(arg::$WrappedT, args...; kwargs...)
         $fun(arg[], args...; kwargs...)
@@ -123,9 +122,9 @@ function Decrypt(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{O
     Decrypt(context, key_or_cipher1, key_or_cipher2, CxxPtr(result))
 end
 
-# Allow passing Julia vectors of arbitrary integer type
+# Allow passing Julia vectors of arbitrary integer type, and return `Int`
 function GetBootstrapDepth(levelBudget::Vector{<:Integer}, secretKeyDist)
-    GetBootstrapDepth(CxxWrap.StdVector(UInt32.(levelBudget)), secretKeyDist)
+    Int(GetBootstrapDepth(CxxWrap.StdVector(UInt32.(levelBudget)), secretKeyDist))
 end
 
 
