@@ -4,10 +4,10 @@
 
 Create a new `CCParams` object to store parameters for CKKS-encrypted operations.
 """
-CCParams{CryptoContextCKKSRNS}
+CCParams
 
 """
-   SetMultiplicativeDepth(parameters, depth)
+   SetMultiplicativeDepth(parameters::CCParams, depth::Integer)
 
 Set multiplicative depth for a given set of parameters.
 """
