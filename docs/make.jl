@@ -55,7 +55,7 @@ makedocs(
         # Disable pretty URLs during manual testing
         prettyurls = get(ENV, "CI", nothing) == "true",
         # Set canonical URL to GitHub pages URL
-        canonical = "https://lakemper.eu/OpenFHE.jl/stable"
+        canonical = "https://openfhe-jl.lakemper.eu/stable"
     ),
     # Explicitly specify documentation structure
     pages = [
