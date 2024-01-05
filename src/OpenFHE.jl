@@ -163,5 +163,6 @@ Return the path of the OpenFHE-julia library that is used.
 """
 library_path() = libopenfhe_julia_path
 
+include("docs.jl")
 
 end # module OpenFHE
