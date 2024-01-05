@@ -36,7 +36,8 @@ thus there is no need to compile anything manually.
 
 ### Usage
 The easiest way to get started is to run one of the examples from the
-[`examples/`](examples/) directory by `include`ing them, e.g.,
+[`examples`](https://github.com/sloede/OpenFHE.jl/tree/main/examples) directory by
+`include`ing them in Julia, e.g.,
 ```julia
 julia> using OpenFHE
 
