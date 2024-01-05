@@ -16,6 +16,8 @@ homomorphic encryption. The C++ functionality is exposed in native Julia via the
 
 
 ## Getting started
+
+### Installation
 If you have not yet installed Julia, please [follow the instructions for your
 operating system](https://julialang.org/downloads/platform/).
 [OpenFHE.jl](https://github.com/sloede/OpenFHE.jl) works with Julia v1.8
@@ -31,6 +33,66 @@ provide bindings for the C++ library
 [OpenFHE](https://github.com/openfheorg/openfhe-development). Precompiled binares for
 OpenFHE-julia and OpenFHE are automatically for your platform when you install OpenFHE.jl,
 thus there is no need to compile anything manually.
+
+### Usage
+The easiest way to get started is to run one of the examples from the
+[`examples/`](examples/) directory by `include`ing them, e.g.,
+```julia
+julia> using OpenFHE
+
+julia> include(joinpath(pkgdir(OpenFHE), "examples", "simple_real_numbers.jl"))
+CKKS scheme is using ring dimension 16384
+
+Input x1: (0.25, 0.5, 0.75, 1, 2, 3, 4, 5,  ... ); Estimated precision: 50 bits
+
+Input x2: (5, 4, 3, 2, 1, 0.75, 0.5, 0.25,  ... ); Estimated precision: 50 bits
+
+
+Results of homomorphic computations:
+x1 = (0.25, 0.5, 0.75, 1, 2, 3, 4, 5,  ... ); Estimated precision: 43 bits
+Estimated precision in bits: 43.0
+x1 + x2 = (5.25, 4.5, 3.75, 3, 3, 3.75, 4.5, 5.25,  ... ); Estimated precision: 43 bits
+Estimated precision in bits: 43.0
+x1 - x2 = (-4.75, -3.5, -2.25, -1, 1, 2.25, 3.5, 4.75,  ... ); Estimated precision: 43 bits
+
+4 * x1 = (1, 2, 3, 4, 8, 12, 16, 20,  ... ); Estimated precision: 41 bits
+
+x1 * x2 = (1.25, 2, 2.25, 2, 2, 2.25, 2, 1.25,  ... ); Estimated precision: 41 bits
+
+
+In rotations, very small outputs (~10^-10 here) correspond to 0's:
+x1 rotate by 1 = (0.5, 0.75, 1, 2, 3, 4, 5, 0.25,  ... ); Estimated precision: 43 bits
+
+x1 rotate by -2 = (4, 5, 0.25, 0.5, 0.75, 1, 2, 3,  ... ); Estimated precision: 43 bits
+```
+
+### Using a custom OpenFHE-julia library
+By default, OpenFHE.jl uses the [OpenFHE-julia](https://github.com/sloede/openfhe-julia)
+library provided by the openfhe\_julia\_jll.jl package, which is automatically obtained when
+installing OpenFHE.jl. Someimtes, however, it might be beneficial to instead use a
+system-provided OpenFHE-julia library, e.g., for development or performance purposes. You
+can change the default by providing a different library with the `OpenFHE.set_library!`
+function, i.e., by running
+```julia
+julia> using OpenFHE
+
+julia> OpenFHE.set_library!("/abs/path/to/library.so")
+[ Info: Please restart Julia and reload OpenFHE.jl for the library changes to take effect
+```
+This will create a `LocalPreferences.toml` file in your current project directory with the
+`libopenfhe_julia` preference set accordingly. As advised, you need to restart Julia for
+the change to take effect. By calling `set_library!()` without an argument, you revert to
+using JLL-provided library again.
+
+In case the custom library has been deleted, loading OpenFHE.jl will fail. In that case,
+either remove the `LocalPreferences.toml` file or manually reset the preferences by
+executing
+```julia
+julia> using UUIDs, Preferences
+
+julia> delete_preferences!(UUID("77ce9b8e-ecf5-45d1-bd8a-d31f384f2f95"), # UUID of OpenFHE.jl
+                           "libopenfhe_julia"; force = true)
+```
 
 
 ## Referencing
