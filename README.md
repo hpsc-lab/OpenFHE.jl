@@ -21,7 +21,7 @@ operating system](https://julialang.org/downloads/platform/).
 [OpenFHE.jl](https://github.com/sloede/OpenFHE.jl) works with Julia v1.8
 and later.
 
-Since it is a registered Julia package, you cann install OpenFHE.jl by executing the
+Since it is a registered Julia package, you can install OpenFHE.jl by executing the
 following commands in the Julia REPL:
 ```julia
 julia> import Pkg; Pkg.add("OpenFHE")
