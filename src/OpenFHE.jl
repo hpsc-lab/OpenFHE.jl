@@ -150,7 +150,7 @@ function set_library!(path = nothing; force = true)
     if isnothing(path)
         delete_preferences!(OPENFHE_PACKAGE_UUID, "libopenfhe_julia"; force)
     else
-        isfile(path) || throw(ArgumentError("$path is not a file that exists."))
+        isfile(path) || throw(ArgumentError("$path is not an existing file."))
         set_preferences!(OPENFHE_PACKAGE_UUID, "libopenfhe_julia" => path; force)
     end
     @info "Please restart Julia and reload OpenFHE.jl for the library changes to take effect"
