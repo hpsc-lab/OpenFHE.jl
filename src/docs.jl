@@ -116,7 +116,7 @@ SecretKeyDist, GAUSSIAN, UNIFORM_TERNARY, SPARSE_TERNARY
 """
     DistributionType
 
-Enum type for specifing the secret key distribution according to the homomorphic encryption
+Enum type for specifying the secret key distribution according to the homomorphic encryption
 standard.
 
 Instances are:
