@@ -15,9 +15,10 @@ end
 
 
 # CCParams and its functions
-export CCParams, CryptoContextCKKSRNS, SetMultiplicativeDepth, SetScalingModSize,
-       SetBatchSize, SetSecretKeyDist, SetSecurityLevel, SetSecurityLevel, SetRingDim,
-       SetScalingTechnique, SetFirstModSize, SetNumLargeDigits, SetKeySwitchTechnique
+export CCParams, CryptoContextCKKSRNS
+export SetMultiplicativeDepth, SetScalingModSize, SetBatchSize, SetSecretKeyDist,
+       SetSecurityLevel, SetSecurityLevel, SetRingDim, SetScalingTechnique, SetFirstModSize,
+       SetNumLargeDigits, SetKeySwitchTechnique
 
 # FHECKKSRNS
 export GetBootstrapDepth
@@ -28,7 +29,8 @@ export GenCryptoContext, Enable, GetRingDimension, KeyGen, EvalMultKeyGen, EvalR
        EvalBootstrapSetup, EvalBootstrapKeyGen, EvalBootstrap
 
 # Plaintext and its functions
-export Plaintext, SetLength, GetLogPrecision
+export Plaintext
+export SetLength, GetLogPrecision
 
 # Ciphertext and its functions
 export GetLevel
