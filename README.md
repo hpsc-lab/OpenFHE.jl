@@ -20,13 +20,14 @@ translated to Julia yet. Community contributions are very welcome!*
 
 ## Getting started
 
-### Installation
+### Prerequisites
 If you have not yet installed Julia, please [follow the instructions for your
 operating system](https://julialang.org/downloads/platform/).
 [OpenFHE.jl](https://github.com/sloede/OpenFHE.jl) works with Julia v1.8
-and later.
+and later on Linux and macOS platforms, and with Julia v1.9 or later on Windows platforms.
 
-Since it is a registered Julia package, you can install OpenFHE.jl by executing the
+### Installation
+Since OpenFHE.jl is a registered Julia package, you can install it by executing the
 following commands in the Julia REPL:
 ```julia
 julia> import Pkg; Pkg.add("OpenFHE")
