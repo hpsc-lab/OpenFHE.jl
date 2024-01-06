@@ -60,3 +60,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ./lcov.info
+      # Enable tmate debugging of manually-triggered workflows if the input option was provided
+      - name: Setup tmate session for debugging
+        # if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled && always() }}
+        if: ${{ matrix.os == 'windows-latest' && matrix.version == '1.8'  && always() }}
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 15
