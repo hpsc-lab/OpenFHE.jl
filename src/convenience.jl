@@ -1,21 +1,80 @@
+# Define CryptoContext for convenience
+"""
+    CryptoContext{T}
+
+Type alias for `CxxWrap.StdLib.SharedPtr{CryptoContextImpl{T}}`.
+
+The crypto context is the central object in OpenFHE that facilitates all essential
+cryptographic operations such as key generation, encryption/decryption, arithmetic
+operations on plaintexts and ciphertexts etc.
+
+In OpenFHE, a crypto context is always created from a set of `CCParams` parameters using
+`GenCryptoContext`.
+
+See also: [`CCParams`](@ref), [`GenCryptoContext`](@ref)
+"""
+const CryptoContext{T} = CxxWrap.StdLib.SharedPtr{CryptoContextImpl{T}}
+
+"""
+    Ciphertext{T}
+
+Type alias for `CxxWrap.StdLib.SharedPtr{CiphertextImpl{T}}`.
+
+The ciphertext object holds homomorphically encrypted data that can be used for encrypted
+computations. It is created either by encrypting a [`Plaintext`](@ref) object or by
+performing arithmetic with existing ciphertexts.
+
+See also: [`Plaintext`](@ref), [`Encrypt`](@ref)
+"""
+const Ciphertext{T} = CxxWrap.StdLib.SharedPtr{CiphertextImpl{T}}
+
+# TODO: Define Plaintext here similarly to the CryptoContext
+# const Plaintext{T} = CxxWrap.StdLib.SharedPtr{PlaintextImpl{T}}
+
+"""
+    PublicKey{T}
+
+Type alias for `CxxWrap.StdLib.SharedPtr{PublicKeyImpl{T}}`.
+
+Public keys can be used to encrypt [`Plaintext`](@ref) data into [`Ciphertext`](@ref)
+objects. They are part of a `KeyPair` that contains both a public and a private key. Key
+pairs can be created from a [`CryptoContext`](@ref) by calling [`KeyGen`](@ref).
+
+See also: [`KeyGen`](@ref), [`KeyPair`](@ref)
+"""
+const PublicKey{T} = CxxWrap.StdLib.SharedPtr{PublicKeyImpl{T}}
+
+"""
+    PrivateKey{T}
+
+Type alias for `CxxWrap.StdLib.SharedPtr{PrivateKeyImpl{T}}`.
+
+Private keys can be used to decrypt [`Ciphertext`](@ref) data into [`Plaintext`](@ref)
+objects. They are part of a `KeyPair` that contains both a public and a private key. Key
+pairs can be created from a [`CryptoContext`](@ref) by calling [`KeyGen`](@ref).
+
+See also: [`KeyGen`](@ref), [`KeyPair`](@ref)
+"""
+const PrivateKey{T} = CxxWrap.StdLib.SharedPtr{PrivateKeyImpl{T}}
+
 # Convenience methods to avoid having to dereference smart pointers
 for (WrappedT, fun) in [
-    :(CxxWrap.StdLib.SharedPtrAllocated{CiphertextImpl{DCRTPoly}}) => :GetLevel,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :Enable,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :GetRingDimension,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :KeyGen,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalMultKeyGen,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalRotateKeyGen,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :MakeCKKSPackedPlaintext,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :Encrypt,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalAdd,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalSub,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalMult,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalRotate,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :Decrypt,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalBootstrapSetup,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalBootstrapKeyGen,
-    :(CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}) => :EvalBootstrap,
+    :(Ciphertext{DCRTPoly}) => :GetLevel,
+    :(CryptoContext{DCRTPoly}) => :Enable,
+    :(CryptoContext{DCRTPoly}) => :GetRingDimension,
+    :(CryptoContext{DCRTPoly}) => :KeyGen,
+    :(CryptoContext{DCRTPoly}) => :EvalMultKeyGen,
+    :(CryptoContext{DCRTPoly}) => :EvalRotateKeyGen,
+    :(CryptoContext{DCRTPoly}) => :MakeCKKSPackedPlaintext,
+    :(CryptoContext{DCRTPoly}) => :Encrypt,
+    :(CryptoContext{DCRTPoly}) => :EvalAdd,
+    :(CryptoContext{DCRTPoly}) => :EvalSub,
+    :(CryptoContext{DCRTPoly}) => :EvalMult,
+    :(CryptoContext{DCRTPoly}) => :EvalRotate,
+    :(CryptoContext{DCRTPoly}) => :Decrypt,
+    :(CryptoContext{DCRTPoly}) => :EvalBootstrapSetup,
+    :(CryptoContext{DCRTPoly}) => :EvalBootstrapKeyGen,
+    :(CryptoContext{DCRTPoly}) => :EvalBootstrap,
     :(CxxWrap.StdLib.SharedPtrAllocated{PlaintextImpl}) => :SetLength,
     :(CxxWrap.StdLib.SharedPtrAllocated{PlaintextImpl}) => :GetLogPrecision,
 ]
@@ -29,7 +88,10 @@ end
 for (T, str) in [
     :(CCParams{<:CryptoContextCKKSRNS}) => "CCParams{CryptoContextCKKSRNS}()",
     :(CryptoContextCKKSRNS) => "CryptoContextCKKSRNS()",
-    :(CxxWrap.StdLib.SharedPtr{CryptoContextImpl{DCRTPoly}}) => "SharedPtr{CryptoContext{DCRTPoly}}()",
+    :(CryptoContext{DCRTPoly}) => "CryptoContext{DCRTPoly}()",
+    :(Ciphertext{DCRTPoly}) => "Ciphertext{DCRTPoly}()",
+    :(PublicKey{DCRTPoly}) => "PublicKey{DCRTPoly}()",
+    :(PrivateKey{DCRTPoly}) => "PrivateKey{DCRTPoly}()",
 ]
     @eval function Base.show(io::IO, ::$T)
         print(io, $str)

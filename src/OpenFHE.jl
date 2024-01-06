@@ -25,9 +25,9 @@ export SetMultiplicativeDepth, SetScalingModSize, SetBatchSize, SetSecretKeyDist
 export GetBootstrapDepth
 
 # CryptoContext and its functions
-export GenCryptoContext, Enable, GetRingDimension, KeyGen, EvalMultKeyGen, EvalRotateKeyGen,
-       MakeCKKSPackedPlaintext, Encrypt, EvalAdd, EvalSub, EvalMult, EvalRotate, Decrypt,
-       EvalBootstrapSetup, EvalBootstrapKeyGen, EvalBootstrap
+export CryptoContext, GenCryptoContext, Enable, GetRingDimension, KeyGen, EvalMultKeyGen,
+       EvalRotateKeyGen, MakeCKKSPackedPlaintext, Encrypt, EvalAdd, EvalSub, EvalMult,
+       EvalRotate, Decrypt, EvalBootstrapSetup, EvalBootstrapKeyGen, EvalBootstrap
 
 # Plaintext and its functions
 export Plaintext
