@@ -14,6 +14,9 @@ homomorphic encryption. The C++ functionality is exposed in native Julia via the
 [CxxWrap.jl](https://github.com/JuliaInterop/CxxWrap.jl) package, using
 [OpenFHE-julia](https://github.com/sloede/openfhe-julia) as its backend.
 
+*Note: This package is work in progress and not all capabilities of OpenFHE have been
+translated to Julia yet. Community contributions are very welcome!*
+
 
 ## Getting started
 
@@ -95,20 +98,35 @@ julia> delete_preferences!(UUID("77ce9b8e-ecf5-45d1-bd8a-d31f384f2f95"), # UUID 
                            "libopenfhe_julia"; force = true)
 ```
 
-### Naming conventions
-To make switching back and forth between the C++ library and the OpenFHE.jl easier,
-OpenFHE.jl tries to use the same type and function names as OpenFHE. Since `CamelCase` is
-used for types and functions in OpenFHE, the same style is used in OpenFHE.jl, even though
-this is contrary to typical Julia best practices (where `CamelCase` is only used for types
-and `snake_case` is used for functions).
+### Transitioning between OpenFHE and OpenFHE.jl
+OpenFHE.jl using CxxWrap.jl to wrap the C++ library OpenFHE for use in Julia. In general, we
+try to stick as close to the original library's names and conentions as possible. Since some
+concepts of C++ do not directly translate to Julia, however, some differences are
+unavoidable. The most notable one is likely that Julia does not know the concept of class
+member functions. CxxWrap.jl (and OpenFHE.jl) translates this to Julia functions that expect
+the object as its first argument. Thus, a C++ member function call
+```c++
+my_object.member_function(arg1, arg2);
+```
+will look like
+```julia
+member_function(my_object, arg1, arg2)
+```
+in Julia.
 
-Furthermore, all OpenFHE types are wrapped by corresponding CxxWrap.jl types, that can
+To simplify switching back and forth between OpenFHE.jl and the C++ library OpenFHE,
+OpenFHE.jl tries to use the same type and function names as OpenFHE. Since `PascalCase` is
+used for types and functions and `camelCase` for variables in OpenFHE, the same style is
+used in OpenFHE.jl, even though this is contrary to typical Julia best practices (where
+`PascalCase` is only used for types and `snake_case` is used for functions or variables).
+
+Furthermore, all OpenFHE types are wrapped by corresponding CxxWrap.jl types, which can
 sometimes be very verbose. To reduce clutter in the Julia REPL, OpenFHE.jl thus often uses a
 simpler canonical output when printing an object. For example, the output of
 `GenCryptoContext(parameters)` is an object of type
 `CxxWrap.StdLib.SharedPtrAllocated{CryptoContextImpl{DCRTPoly}}`, but when `show`ing the
-object we just print `SharedPtr{CryptoContext{DCRTPoly}}()`. To find out what the actual
-underlying type is, use `typef`.
+object we just print `SharedPtr{CryptoContext{DCRTPoly}}()`. To find out the actual
+underlying type, use `typeof`.
 
 
 ## Referencing
