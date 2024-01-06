@@ -3,7 +3,7 @@
 Note that most types and functions provided by OpenFHE.jl are generated automatically by
 CxxWrap.jl's `@wrapmodule` macro. Therefore, docstrings are attached to just the respective
 symbol and not the actual code location. The goal of this reference is thus chiefly to save
-the user/developer the hassle of having to go to the (authorative) OpenFHE documentation
+the user/developer the hassle of having to go to the (authoritative) OpenFHE documentation
 each time they need to use OpenFHE.jl in Julia.
 
 If in doubt, please consult the official
