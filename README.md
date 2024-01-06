@@ -116,9 +116,9 @@ in Julia.
 
 To simplify switching back and forth between OpenFHE.jl and the C++ library OpenFHE,
 OpenFHE.jl tries to use the same type and function names as OpenFHE. Since `PascalCase` is
-used for types and functions and `camelCase` for variables in OpenFHE, the same style is
-used in OpenFHE.jl, even though this is contrary to typical Julia best practices (where
-`PascalCase` is only used for types and `snake_case` is used for functions or variables).
+used for types and functions in OpenFHE, the same style is used in OpenFHE.jl, even though
+this is contrary to typical Julia best practices (where `PascalCase` is only used for types
+and `snake_case` is used for functions).
 
 Furthermore, all OpenFHE types are wrapped by corresponding CxxWrap.jl types, which can
 sometimes be very verbose. To reduce clutter in the Julia REPL, OpenFHE.jl thus often uses a

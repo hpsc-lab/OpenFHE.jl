@@ -19,16 +19,35 @@ CCParams
 """
     SetMultiplicativeDepth(parameters::CCParams, depth::Integer)
 
-Set the required multiplicative depth for a set of `parameters`.
+Set the required multiplicative `depth` for a set of `parameters`.
 """
 SetMultiplicativeDepth
 
 """
-    SetScalingModSize(parameters::CCParams, depth::Integer)
+    SetScalingModSize(parameters::CCParams, modulus::Integer)
 
-Set the scaling modulus for a set of `parameters`.
+Set the scaling `modulus` for a set of `parameters`.
 """
 SetScalingModSize
+
+"""
+    SetSecretKeyDist(parameters::CCParams, distribution::SecretKeyDist)
+
+Set the `distribution` from which the secret key is chosen for a set of `parameters`.
+
+See also: [`SecretKeyDist`](@ref)
+"""
+SetSecretKeyDist
+
+"""
+    SetSecurityLevel(parameters::CCParams, level::SecurityLevel)
+
+Set the encryption security `level` according to the homomogrphic encryption standard for a
+set of `parameters`.
+
+See also: [`SecurityLevel`](@ref)
+"""
+SetSecretKeyDist
 
 
 # Plaintext and its functions
