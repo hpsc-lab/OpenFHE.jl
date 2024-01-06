@@ -43,7 +43,6 @@ export KeySwitchTechnique, INVALID_KS_TECH, BV, HYBRID
 export ScalingTechnique, FIXEDMANUAL, FIXEDAUTO, FLEXIBLEAUTO, FLEXIBLEAUTOEXT, NORESCALE,
        INVALID_RS_TECHNIQUE
 export SecretKeyDist, GAUSSIAN, UNIFORM_TERNARY, SPARSE_TERNARY
-export DistributionType, HEStd_uniform, HEStd_error, HEStd_ternary
 export SecurityLevel, HEStd_128_classic, HEStd_192_classic, HEStd_256_classic,
        HEStd_128_quantum, HEStd_192_quantum, HEStd_256_quantum, HEStd_NotSet
 

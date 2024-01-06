@@ -97,8 +97,23 @@ SetKeySwitchTechnique
 # GetBootstrapDepth: documented in `src/convenience.jl`
 
 # CryptoContext and its functions
-# GenCryptoContext
-# Enable
+"""
+    GenCryptoContext(parameters::CCParams)
+
+Generate a crypto context from a set of `parameters`.
+
+See also: [`CCParams`](@ref)
+"""
+GenCryptoContext
+
+"""
+    Enable(crypto_context::CCParams)
+
+Generate a crypto context from a set of `parameters`.
+
+See also: [`CCParams`](@ref)
+"""
+Enable
 # GetRingDimension
 # KeyGen
 # EvalMultKeyGen
@@ -196,20 +211,6 @@ Instances are:
 See also: [`SetSecretKeyDist`](@ref)
 """
 SecretKeyDist, GAUSSIAN, UNIFORM_TERNARY, SPARSE_TERNARY
-
-"""
-    DistributionType
-
-Enum type for specifying the secret key distribution according to the homomorphic encryption
-standard.
-
-Instances are:
-* `HEStd_uniform`
-* `HEStd_error`
-* `HEStd_ternary`
-
-"""
-DistributionType, HEStd_uniform, HEStd_error, HEStd_ternary
 
 """
    SecurityLevel
