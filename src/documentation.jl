@@ -230,12 +230,8 @@ EvalBootstrapKeyGen
 
 
 # Plaintext and its functions
-"""
-    Plaintext()
 
-Create an empty `Plaintext` object without any encoded data.
-"""
-Plaintext
+# `Plaintext` is documented in `src/convenience.jl`
 
 
 # Ciphertext and its functions
