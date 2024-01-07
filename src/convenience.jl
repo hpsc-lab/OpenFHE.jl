@@ -101,17 +101,40 @@ end
 
 # More convenience methods
 
-# Allow passing Julia vectors and provide default arguments
+"""
+    MakeCKKSPackedPlaintext(crypto_context::CryptoContext, value::Vector{Float64};
+                            scale_degree = 1,
+                            level = 1,
+                            params = C_NULL,
+                            num_slots = 0)
+
+Encode a vector of real numbers `value` into a CKKS-packed [`Plaintext`](@ref) using the
+given `crypto_context`.
+Please refer to the OpenFHE documentation for details on the remaining arguments.
+
+See also: [`CryptoContext`](@ref), [`Plaintext`](@ref)
+"""
 function MakeCKKSPackedPlaintext(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
                                  value::Vector{Float64};
                                  scaleDeg = 1,
                                  level = 0,
                                  params = OpenFHE.CxxWrap.StdLib.SharedPtr{OpenFHE.ILDCRTParams{OpenFHE.ubint{UInt64}}}(),
-                                 slots = 0)
-    MakeCKKSPackedPlaintext(context, CxxWrap.StdVector(value), scaleDeg, level, params, slots)
+                                 num_slots = 0)
+    MakeCKKSPackedPlaintext(context, CxxWrap.StdVector(value), scaleDeg, level, params, num_slots)
 end
 
-# Allow passing Julia vectors of arbitrary integer type and provide default arguments
+"""
+    EvalRotateKeyGen(crypto_context::CryptoContext,
+                     private_key::PrivateKey,
+                     index_list::Vector{<:Integer};
+                     public_key::PublicKey = C_NULL)
+
+Generate rotation keys for use with [`EvalRotate`](@ref) using the `private_key` and for the
+rotation indices in `index_list. The keys are stored in the  given `crypto_context`.
+Please refer to the OpenFHE documentation for details on the remaining arguments.
+
+See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`PublicKey`](@ref), [`EvalRotate`](@ref)
+"""
 function EvalRotateKeyGen(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
                           privateKey,
                           indexList::Vector{<:Integer};
@@ -119,30 +142,59 @@ function EvalRotateKeyGen(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoCont
     EvalRotateKeyGen(context, privateKey, CxxWrap.StdVector(Int32.(indexList)), publicKey)
 end
 
-# Allow passing Julia vectors of arbitrary integer type and provide default arguments
+"""
+    EvalBootstrapSetup(crypto_context::CryptoContext;
+                       level_budget::Vector{<:Integer} = [5, 4],
+                       dim1::Vector{<:Integer} = [0, 0],
+                       slots = 0,
+                       correction_factor = 0,
+                       precompute = true)
+
+Set up a given `crypto_context` for bootstrapping. Supported for CKKS only.
+Please refer to the OpenFHE documentation for details on the remaining arguments.
+
+See also: [`CryptoContext`](@ref), [`EvalBootstrapKeyGen`](@ref), [`EvalBootstrap`](@ref)
+"""
 function EvalBootstrapSetup(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}};
-                            levelBudget = [5, 4],
+                            level_budget = [5, 4],
                             dim1 = [0, 0],
                             slots = 0,
-                            correctionFactor = 0,
+                            correction_factor = 0,
                             precompute = true)
     EvalBootstrapSetup(context,
-                       CxxWrap.StdVector(UInt32.(levelBudget)),
+                       CxxWrap.StdVector(UInt32.(level_budget)),
                        CxxWrap.StdVector(UInt32.(dim1)),
                        slots,
-                       correctionFactor,
+                       correction_factor,
                        precompute)
 end
 
-# Provide default arguments
+"""
+    EvalBootstrap(crypto_context::CryptoContext, ciphertext::Ciphertext;
+                  num_iterations = 1,
+                  precision = 0)
+
+Return a refreshed `ciphertext` for a given `crypto_context`. Supported for CKKS only.
+Please refer to the OpenFHE documentation for details on the remaining arguments.
+
+See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`EvalBootstrapSetup`](@ref), [`EvalBootstrap`](@ref)
+"""
 function EvalBootstrap(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
                        ciphertext;
-                       numIterations = 1,
+                       num_iterations = 1,
                        precision = 0)
-    EvalBootstrap(context, ciphertext, numIterations, precision)
+    EvalBootstrap(context, ciphertext, num_iterations, precision)
 end
 
-# Allow passing regular Plaintext without wrapping in pointer first
+"""
+    Decrypt(crypto_context::CryptoContext, ciphertext::Ciphertext, private_key::PrivateKey, plaintext::Plaintext)
+    Decrypt(crypto_context::CryptoContext, private_key::PrivateKey, ciphertext::Ciphertext, plaintext::Plaintext)
+
+Decrypt a `ciphertext` with the given `private_key` and store the result in `plaintext`,
+using the parameters of the given `crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`Ciphertext`](@ref), [`Plaintext`](@ref), [`Encrypt`](@ref)
+"""
 function Decrypt(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
                  key_or_cipher1,
                  key_or_cipher2,

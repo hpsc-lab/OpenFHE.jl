@@ -14,6 +14,9 @@ function __init__()
     @initcxx
 end
 
+# Export OpenFHE functionality
+# Note: Not all types are exported that have been wrapped by CxxWrap.jl, but only those that
+# a user can actually create using a constructor. This is subject to change in the future.
 
 # CCParams and its functions
 export CCParams, CryptoContextCKKSRNS

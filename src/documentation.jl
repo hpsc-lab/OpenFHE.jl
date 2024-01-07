@@ -141,9 +141,19 @@ See also: [`CryptoContext`](@ref), [`KeyPair`](@ref), [`PublicKey`](@ref), [`Pri
 """
 KeyGen
 
-# EvalMultKeyGen
-# EvalRotateKeyGen,
-# MakeCKKSPackedPlaintext
+"""
+    EvalMultKeyGen(crypto_context::CryptoContext, private_key::PrivateKey)
+
+Generate relinearization key for use with [`EvalMult`](@ref) using the `private_key`, and
+store it in the  given `crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`EvalMult`](@ref)
+"""
+EvalMultKeyGen
+
+# EvalRotateKeyGen` is documented in `src/convenience.jl`
+
+# `MakeCKKSPackedPlaintext` is documented in `src/convenience.jl`
 
 """
     Encrypt(crypto_context::CryptoContext, public_key::PublicKey, plaintext::Plaintext)
@@ -151,18 +161,72 @@ KeyGen
 Encrypt a given [`Plaintext`](@ref) object into a [`Ciphertext`](@ref) using the given
 `public_key` and using the parameters of the `crypto_context`.
 
-See also: [`CryptoContext`](@ref), [`PublicKey`](@ref)
+See also: [`CryptoContext`](@ref), [`PublicKey`](@ref), [`Decrypt`](@ref)
 """
 Encrypt
 
-# EvalAdd
-# EvalSub
-# EvalMult
-# EvalRotate
-# Decrypt
-# EvalBootstrapSetup
-# EvalBootstrapKeyGen
-# EvalBootstrap
+"""
+    EvalAdd(crypto_context::CryptoContext, ciphertext1::Ciphertext, ciphertext2::Ciphertext)
+
+Add `ciphertext1` to `ciphertext2` and return the resulting [`Ciphertext`](@ref).
+Both input ciphertexts need to be derived from the given `crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+"""
+EvalAdd
+
+"""
+    EvalSub(crypto_context::CryptoContext, ciphertext1::Ciphertext, ciphertext2::Ciphertext)
+
+Subtract `ciphertext2` from `ciphertext1` and return the resulting [`Ciphertext`](@ref).
+Both input ciphertexts need to be derived from the given `crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+"""
+EvalSub
+
+"""
+    EvalMult(crypto_context::CryptoContext, ciphertext1::Ciphertext, ciphertext2::Ciphertext)
+    EvalMult(crypto_context::CryptoContext, ciphertext::Ciphertext, scalar::Real)
+
+Multiply `ciphertext1` with `ciphertext2` and return the resulting [`Ciphertext`](@ref).
+Both input ciphertexts need to be derived from the given `crypto_context`.
+
+Multiply `ciphertext` with the real-valued `scalar` and return the resulting
+[`Ciphertext`](@ref). The input ciphertext needs to be derived from the given
+`crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+"""
+EvalMult
+
+
+"""
+    EvalRotate(crypto_context::CryptoContext, ciphertext::Ciphertext, index::Integer)
+
+Rotate the `ciphertext` by the given `index`. A positive index denotes a left shift, a
+negative index a right shift.  The input ciphertext needs to be derived from the given
+`crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+"""
+EvalRotate
+
+# `Decrypt` is documented in `src/convenience.jl`
+
+# `EvalBootstrapSetup` is documented in `src/convenience.jl`
+
+"""
+    EvalBootstrapKeyGen(crypto_context::CryptoContext, private_key::PrivateKey, num_slots::Integer)
+
+Generate the necessary keys from `private_key` to enable bootstrapping for a given
+`crypto_context` and `num_slots` slots. Supported for CKKS only.
+
+See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`EvalBootstrapSetup`](@ref), [`EvalBootstrap`](@ref)
+"""
+EvalBootstrapKeyGen
+
+# `EvalBootstrap` is documented in `src/convenience.jl`
 
 
 # Plaintext and its functions
@@ -175,7 +239,14 @@ Plaintext
 
 
 # Ciphertext and its functions
-# GetLevel
+"""
+    GetLevel(ciphertext::Ciphertext)
+
+Return the number of scalings performed for the given `ciphertext`.
+
+See also: [`Ciphertext`](@ref)
+"""
+GetLevel
 
 
 # Enums
