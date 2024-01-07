@@ -15,8 +15,9 @@ function __init__()
 end
 
 # Export OpenFHE functionality
-# Note: Not all types are exported that have been wrapped by CxxWrap.jl, but only those that
-# a user can actually create using a constructor. This is subject to change in the future.
+# Note: Not all types are exported that have been wrapped by CxxWrap.jl, but mostly those
+# that a user can actually create using a constructor. This is subject to change in the
+# future.
 
 # CCParams and its functions
 export CCParams, CryptoContextCKKSRNS
@@ -38,6 +39,9 @@ export SetLength, GetLogPrecision
 
 # Ciphertext and its functions
 export GetLevel
+
+# KeyPair and its functions
+export KeyPair
 
 # Enums
 export PKESchemeFeature, PKE, KEYSWITCH, PRE, LEVELEDSHE, ADVANCEDSHE, MULTIPARTY, FHE,
