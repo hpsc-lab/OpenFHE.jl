@@ -120,7 +120,7 @@ function MakeCKKSPackedPlaintext(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.Cry
                                  level = 0,
                                  params = OpenFHE.CxxWrap.StdLib.SharedPtr{OpenFHE.ILDCRTParams{OpenFHE.ubint{UInt64}}}(),
                                  num_slots = 0)
-    MakeCKKSPackedPlaintext(context, CxxWrap.StdVector(value), scaleDeg, level, params, num_slots)
+    MakeCKKSPackedPlaintext(context, CxxWrap.StdVector(value), scale_degree, level, params, num_slots)
 end
 
 """
