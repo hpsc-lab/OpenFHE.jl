@@ -116,7 +116,7 @@ See also: [`CryptoContext`](@ref), [`Plaintext`](@ref)
 """
 function MakeCKKSPackedPlaintext(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
                                  value::Vector{Float64};
-                                 scaleDeg = 1,
+                                 scale_degree = 1,
                                  level = 0,
                                  params = OpenFHE.CxxWrap.StdLib.SharedPtr{OpenFHE.ILDCRTParams{OpenFHE.ubint{UInt64}}}(),
                                  num_slots = 0)
