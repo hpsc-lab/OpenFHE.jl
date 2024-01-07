@@ -2,24 +2,24 @@ using OpenFHE
 
 parameters = CCParams{CryptoContextCKKSRNS}()
 
-secretKeyDist = UNIFORM_TERNARY
-SetSecretKeyDist(parameters, secretKeyDist)
+secret_key_distribution = UNIFORM_TERNARY
+SetSecretKeyDist(parameters, secret_key_distribution)
 
 SetSecurityLevel(parameters, HEStd_NotSet)
 SetRingDim(parameters, 1 << 12)
 
-rescaleTech = FLEXIBLEAUTO
-dcrtBits = 59;
-firstMod = 60;
+rescale_technique = FLEXIBLEAUTO
+dcrt_bits = 59;
+first_modulus = 60;
 
-SetScalingModSize(parameters, dcrtBits)
-SetScalingTechnique(parameters, rescaleTech)
-SetFirstModSize(parameters, firstMod)
+SetScalingModSize(parameters, dcrt_bits)
+SetScalingTechnique(parameters, rescale_technique)
+SetFirstModSize(parameters, first_modulus)
 
-levelBudget = [4, 4]
+level_budget = [4, 4]
 
-levelsAvailableAfterBootstrap = 10
-depth = levelsAvailableAfterBootstrap + GetBootstrapDepth(levelBudget, secretKeyDist)
+levels_available_after_bootstrap = 10
+depth = levels_available_after_bootstrap + GetBootstrapDepth(level_budget, secret_key_distribution)
 SetMultiplicativeDepth(parameters, depth)
 
 cryptoContext = GenCryptoContext(parameters)
@@ -30,27 +30,27 @@ Enable(cryptoContext, LEVELEDSHE)
 Enable(cryptoContext, ADVANCEDSHE)
 Enable(cryptoContext, FHE)
 
-ringDim = GetRingDimension(cryptoContext)
+ring_dimension = GetRingDimension(cryptoContext)
 # This is the maximum number of slots that can be used for full packing.
-numSlots = div(ringDim,  2)
-println("CKKS scheme is using ring dimension ", ringDim)
+num_slots = div(ring_dimension,  2)
+println("CKKS scheme is using ring dimension ", ring_dimension)
 println()
 
-EvalBootstrapSetup(cryptoContext; levelBudget)
+EvalBootstrapSetup(cryptoContext; level_budget)
 
-keyPair = KeyGen(cryptoContext)
-pubkey = OpenFHE.public_key(keyPair)
-privkey = OpenFHE.private_key(keyPair)
+key_pair = KeyGen(cryptoContext)
+pubkey = OpenFHE.public_key(key_pair)
+privkey = OpenFHE.private_key(key_pair)
 EvalMultKeyGen(cryptoContext, privkey);
-EvalBootstrapKeyGen(cryptoContext, privkey, numSlots);
+EvalBootstrapKeyGen(cryptoContext, privkey, num_slots);
 
 x = [0.25, 0.5, 0.75, 1.0, 2.0, 3.0, 4.0, 5.0]
-encodedLength = length(x)
+encoded_length = length(x)
 
 # We start with a depleted ciphertext that has used up all of its levels.
-ptxt = MakeCKKSPackedPlaintext(cryptoContext, x; scaleDeg = 1, level = depth - 1)
+ptxt = MakeCKKSPackedPlaintext(cryptoContext, x; scale_degree = 1, level = depth - 1)
 
-SetLength(ptxt, encodedLength)
+SetLength(ptxt, encoded_length)
 println("Input: ", ptxt)
 
 ciphertext = Encrypt(cryptoContext, pubkey, ptxt)
@@ -59,12 +59,12 @@ println("Initial number of levels remaining: ", depth - GetLevel(ciphertext))
 
 # Perform the bootstrapping operation. The goal is to increase the number of levels
 # remaining for HE computation.
-ciphertextAfter = EvalBootstrap(cryptoContext, ciphertext)
+ciphertext_after = EvalBootstrap(cryptoContext, ciphertext)
 
-println("Number of levels remaining after bootstrapping: ", depth - GetLevel(ciphertextAfter))
+println("Number of levels remaining after bootstrapping: ", depth - GetLevel(ciphertext_after))
 println()
 
 result = Plaintext()
-Decrypt(cryptoContext, privkey, ciphertextAfter, result);
-SetLength(result, encodedLength)
+Decrypt(cryptoContext, privkey, ciphertext_after, result);
+SetLength(result, encoded_length)
 println("Output after bootstrapping \n\t", result)
