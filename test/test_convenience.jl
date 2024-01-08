@@ -6,25 +6,25 @@ using OpenFHE
 @testset verbose=true showtiming=true "test_convenience.jl" begin
 
 @testset verbose=true showtiming=true "show" begin
-    show(CCParams{CryptoContextCKKSRNS}())
+    @test_nowarn show(CCParams{CryptoContextCKKSRNS}())
     println()
 
-    show(CryptoContextCKKSRNS())
+    @test_nowarn show(CryptoContextCKKSRNS())
     println()
 
-    show(CryptoContext{DCRTPoly}())
+    @test_nowarn show(CryptoContext{DCRTPoly}())
     println()
 
-    show(Ciphertext{DCRTPoly}())
+    @test_nowarn show(Ciphertext{DCRTPoly}())
     println()
 
-    show(Plaintext())
+    @test_nowarn show(Plaintext())
     println()
 
-    show(PublicKey{DCRTPoly}())
+    @test_nowarn show(PublicKey{DCRTPoly}())
     println()
 
-    show(PrivateKey{DCRTPoly}())
+    @test_nowarn show(PrivateKey{DCRTPoly}())
     println()
 end
 
