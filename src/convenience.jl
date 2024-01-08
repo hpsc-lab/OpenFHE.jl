@@ -89,8 +89,8 @@ for (WrappedT, fun) in [
     :(CryptoContext{DCRTPoly}) => :EvalBootstrapSetup,
     :(CryptoContext{DCRTPoly}) => :EvalBootstrapKeyGen,
     :(CryptoContext{DCRTPoly}) => :EvalBootstrap,
-    :(CxxWrap.StdLib.SharedPtrAllocated{PlaintextImpl}) => :SetLength,
-    :(CxxWrap.StdLib.SharedPtrAllocated{PlaintextImpl}) => :GetLogPrecision,
+    :(Plaintext) => :SetLength,
+    :(Plaintext) => :GetLogPrecision,
 ]
     @eval function $fun(arg::$WrappedT, args...; kwargs...)
         $fun(arg[], args...; kwargs...)
