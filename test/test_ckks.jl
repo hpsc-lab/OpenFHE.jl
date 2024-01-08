@@ -3,6 +3,8 @@ module TestCKKS
 using Test
 using OpenFHE
 
+@testset verbose=true showtiming=true "test_ckks.jl" begin
+
 @testset verbose=true showtiming=true "CCParams" begin
     multDepth = 1
     scaleModSize = 50
@@ -25,5 +27,7 @@ end
 @testset verbose=true showtiming=true "Example: simple_ckks_bootstrapping.jl" begin
     @test_nowarn include("../examples/simple_ckks_bootstrapping.jl")
 end
+
+end # @testset "test_ckks.jl"
 
 end # module

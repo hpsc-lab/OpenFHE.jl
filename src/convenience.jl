@@ -99,6 +99,7 @@ end
 
 
 # Convenience `show` methods to hide wrapping-induced ugliness
+# Note: remember to add tests to `test/test_convenience.jl` if you add something here
 for (T, str) in [
     :(CCParams{<:CryptoContextCKKSRNS}) => "CCParams{CryptoContextCKKSRNS}()",
     :(CryptoContextCKKSRNS) => "CryptoContextCKKSRNS()",
