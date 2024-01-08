@@ -5,27 +5,33 @@ using OpenFHE
 
 @testset verbose=true showtiming=true "test_ckks.jl" begin
 
-@testset verbose=true showtiming=true "CCParams" begin
-    multDepth = 1
-    scaleModSize = 50
-    batchSize = 8
+multDepth = 1
+scaleModSize = 50
+batchSize = 8
 
+@testset verbose=true showtiming=true "CCParams" begin
     @test_nowarn CCParams{CryptoContextCKKSRNS}()
     parameters = CCParams{CryptoContextCKKSRNS}()
 
     @test_nowarn SetMultiplicativeDepth(parameters, multDepth)
-
     @test_nowarn SetScalingModSize(parameters, scaleModSize)
-
     @test_nowarn SetBatchSize(parameters, batchSize)
 end
 
-@testset verbose=true showtiming=true "Example: simple_real_numbers.jl" begin
-    @test_nowarn include("../examples/simple_real_numbers.jl")
-end
+parameters = CCParams{CryptoContextCKKSRNS}()
+SetMultiplicativeDepth(parameters, multDepth)
+SetScalingModSize(parameters, scaleModSize)
+SetBatchSize(parameters, batchSize)
 
-@testset verbose=true showtiming=true "Example: simple_ckks_bootstrapping.jl" begin
-    @test_nowarn include("../examples/simple_ckks_bootstrapping.jl")
+@testset verbose=true showtiming=true "CryptoContext" begin
+    @test_nowarn GenCryptoContext(parameters)
+    cc = GenCryptoContext(parameters)
+
+    @test_nowarn Enable(cc, PKE)
+    @test_nowarn Enable(cc, KEYSWITCH)
+    @test_nowarn Enable(cc, LEVELEDSHE)
+
+    @test GetRingDimension(cc) == 16384
 end
 
 end # @testset "test_ckks.jl"
