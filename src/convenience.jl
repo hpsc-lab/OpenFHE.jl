@@ -35,7 +35,7 @@ const Ciphertext{T} = CxxWrap.StdLib.SharedPtr{CiphertextImpl{T}}
 Type alias for `CxxWrap.StdLib.SharedPtr{PlaintextImpl}`.
 
 The plaintext object can hold unencrypted data. It is created either by encoding raw data
-(e.g., through [`MakeCKKSPackedPlaintext`](@ref)) or by decrypting a [Ciphertext`](@ref)
+(e.g., through [`MakeCKKSPackedPlaintext`](@ref)) or by decrypting a [`Ciphertext`](@ref)
 object using [`Decrypt`](@ref).
 
 See also: [`Ciphertext`](@ref), [`Decrypt`](@ref)
