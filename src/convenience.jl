@@ -28,8 +28,22 @@ See also: [`Plaintext`](@ref), [`Encrypt`](@ref)
 """
 const Ciphertext{T} = CxxWrap.StdLib.SharedPtr{CiphertextImpl{T}}
 
-# TODO: Define Plaintext here similarly to the CryptoContext
-# const Plaintext{T} = CxxWrap.StdLib.SharedPtr{PlaintextImpl{T}}
+"""
+    Plaintext
+
+
+Type alias for `CxxWrap.StdLib.SharedPtr{PlaintextImpl}`.
+
+The plaintext object can hold unencrypted data. It is created either by encoding raw data
+(e.g., through [`MakeCKKSPackedPlaintext`](@ref)) or by decrypting a [`Ciphertext`](@ref)
+object using [`Decrypt`](@ref).
+
+See also: [`Ciphertext`](@ref), [`Decrypt`](@ref)
+"""
+const Plaintext = CxxWrap.StdLib.SharedPtr{PlaintextImpl}
+
+# Print contents of Plaintext types using internal implementation
+Base.print(io::IO, plaintext::Plaintext) = print(io, _to_string(plaintext))
 
 """
     PublicKey{T}
@@ -75,8 +89,8 @@ for (WrappedT, fun) in [
     :(CryptoContext{DCRTPoly}) => :EvalBootstrapSetup,
     :(CryptoContext{DCRTPoly}) => :EvalBootstrapKeyGen,
     :(CryptoContext{DCRTPoly}) => :EvalBootstrap,
-    :(CxxWrap.StdLib.SharedPtrAllocated{PlaintextImpl}) => :SetLength,
-    :(CxxWrap.StdLib.SharedPtrAllocated{PlaintextImpl}) => :GetLogPrecision,
+    :(Plaintext) => :SetLength,
+    :(Plaintext) => :GetLogPrecision,
 ]
     @eval function $fun(arg::$WrappedT, args...; kwargs...)
         $fun(arg[], args...; kwargs...)
@@ -90,6 +104,7 @@ for (T, str) in [
     :(CryptoContextCKKSRNS) => "CryptoContextCKKSRNS()",
     :(CryptoContext{DCRTPoly}) => "CryptoContext{DCRTPoly}()",
     :(Ciphertext{DCRTPoly}) => "Ciphertext{DCRTPoly}()",
+    :(Plaintext) => "Plaintext()",
     :(PublicKey{DCRTPoly}) => "PublicKey{DCRTPoly}()",
     :(PrivateKey{DCRTPoly}) => "PrivateKey{DCRTPoly}()",
 ]
@@ -212,11 +227,5 @@ See also: [`SecretKeyDist`](@ref)
 """
 function GetBootstrapDepth(level_budget::Vector{<:Integer}, secret_key_distribution)
     Int(GetBootstrapDepth(CxxWrap.StdVector(UInt32.(level_budget)), secret_key_distribution))
-end
-
-
-# Actual implementations
-function Base.show(io::IO, pt::CxxWrap.CxxWrapCore.SmartPointer{<:PlaintextImpl})
-    print(io, _to_string_plaintext(pt))
 end
 

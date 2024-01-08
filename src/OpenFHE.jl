@@ -38,10 +38,11 @@ export Plaintext
 export SetLength, GetLogPrecision
 
 # Ciphertext and its functions
+export Ciphertext
 export GetLevel
 
 # KeyPair and its functions
-export KeyPair
+export KeyPair, PublicKey, PrivateKey
 
 # Enums
 export PKESchemeFeature, PKE, KEYSWITCH, PRE, LEVELEDSHE, ADVANCEDSHE, MULTIPARTY, FHE,
