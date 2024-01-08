@@ -38,7 +38,7 @@ export CryptoContext, GenCryptoContext, Enable, GetRingDimension, KeyGen, EvalMu
 
 # Plaintext
 export Plaintext
-export SetLength, GetLogPrecision
+export SetLength, GetLogPrecision, GetRealPackedValue
 
 # Ciphertext
 export Ciphertext

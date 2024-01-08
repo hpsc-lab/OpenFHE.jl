@@ -91,6 +91,7 @@ for (WrappedT, fun) in [
     :(CryptoContext{DCRTPoly}) => :EvalBootstrap,
     :(Plaintext) => :SetLength,
     :(Plaintext) => :GetLogPrecision,
+    :(Plaintext) => :GetRealPackedValue,
 ]
     @eval function $fun(arg::$WrappedT, args...; kwargs...)
         $fun(arg[], args...; kwargs...)
@@ -108,6 +109,7 @@ for (T, str) in [
     :(Plaintext) => "Plaintext()",
     :(PublicKey{DCRTPoly}) => "PublicKey{DCRTPoly}()",
     :(PrivateKey{DCRTPoly}) => "PrivateKey{DCRTPoly}()",
+    :(DecryptResult) => "DecryptResult()",
 ]
     @eval function Base.show(io::IO, ::$T)
         print(io, $str)
@@ -217,6 +219,17 @@ function Decrypt(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{O
                  result::CxxWrap.CxxWrapCore.SmartPointer{<:PlaintextImpl})
     Decrypt(context, key_or_cipher1, key_or_cipher2, CxxPtr(result))
 end
+
+"""
+    OpenFHE.DecryptResult
+
+Return type of the [`Decrypt`](@ref) operation. This type does not actually hold any data
+but only information on whether the decryption succeeded. It is currently not used by
+OpenFHE.jl and no functions are implemented.
+
+See also: [`Decrypt`](@ref)
+"""
+DecryptResult
 
 """
     GetBootstrapDepth(level_budget::Vector{<:Integer}, secret_key_distribution::SecretKeyDist)

@@ -39,7 +39,7 @@ ct_add = EvalAdd(cc, c1, c2);
 
 ct_sub = EvalSub(cc, c1, c2);
 
-cScalar = EvalMult(cc, c1, 4.0);
+ct_scalar = EvalMult(cc, c1, 4.0);
 
 ct_mult = EvalMult(cc, c1, c2);
 
@@ -65,7 +65,7 @@ Decrypt(cc, privkey, ct_sub, result)
 SetLength(result, batch_size)
 println("x1 - x2 = ", result)
 
-Decrypt(cc, privkey, cScalar, result)
+Decrypt(cc, privkey, ct_scalar, result)
 SetLength(result, batch_size)
 println("4 * x1 = ", result)
 
