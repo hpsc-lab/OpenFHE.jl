@@ -1,4 +1,17 @@
-# CCParams and its functions
+# DCRTPoly
+"""
+    DCRTPoly
+
+A type used as a parameter for many parametric data types (e.g., [`CryptoContext`](@ref)
+or [`Ciphertext`](@ref)) to indicate how some fundamental lattice operations are encoded
+in OpenFHE. Usually this type never needs to be constructed directly by a user.
+
+See also: [`CryptoContext`](@ref)
+"""
+DCRTPoly
+
+
+# CCParams
 """
     CryptoContextCKKSRNS
 
@@ -102,7 +115,7 @@ SetKeySwitchTechnique
 # FHECKKSRNS
 # `GetBootstrapDepth` is documented in `src/convenience.jl`
 
-# CryptoContext and its functions
+# CryptoContext
 """
     GenCryptoContext(parameters::CCParams)::CryptoContext
     GenCryptoContext(parameters::CCParams<CryptoContextCKKSRNS>)::CryptoContext<DCRTYPoly>
@@ -229,12 +242,12 @@ EvalBootstrapKeyGen
 # `EvalBootstrap` is documented in `src/convenience.jl`
 
 
-# Plaintext and its functions
+# Plaintext
 
 # `Plaintext` is documented in `src/convenience.jl`
 
 
-# Ciphertext and its functions
+# Ciphertext
 """
     GetLevel(ciphertext::Ciphertext)
 

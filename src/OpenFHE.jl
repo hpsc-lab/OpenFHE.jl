@@ -19,7 +19,10 @@ end
 # that a user can actually create using a constructor. This is subject to change in the
 # future.
 
-# CCParams and its functions
+# DCRTPoly
+export DCRTPoly
+
+# CCParams
 export CCParams, CryptoContextCKKSRNS
 export SetMultiplicativeDepth, SetScalingModSize, SetBatchSize, SetSecretKeyDist,
        SetSecurityLevel, SetRingDim, SetScalingTechnique, SetFirstModSize,
@@ -28,21 +31,27 @@ export SetMultiplicativeDepth, SetScalingModSize, SetBatchSize, SetSecretKeyDist
 # FHECKKSRNS
 export GetBootstrapDepth
 
-# CryptoContext and its functions
+# CryptoContext
 export CryptoContext, GenCryptoContext, Enable, GetRingDimension, KeyGen, EvalMultKeyGen,
        EvalRotateKeyGen, MakeCKKSPackedPlaintext, Encrypt, EvalAdd, EvalSub, EvalMult,
        EvalRotate, Decrypt, EvalBootstrapSetup, EvalBootstrapKeyGen, EvalBootstrap
 
-# Plaintext and its functions
+# Plaintext
 export Plaintext
-export SetLength, GetLogPrecision
+export SetLength, GetLogPrecision, GetRealPackedValue
 
-# Ciphertext and its functions
+# Ciphertext
 export Ciphertext
 export GetLevel
 
-# KeyPair and its functions
-export KeyPair, PublicKey, PrivateKey
+# KeyPair
+export KeyPair
+
+# PublicKey
+export PublicKey
+
+# PrivateKey
+export PrivateKey
 
 # Enums
 export PKESchemeFeature, PKE, KEYSWITCH, PRE, LEVELEDSHE, ADVANCEDSHE, MULTIPARTY, FHE,
