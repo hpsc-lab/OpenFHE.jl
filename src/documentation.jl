@@ -200,10 +200,17 @@ EvalSub
 
 """
     EvalMult(crypto_context::CryptoContext, ciphertext1::Ciphertext, ciphertext2::Ciphertext)
+    EvalMult(crypto_context::CryptoContext, ciphertext::Ciphertext, plaintext::Plaintext)
+    EvalMult(crypto_context::CryptoContext, plaintext::Plaintext, ciphertext::Ciphertext)
     EvalMult(crypto_context::CryptoContext, ciphertext::Ciphertext, scalar::Real)
+    EvalMult(crypto_context::CryptoContext, scalar::Real, ciphertext::Ciphertext)
 
 Multiply `ciphertext1` with `ciphertext2` and return the resulting [`Ciphertext`](@ref).
 Both input ciphertexts need to be derived from the given `crypto_context`.
+
+Multiply `ciphertext` with the `plaintext` and return the resulting
+[`Ciphertext`](@ref). The input ciphertext needs to be derived from the given
+`crypto_context`, while the plaintext needs to be encoded in a compatible manner
 
 Multiply `ciphertext` with the real-valued `scalar` and return the resulting
 [`Ciphertext`](@ref). The input ciphertext needs to be derived from the given
