@@ -205,6 +205,25 @@ function EvalBootstrap(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContext
 end
 
 """
+    GetCryptoContext(object::Union{Ciphertext})
+
+Return a the crypto context for a an `object` that is is a subtype of `CryptoObject`.
+
+Currently, this is only implemented for [`Ciphertext`](@ref).
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+"""
+function GetCryptoContext(object::Union{Ciphertext})
+    # Note: Due to limitations of CxxWrap.jl when wrapping mutually dependent template
+    # types, openfhe-julia introduces a non-template proxy type as an additional level of
+    # indirection.
+    # We thus need to first dereference `Ciphertext` to get to the `CiphertextImpl`, then
+    # call the proxy method to get the `CryptoContextProxy`, and finally obtain the actual
+    # `CryptoContext` from it
+    GetCryptoContext(GetCryptoContextProxy(object[]))
+end
+
+"""
     Decrypt(crypto_context::CryptoContext, ciphertext::Ciphertext, private_key::PrivateKey, plaintext::Plaintext)
     Decrypt(crypto_context::CryptoContext, private_key::PrivateKey, ciphertext::Ciphertext, plaintext::Plaintext)
 

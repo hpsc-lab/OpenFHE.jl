@@ -135,6 +135,10 @@ end
     @test GetRealPackedValue(result_dec) ≈ circshift(x1, -shift)
 end
 
+@testset verbose=true showtiming=true "GetCryptoContext" begin
+    @test GetCryptoContext(c1) isa CryptoContext
+end
+
 end # @testset "test_ckks.jl"
 
 end # module
