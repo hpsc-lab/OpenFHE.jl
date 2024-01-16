@@ -31,6 +31,9 @@ export SetMultiplicativeDepth, SetScalingModSize, SetBatchSize, SetSecretKeyDist
 # FHECKKSRNS
 export GetBootstrapDepth
 
+# CryptoObject
+export GetCryptoContext
+
 # CryptoContext
 export CryptoContext, GenCryptoContext, Enable, GetRingDimension, KeyGen, EvalMultKeyGen,
        EvalRotateKeyGen, MakeCKKSPackedPlaintext, Encrypt, EvalAdd, EvalSub, EvalMult,
