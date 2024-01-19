@@ -180,21 +180,45 @@ Encrypt
 
 """
     EvalAdd(crypto_context::CryptoContext, ciphertext1::Ciphertext, ciphertext2::Ciphertext)
+    EvalAdd(crypto_context::CryptoContext, ciphertext::Ciphertext, plaintext::Plaintext)
+    EvalAdd(crypto_context::CryptoContext, plaintext::Plaintext, ciphertext::Ciphertext)
+    EvalAdd(crypto_context::CryptoContext, ciphertext::Ciphertext, scalar::Real)
+    EvalAdd(crypto_context::CryptoContext, scalar::Real, ciphertext::Ciphertext)
 
 Add `ciphertext1` to `ciphertext2` and return the resulting [`Ciphertext`](@ref).
 Both input ciphertexts need to be derived from the given `crypto_context`.
 
-See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+Add `plaintext` to the `ciphertext` and return the resulting
+[`Ciphertext`](@ref). The input ciphertext needs to be derived from the given
+`crypto_context`, while the plaintext needs to be encoded in a compatible manner
+
+Add the real-valued `scalar` element-wise to `ciphertext` and return the resulting
+[`Ciphertext`](@ref). The input ciphertext needs to be derived from the given
+`crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`Plaintext`](@ref)
 """
 EvalAdd
 
 """
     EvalSub(crypto_context::CryptoContext, ciphertext1::Ciphertext, ciphertext2::Ciphertext)
+    EvalSub(crypto_context::CryptoContext, ciphertext::Ciphertext, plaintext::Plaintext)
+    EvalSub(crypto_context::CryptoContext, plaintext::Plaintext, ciphertext::Ciphertext)
+    EvalSub(crypto_context::CryptoContext, ciphertext::Ciphertext, scalar::Real)
+    EvalSub(crypto_context::CryptoContext, scalar::Real, ciphertext::Ciphertext)
 
 Subtract `ciphertext2` from `ciphertext1` and return the resulting [`Ciphertext`](@ref).
 Both input ciphertexts need to be derived from the given `crypto_context`.
 
-See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+Subtract `plaintext` from `ciphertext` (or vice-versa) and return the resulting
+[`Ciphertext`](@ref). The input ciphertext needs to be derived from the given
+`crypto_context`, while the plaintext needs to be encoded in a compatible manner
+
+Subtract the real-valued `scalar` element-wise from `ciphertext` (or vice-versa)
+and return the resulting [`Ciphertext`](@ref). The input ciphertext needs to be derived from
+the given `crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`Plaintext`](@ref)
 """
 EvalSub
 
@@ -216,9 +240,20 @@ Multiply `ciphertext` with the real-valued `scalar` and return the resulting
 [`Ciphertext`](@ref). The input ciphertext needs to be derived from the given
 `crypto_context`.
 
-See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`Plaintext`](@ref)
 """
 EvalMult
+
+
+"""
+    EvalNegate(crypto_context::CryptoContext, ciphertext::Ciphertext)
+
+Negate the `ciphertext`. The input ciphertext needs to be derived from the given
+`crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+"""
+EvalNegate
 
 
 """
