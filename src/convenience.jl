@@ -84,6 +84,7 @@ for (WrappedT, fun) in [
     :(CryptoContext{DCRTPoly}) => :EvalAdd,
     :(CryptoContext{DCRTPoly}) => :EvalSub,
     :(CryptoContext{DCRTPoly}) => :EvalMult,
+    :(CryptoContext{DCRTPoly}) => :EvalNegate,
     :(CryptoContext{DCRTPoly}) => :EvalRotate,
     :(CryptoContext{DCRTPoly}) => :Decrypt,
     :(CryptoContext{DCRTPoly}) => :EvalBootstrapSetup,
