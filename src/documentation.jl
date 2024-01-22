@@ -288,16 +288,203 @@ EvalBootstrapKeyGen
 
 # `Plaintext` is documented in `src/convenience.jl`
 
+"""
+    IsEncoded(plaintext::Plaintext)
 
-# Ciphertext
+Return true when encoding is done for a given `plaintext`.
+
+See also: [`Plaintext`](@ref)
+"""
+IsEncoded
+
+"""
+    GetElementRingDimension(plaintext::Plaintext)::UInt32
+
+Return the ring dimension on the underlying element for a given `plaintext`.
+
+See also: [`Plaintext`](@ref)
+"""
+GetElementRingDimension
+
+"""
+    GetLogError(plaintext::Plaintext)
+
+Return log2 of estimated standard deviation of approximation for a given `plaintext`.
+
+See also: [`Plaintext`](@ref)
+"""
+GetLogError
+
+"""
+    GetLogPrecision(plaintext::Plaintext)
+
+Return log2 of estimated precision for a given `plaintext`.
+
+See also: [`Plaintext`](@ref)
+"""
+GetLogPrecision
+
+"""
+    GetStringValue(plaintext::Plaintext)::String
+
+Return data as string for a given `plaintext`.
+
+Note: Only supported for schemes that encode data as string!
+
+See also: [`Plaintext`](@ref)
+"""
+GetStringValue
+
+"""
+    GetCoefPackedValue(plaintext::Plaintext)::Vector{Int64}
+
+Return data as packed coefficients for a given `plaintext`.
+
+Note: Only supported for schemes that encode data as packed coefficients!
+
+See also: [`Plaintext`](@ref)
+"""
+GetCoefPackedValue
+
+"""
+    GetPackedValue(plaintext::Plaintext)::Vector{Int64}
+
+Return data as packed value for a given `plaintext`.
+
+Note: Only supported for schemes that encode data as packed values!
+
+See also: [`Plaintext`](@ref)
+"""
+GetPackedValue
+
+"""
+    GetRealPackedValue(plaintext::Plaintext)::Vector{Float64}
+
+Return data as double precision values for a given `plaintext`.
+
+Note: Only supported for schemes that encode data as double precision values!
+
+See also: [`Plaintext`](@ref)
+"""
+GetRealPackedValue
+
+
+# Ciphertext (+ Plaintext)
+"""
+    GetNoiseScaleDeg(ciphertext::Ciphertext)
+    GetNoiseScaleDeg(plaintext::Plaintext)
+
+Get the degree of the scaling factor for the given `ciphertext` or `plaintext`..
+
+See also: [`Ciphertext`](@ref), [`Plaintext`](@ref), [`SetNoiseScaleDeg`](@ref)
+"""
+GetNoiseScaleDeg
+
+"""
+    SetNoiseScaleDeg(ciphertext::Ciphertext, degree::Integer)
+    SetNoiseScaleDeg(plaintext::Plaintext, degree::Integer)
+
+Set the `degree` of the scaling factor for the given `ciphertext` or `plaintext`..
+
+See also: [`Ciphertext`](@ref), [`Plaintext`](@ref), [`GetNoiseScaleDeg`](@ref)
+"""
+SetNoiseScaleDeg
+
 """
     GetLevel(ciphertext::Ciphertext)
+    GetLevel(plaintext::Plaintext)
 
-Return the number of scalings performed for the given `ciphertext`.
+Return the number of scalings performed for the given `ciphertext` or `plaintext`..
 
-See also: [`Ciphertext`](@ref)
+See also: [`Ciphertext`](@ref), [`Plaintext`](@ref), [`SetLevel`](@ref)
 """
 GetLevel
+
+"""
+    SetLevel(ciphertext::Ciphertext, level::Integer)
+    SetLevel(plaintext::Plaintext, level::Integer)
+
+Set the number of scalings `level` for the given `ciphertext` or `plaintext`..
+
+See also: [`Ciphertext`](@ref), [`Plaintext`](@ref), [`GetLevel`](@ref)
+"""
+SetLevel
+
+"""
+    GetHopLevel(ciphertext::Ciphertext)
+
+Return the re-encryption level for the given `ciphertext`.
+
+See also: [`Ciphertext`](@ref), [`SetHopLevel`](@ref)
+"""
+GetHopLevel
+
+"""
+    SetHopLevel(ciphertext::Ciphertext, level::Integer)
+
+Set the re-encryption `level` for the given `ciphertext`.
+
+See also: [`Ciphertext`](@ref), [`GetHopLevel`](@ref)
+"""
+SetHopLevel
+
+"""
+    GetScalingFactor(ciphertext::Ciphertext)
+    GetScalingFactor(plaintext::Plaintext)
+
+Return the scaling factor for the given `ciphertext` or `plaintext`.
+
+See also: [`Ciphertext`](@ref), [`Plaintext`](@ref), [`SetScalingFactor`](@ref)
+"""
+GetScalingFactor
+
+"""
+    SetScalingFactor(ciphertext::Ciphertext, factor::Real)
+    SetScalingFactor(plaintext::Plaintext, factor::Real)
+
+Set the scaling `factor` for the given `ciphertext` or `plaintext`.
+
+See also: [`Ciphertext`](@ref), [`Plaintext`](@ref), [`GetScalingFactor`](@ref)
+"""
+SetScalingFactor
+
+"""
+    GetSlots(ciphertext::Ciphertext)
+    GetSlots(plaintext::Plaintext)
+
+Return the number of slots for the given `ciphertext` or `plaintext`.
+
+See also: [`Ciphertext`](@ref), [`Plaintext`](@ref), [`SetSlots`](@ref)
+"""
+GetSlots
+
+"""
+    SetSlots(ciphertext::Ciphertext, slots::Integer)
+    SetSlots(plaintext::Plaintext, slots::Integer)
+
+Set the number of `slots` for the given `ciphertext` or `plaintext`.
+
+See also: [`Ciphertext`](@ref), [`Plaintext`](@ref), [`GetSlots`](@ref)
+"""
+SetSlots
+
+"""
+    Clone(ciphertext::Ciphertext)
+
+Clone the given `ciphertext` *including* its encrypted data.
+
+See also: [`Ciphertext`](@ref), [`CloneZero`](@ref)
+"""
+Clone
+
+"""
+    CloneZero(ciphertext::Ciphertext)
+
+Clone the given `ciphertext` *without* its encrypted data.
+
+See also: [`Ciphertext`](@ref), [`Clone`](@ref)
+"""
+CloneZero
 
 
 # Enums

@@ -35,18 +35,26 @@ export GetBootstrapDepth
 export GetCryptoContext
 
 # CryptoContext
-export CryptoContext, GenCryptoContext, Enable, GetRingDimension, KeyGen, EvalMultKeyGen,
-       EvalRotateKeyGen, MakeCKKSPackedPlaintext, Encrypt, EvalAdd, EvalSub, EvalMult,
-       EvalNegate, EvalRotate, Decrypt, EvalBootstrapSetup, EvalBootstrapKeyGen,
-       EvalBootstrap
+export CryptoContext
+export GenCryptoContext, Enable, GetKeyGenLevel, SetKeyGenLevel, GetCyclotomicOrder,
+       GetModulus, GetRingDimension, GetRootOfUnity, KeyGen, MakeCKKSPackedPlaintext,
+       Encrypt, Decrypt, EvalNegate, EvalAdd, EvalSub, EvalMultKeyGen, EvalMult, EvalSquare,
+       EvalMultNoRelin, Relinearize, RelinearizeInPlace, EvalRotate, EvalRotateKeyGen,
+       ComposedEvalMult, Rescale, RescaleInPlace, ModReduce, ModReduceInPlace, EvalSin,
+       EvalCos, EvalLogistic, EvalDivide, EvalSumKeyGen, EvalSum, EvalBootstrapSetup,
+       EvalBootstrapKeyGen, EvalBootstrap
 
 # Plaintext
 export Plaintext
-export SetLength, GetLogPrecision, GetRealPackedValue
+export GetScalingFactor, SetScalingFactor, IsEncoded, GetElementRingDimension,
+       GetLength, SetLength, GetNoiseScaleDeg, SetNoiseScaleDeg, GetLevel, SetLevel,
+       GetSlots, SetSlots, GetLogError, GetLogPrecision, GetStringValue,
+       GetCoefPackedValue, GetPackedValue, GetRealPackedValue
 
 # Ciphertext
 export Ciphertext
-export GetLevel
+export GetNoiseScaleDeg, SetNoiseScaleDeg, GetLevel, SetLevel, GetHopLevel, SetHopLevel,
+       GetScalingFactor, SetScalingFactor, GetSlots, SetSlots, Clone, CloneZero
 
 # KeyPair
 export KeyPair
