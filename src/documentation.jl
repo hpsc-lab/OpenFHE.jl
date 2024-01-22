@@ -484,7 +484,7 @@ Clone the given `ciphertext` *without* its encrypted data.
 
 See also: [`Ciphertext`](@ref), [`Clone`](@ref)
 """
-Clone
+CloneZero
 
 
 # Enums

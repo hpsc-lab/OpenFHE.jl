@@ -36,10 +36,13 @@ export GetCryptoContext
 
 # CryptoContext
 export CryptoContext
-export GenCryptoContext, Enable, GetRingDimension, KeyGen, EvalMultKeyGen,
-       EvalRotateKeyGen, MakeCKKSPackedPlaintext, Encrypt, EvalAdd, EvalSub, EvalMult,
-       EvalNegate, EvalRotate, Decrypt, EvalBootstrapSetup, EvalBootstrapKeyGen,
-       EvalBootstrap
+export GenCryptoContext, Enable, GetKeyGenLevel, SetKeyGenLevel, GetCyclotomicOrder,
+       GetModulus, GetRingDimension, GetRootOfUnity, KeyGen, MakeCKKSPackedPlaintext,
+       Encrypt, Decrypt, EvalNegate, EvalAdd, EvalSub, EvalMultKeyGen, EvalMult, EvalSquare,
+       EvalMultNoRelin, Relinearize, RelinearizeInPlace, EvalRotate, EvalRotateKeyGen,
+       ComposedEvalMult, Rescale, RescaleInPlace, ModReduce, ModReduceInPlace, EvalSin,
+       EvalCos, EvalLogistic, EvalDivide, EvalSumKeyGen, EvalSum, EvalBootstrapSetup,
+       EvalBootstrapKeyGen, EvalBootstrap
 
 # Plaintext
 export Plaintext
