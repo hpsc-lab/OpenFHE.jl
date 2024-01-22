@@ -43,7 +43,10 @@ export GenCryptoContext, Enable, GetRingDimension, KeyGen, EvalMultKeyGen,
 
 # Plaintext
 export Plaintext
-export SetLength, GetLogPrecision, GetRealPackedValue
+export GetScalingFactor, SetScalingFactor, IsEncoded, GetElementRingDimension,
+       GetLength, SetLength, GetNoiseScaleDeg, SetNoiseScaleDeg, GetLevel, SetLevel,
+       GetSlots, SetSlots, GetLogError, GetLogPrecision, GetStringValue,
+       GetCoefPackedValue, GetPackedValue, GetRealPackedValue
 
 # Ciphertext
 export Ciphertext
