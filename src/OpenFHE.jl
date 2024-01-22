@@ -35,7 +35,8 @@ export GetBootstrapDepth
 export GetCryptoContext
 
 # CryptoContext
-export CryptoContext, GenCryptoContext, Enable, GetRingDimension, KeyGen, EvalMultKeyGen,
+export CryptoContext
+export GenCryptoContext, Enable, GetRingDimension, KeyGen, EvalMultKeyGen,
        EvalRotateKeyGen, MakeCKKSPackedPlaintext, Encrypt, EvalAdd, EvalSub, EvalMult,
        EvalNegate, EvalRotate, Decrypt, EvalBootstrapSetup, EvalBootstrapKeyGen,
        EvalBootstrap
@@ -46,7 +47,8 @@ export SetLength, GetLogPrecision, GetRealPackedValue
 
 # Ciphertext
 export Ciphertext
-export GetLevel
+export GetNoiseScaleDeg, SetNoiseScaleDeg, GetLevel, SetLevel, GetHopLevel, SetHopLevel,
+       GetScalingFactor, SetScalingFactor, GetSlots, SetSlots, Clone, CloneZero
 
 # KeyPair
 export KeyPair

@@ -73,7 +73,18 @@ const PrivateKey{T} = CxxWrap.StdLib.SharedPtr{PrivateKeyImpl{T}}
 
 # Convenience methods to avoid having to dereference smart pointers
 for (WrappedT, fun) in [
+    :(Ciphertext{DCRTPoly}) => :GetNoiseScaleDeg,
+    :(Ciphertext{DCRTPoly}) => :SetNoiseScaleDeg,
     :(Ciphertext{DCRTPoly}) => :GetLevel,
+    :(Ciphertext{DCRTPoly}) => :SetLevel,
+    :(Ciphertext{DCRTPoly}) => :GetHopLevel,
+    :(Ciphertext{DCRTPoly}) => :SetHopLevel,
+    :(Ciphertext{DCRTPoly}) => :GetScalingFactor,
+    :(Ciphertext{DCRTPoly}) => :SetScalingFactor,
+    :(Ciphertext{DCRTPoly}) => :GetSlots,
+    :(Ciphertext{DCRTPoly}) => :SetSlots,
+    :(Ciphertext{DCRTPoly}) => :Clone,
+    :(Ciphertext{DCRTPoly}) => :CloneZero,
     :(CryptoContext{DCRTPoly}) => :Enable,
     :(CryptoContext{DCRTPoly}) => :GetRingDimension,
     :(CryptoContext{DCRTPoly}) => :KeyGen,

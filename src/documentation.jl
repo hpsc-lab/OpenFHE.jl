@@ -291,13 +291,112 @@ EvalBootstrapKeyGen
 
 # Ciphertext
 """
+    GetNoiseScaleDeg(ciphertext::Ciphertext)
+
+Get the degree of the scaling factor for the encrypted message.
+
+See also: [`Ciphertext`](@ref), [`SetNoiseScaleDeg`](@ref)
+"""
+GetNoiseScaleDeg
+
+"""
+    SetNoiseScaleDeg(ciphertext::Ciphertext, degree::Integer)
+
+Set the `degree` of the scaling factor for the encrypted message.
+
+See also: [`Ciphertext`](@ref), [`GetNoiseScaleDeg`](@ref)
+"""
+SetNoiseScaleDeg
+
+"""
     GetLevel(ciphertext::Ciphertext)
 
 Return the number of scalings performed for the given `ciphertext`.
 
-See also: [`Ciphertext`](@ref)
+See also: [`Ciphertext`](@ref), [`SetLevel`](@ref)
 """
 GetLevel
+
+"""
+    SetLevel(ciphertext::Ciphertext, level::Integer)
+
+Set the number of scalings `level` for the given `ciphertext`.
+
+See also: [`Ciphertext`](@ref), [`GetLevel`](@ref)
+"""
+SetLevel
+
+"""
+    GetHopLevel(ciphertext::Ciphertext)
+
+Return the re-encryption level for the given `ciphertext`.
+
+See also: [`Ciphertext`](@ref), [`SetHopLevel`](@ref)
+"""
+GetHopLevel
+
+"""
+    SetHopLevel(ciphertext::Ciphertext, level::Integer)
+
+Set the re-encryption `level` for the given `ciphertext`.
+
+See also: [`Ciphertext`](@ref), [`GetHopLevel`](@ref)
+"""
+SetHopLevel
+
+"""
+    GetScalingFactor(ciphertext::Ciphertext)
+
+Return the scaling factor for the given `ciphertext`.
+
+See also: [`Ciphertext`](@ref), [`SetScalingFactor`](@ref)
+"""
+GetScalingFactor
+
+"""
+    SetScalingFactor(ciphertext::Ciphertext, factor::Real)
+
+Set the scaling `factor` for the given `ciphertext`.
+
+See also: [`Ciphertext`](@ref), [`GetScalingFactor`](@ref)
+"""
+SetScalingFactor
+
+"""
+    GetSlots(ciphertext::Ciphertext)
+
+Return the number of slots for the given `ciphertext`.
+
+See also: [`Ciphertext`](@ref), [`SetSlots`](@ref)
+"""
+GetSlots
+
+"""
+    SetSlots(ciphertext::Ciphertext, slots::Integer)
+
+Set the number of `slots` for the given `ciphertext`.
+
+See also: [`Ciphertext`](@ref), [`GetSlots`](@ref)
+"""
+SetSlots
+
+"""
+    Clone(ciphertext::Ciphertext)
+
+Clone the given `ciphertext` *including* its encrypted data.
+
+See also: [`Ciphertext`](@ref), [`CloneZero`](@ref)
+"""
+Clone
+
+"""
+    CloneZero(ciphertext::Ciphertext)
+
+Clone the given `ciphertext` *without* its encrypted data.
+
+See also: [`Ciphertext`](@ref), [`Clone`](@ref)
+"""
+Clone
 
 
 # Enums
