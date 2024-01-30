@@ -413,7 +413,7 @@ ModReduceInPlace
             degree::UInt32)
 
 Evaluate approximate sine function on a given `ciphertext` using the Chebyshev approximation over
-the range ``[a,b]`` and return the resulting [`Ciphertext`](@ref). The input ciphertext needs to be
+the range ``[a,b]``. Return the resulting [`Ciphertext`](@ref). The input ciphertext needs to be
 derived from the given `crypto_context`.
 
 `a` is a lower bound of elements contained in the given `ciphertext`.
@@ -433,7 +433,7 @@ EvalSin
             degree::UInt32)
 
 Evaluate approximate cosine function on a given `ciphertext` using the Chebyshev approximation over
-the range ``[a,b]`` and return the resulting [`Ciphertext`](@ref). The input ciphertext needs to be
+the range ``[a,b]``. Return the resulting [`Ciphertext`](@ref). The input ciphertext needs to be
 derived from the given `crypto_context`.
 
 `a` is a lower bound of elements contained in the given `ciphertext`.
@@ -453,7 +453,7 @@ EvalCos
                  degree::UInt32)
 
 Evaluate approximate logistic function ``\\frac{1}{1 + \\exp{-x}}`` on a given `ciphertext` using
-the Chebyshev approximation over the range ``[a,b]`` and return the resulting [`Ciphertext`](@ref).
+the Chebyshev approximation over the range ``[a,b]``. Return the resulting [`Ciphertext`](@ref).
 The input ciphertext needs to be derived from the given `crypto_context`.
 
 `x` is an element contained in the given `ciphertext`
@@ -475,7 +475,7 @@ EvalLogistic
                degree::UInt32)
 
 Evaluate approximate division function ``\\frac{1}{x}`` where ``x >= 1`` on a given `ciphertext`
-using the Chebyshev approximation over the range ``[a,b]`` and return the resulting [`Ciphertext`](@ref).
+using the Chebyshev approximation over the range ``[a,b]``. Return the resulting [`Ciphertext`](@ref).
 The input ciphertext needs to be derived from the given `crypto_context`.
 
 `x` is an element contained in the given `ciphertext`
