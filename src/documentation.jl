@@ -325,7 +325,7 @@ Relinearize
 """
     RelinearizeInPlace(crypto_context::CryptoContext, ciphertext::Ciphertext)
 
-Perfrom in-place relinearization of the `ciphertext` to the lowest level (with 2 polynomials per
+Perform in-place relinearization of the `ciphertext` to the lowest level (with 2 polynomials per
 ciphertext). The input ciphertext needs to be derived from the given `crypto_context`.
 
 See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
