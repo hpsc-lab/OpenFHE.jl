@@ -152,7 +152,7 @@ GetKeyGenLevel
 For future use: Set `level` at which evaluation keys should be generated for the given
 `crypto_context`.
 
-See also: [`CryptoContext`](@ref)
+See also: [`CryptoContext`](@ref), [`GetKeyGenLevel`](@ref)
 """
 SetKeyGenLevel
 
