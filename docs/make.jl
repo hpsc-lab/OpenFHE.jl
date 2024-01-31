@@ -60,6 +60,9 @@ makedocs(
     # Explicitly specify documentation structure
     pages = [
         "Home" => "index.md",
+        "Advanced topics & developers" => [
+            "Release management" => "release-management.md",
+        ],
         "API reference" => "reference.md",
         "License" => "license.md"
     ],
