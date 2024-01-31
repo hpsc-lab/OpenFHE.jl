@@ -147,7 +147,7 @@ See also: [`CryptoContext`](@ref)
 GetKeyGenLevel
 
 """
-    SetKeyGenLevel(crypto_context::CryptoContext, level::Unsigned)
+    SetKeyGenLevel(crypto_context::CryptoContext, level::Integer)
 
 For future use: Set `level` at which evaluation keys should be generated for the given
 `crypto_context`.
