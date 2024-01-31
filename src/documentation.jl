@@ -318,7 +318,7 @@ Perform relinearization of the `ciphertext` to the lowest level (with 2 polynomi
 and return the resulting [`Ciphertext`](@ref). The input ciphertext needs to be derived from the
 given `crypto_context`.
 
-See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`RelinearizeInPlace`](@ref)
 """
 Relinearize
 
