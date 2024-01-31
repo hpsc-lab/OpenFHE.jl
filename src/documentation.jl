@@ -492,16 +492,7 @@ See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
 """
 EvalDivide
 
-"""
-    EvalSumKeyGen(crypto_context::CryptoContext, private_key::PrivateKey, public_key::PublicKey = nothing)
-
-Generates the key map to be used by [`EvalSum`](@ref). `public_key` has to be set for NTRU schemes.
-
-Please refer to the OpenFHE documentation for more details.
-
-See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`PublicKey`](@ref), [`EvalSum`](@ref)
-"""
-EvalSumKeyGen
+# `EvalSumKeyGen` is documented in `src/convenience.jl`
 
 """
     EvalSum(crypto_context::CryptoContext, ciphertext::Ciphertext, batch_size::Integer)
