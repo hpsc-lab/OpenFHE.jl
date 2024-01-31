@@ -148,6 +148,9 @@ OpenFHE.jl was initiated by [Michael Schlottke-Lakemper](https://lakemper.eu) (R
 Aachen University/High-Performance Computing Center Stuttgart (HLRS), Germany), who is also
 its principal maintainer.
 
+Further contributions to OpenFHE.jl have been made by the following people:
+* [Arseniy Kholod](https://www.github.com/ArseniyKholod) (RWTH Aachen University, Germany)
+
 
 ## License and contributing
 OpenFHE.jl is available under the MIT license (see [LICENSE.md](LICENSE.md)).
