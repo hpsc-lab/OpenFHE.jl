@@ -509,7 +509,7 @@ EvalSumKeyGen
 Calculate sum of all elements contained in the given `ciphertext` and return the resulting
 [`Ciphertext`](@ref). The input ciphertext needs to be derived from the given `crypto_context`.
 
-See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`EvalSumKeyGen`](@ref)
 """
 EvalSum
 
