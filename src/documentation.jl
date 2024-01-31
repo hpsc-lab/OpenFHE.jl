@@ -404,7 +404,7 @@ ModReduce
 Scale down to the original scale of the `ciphertext` in-place. The input ciphertext needs to be
 derived from the given `crypto_context`.
                 
-See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`RescaleInPlace`](@ref)
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`RescaleInPlace`](@ref), [`ModReduce`](@ref)
 """
 ModReduceInPlace
 
