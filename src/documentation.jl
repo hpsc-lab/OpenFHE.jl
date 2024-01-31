@@ -450,7 +450,7 @@ EvalCos
 
 """
     EvalLogistic(crypto_context::CryptoContext, ciphertext::Ciphertext, a::Float64, b::Float64,
-                 degree::UInt32)
+                 degree::Integer)
 
 Evaluate approximate logistic function ``\\frac{1}{1 + \\exp{-x}}`` on a given `ciphertext` using
 the Chebyshev approximation over the range ``[a,b]``. Return the resulting [`Ciphertext`](@ref).
