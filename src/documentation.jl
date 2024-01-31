@@ -137,7 +137,7 @@ See also: [`CryptoContext`](@ref), [`PKESchemeFeature`](@ref)
 Enable
 
 """
-    GetKeyGenLevel(crypto_context::CryptoContext)::Unsigned
+    GetKeyGenLevel(crypto_context::CryptoContext)::UInt32
 
 For future use: Return level at which evaluation keys should be generated for the given
 `crypto_context`.
