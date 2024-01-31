@@ -504,7 +504,7 @@ See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`PublicKey`](@ref), [`
 EvalSumKeyGen
 
 """
-    EvalSum(crypto_context::CryptoContext, ciphertext::Ciphertext, capacity::UInt32)
+    EvalSum(crypto_context::CryptoContext, ciphertext::Ciphertext, batch_size::Integer)
     
 Calculate sum of all elements contained in the given `ciphertext` and return the resulting
 [`Ciphertext`](@ref). The input ciphertext needs to be derived from the given `crypto_context`.
