@@ -384,7 +384,7 @@ An alias for [`ModReduceInPlace`](@ref) method. `ModReduceInPlace` is called `Re
 Scale down to the original scale of the `ciphertext` in-place. The input ciphertext needs to be
 derived from the given `crypto_context`.
             
-See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`ModReduceInPlace`](@ref)
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`ModReduceInPlace`](@ref), [`Rescale`](@ref)
 """
 RescaleInPlace
 
