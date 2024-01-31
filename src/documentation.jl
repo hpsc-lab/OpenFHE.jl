@@ -372,7 +372,7 @@ An alias for [`ModReduce`](@ref) method. `ModReduce` is called `Rescale` in CKKS
 Scale down to the original scale of the `ciphertext` and return the resulting [`Ciphertext`](@ref).
 The input ciphertext needs to be derived from the given `crypto_context`.
     
-See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`ModReduce`](@ref)
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`ModReduce`](@ref), [`RescaleInPlace`](@ref)
 """
 Rescale
 
