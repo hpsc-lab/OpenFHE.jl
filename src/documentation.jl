@@ -430,7 +430,7 @@ EvalSin
 
 """
     EvalCos(crypto_context::CryptoContext, ciphertext::Ciphertext, a::Float64, b::Float64,
-            degree::UInt32)
+            degree::Integer)
 
 Evaluate approximate cosine function on a given `ciphertext` using the Chebyshev approximation over
 the range ``[a,b]``. Return the resulting [`Ciphertext`](@ref). The input ciphertext needs to be
