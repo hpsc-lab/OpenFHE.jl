@@ -444,7 +444,7 @@ derived from the given `crypto_context`.
 
 Supported only in CKKS.
 
-See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`EvalSin`](@ref)
 """
 EvalCos
 
