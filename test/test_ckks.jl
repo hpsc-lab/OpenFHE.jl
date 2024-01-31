@@ -51,6 +51,7 @@ Enable(cc, FHE)
     @test OpenFHE.public_key(keys) isa PublicKey
     @test_nowarn EvalMultKeyGen(cc, OpenFHE.private_key(keys))
     @test_nowarn EvalRotateKeyGen(cc, OpenFHE.private_key(keys), [1, -2])
+    @test_nowarn EvalSumKeyGen(cc, OpenFHE.private_key(keys))
 end
 
 keys = KeyGen(cc)
@@ -58,6 +59,7 @@ privkey = OpenFHE.private_key(keys)
 pubkey = OpenFHE.public_key(keys)
 EvalMultKeyGen(cc, privkey)
 EvalRotateKeyGen(cc, privkey, [1, -2])
+EvalSumKeyGen(cc, privkey)
 
 x1 = [0.25, 0.5, 0.75, 1.0, 2.0, 3.0, 4.0, 5.0]
 x2 = [5.0, 4.0, 3.0, 2.0, 1.0, 0.75, 0.5, 0.25]
@@ -133,6 +135,14 @@ end
     Decrypt(cc, privkey, result_enc, result_dec)
     # Note: Julia's `circshift` rotates in the opposite direction as `EvalRotate`
     @test GetRealPackedValue(result_dec) ≈ circshift(x1, -shift)
+end
+
+@testset verbose=true showtiming=true "EvalSum" begin
+    @test EvalSum(cc, c1, batchSize) isa Ciphertext
+    result_enc = EvalSum(cc, c1, batchSize)
+    result_dec = Plaintext()
+    Decrypt(cc, privkey, result_enc, result_dec)
+    @test GetRealPackedValue(result_dec) ≈ [sum(x1) for _ in range(1, batchSize)]
 end
 
 @testset verbose=true showtiming=true "GetCryptoContext" begin

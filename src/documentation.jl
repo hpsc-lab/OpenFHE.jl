@@ -137,6 +137,44 @@ See also: [`CryptoContext`](@ref), [`PKESchemeFeature`](@ref)
 Enable
 
 """
+    GetKeyGenLevel(crypto_context::CryptoContext)::UInt32
+
+For future use: Return level at which evaluation keys should be generated for the given
+`crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`SetKeyGenLevel`](@ref)
+"""
+GetKeyGenLevel
+
+"""
+    SetKeyGenLevel(crypto_context::CryptoContext, level::Integer)
+
+For future use: Set `level` at which evaluation keys should be generated for the given
+`crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`GetKeyGenLevel`](@ref)
+"""
+SetKeyGenLevel
+
+"""
+    GetCyclotomicOrder(crypto_context::CryptoContext)::UInt32
+
+Return the cyclotomic order used for a given `crypto_context`.
+
+See also: [`CryptoContext`](@ref)
+"""
+GetCyclotomicOrder
+
+"""
+    GetModulus(crypto_context::CryptoContext)::UInt32
+
+Return the ciphertext modulus used for a given `crypto_context`.
+
+See also: [`CryptoContext`](@ref)
+"""
+GetModulus
+
+"""
     GetRingDimension(crypto_context::CryptoContext)::UInt32
 
 Return the polynomial ring dimension for a given `crypto_context`.
@@ -144,6 +182,15 @@ Return the polynomial ring dimension for a given `crypto_context`.
 See also: [`CryptoContext`](@ref)
 """
 GetRingDimension
+
+"""
+    GetRootOfUnity(crypto_context::CryptoContext)::UInt32
+
+Return the root of unity used for a given `crypto_context`.
+
+See also: [`CryptoContext`](@ref)
+"""
+GetRootOfUnity
 
 """
     KeyGen(crypto_context::CryptoContext)
@@ -244,6 +291,46 @@ See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`Plaintext`](@ref)
 """
 EvalMult
 
+"""
+    EvalSquare(crypto_context::CryptoContext, ciphertext::Ciphertext)
+
+Perform efficient homomorphic squaring of a `ciphertext` and return the resulting
+[`Ciphertext`](@ref). The input ciphertext needs to be derived from the given `crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+"""
+EvalSquare
+
+"""
+    EvalMultNoRelin(crypto_context::CryptoContext, ciphertext1::Ciphertext, ciphertext2::Ciphertext)
+
+Multiply `ciphertext1` with `ciphertext2` without relinearization and return the resulting
+[`Ciphertext`](@ref). Both input ciphertexts need to be derived from the given `crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+"""
+EvalMultNoRelin
+
+"""
+    Relinearize(crypto_context::CryptoContext, ciphertext::Ciphertext)
+
+Perform relinearization of the `ciphertext` to the lowest level (with 2 polynomials per ciphertext)
+and return the resulting [`Ciphertext`](@ref). The input ciphertext needs to be derived from the
+given `crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`RelinearizeInPlace`](@ref)
+"""
+Relinearize
+
+"""
+    RelinearizeInPlace(crypto_context::CryptoContext, ciphertext::Ciphertext)
+
+Perform in-place relinearization of the `ciphertext` to the lowest level (with 2 polynomials per
+ciphertext). The input ciphertext needs to be derived from the given `crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`Relinearize`](@ref)
+"""
+RelinearizeInPlace
 
 """
     EvalNegate(crypto_context::CryptoContext, ciphertext::Ciphertext)
@@ -255,17 +342,167 @@ See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
 """
 EvalNegate
 
-
 """
     EvalRotate(crypto_context::CryptoContext, ciphertext::Ciphertext, index::Integer)
 
 Rotate the `ciphertext` by the given `index`. A positive index denotes a left shift, a
-negative index a right shift.  The input ciphertext needs to be derived from the given
+negative index a right shift. The input ciphertext needs to be derived from the given
 `crypto_context`.
 
 See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
 """
 EvalRotate
+
+"""
+    ComposedEvalMult(crypto_context::CryptoContext, ciphertext1::Ciphertext, ciphertext2::Ciphertext)
+
+Multiply `ciphertext1` with `ciphertext2`, perform relinearization and modulus switching/rescaling.
+Return the resulting [`Ciphertext`](@ref). Both input ciphertexts need to be derived from the
+given `crypto_context`.
+    
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
+"""
+ComposedEvalMult
+
+"""
+    Rescale(crypto_context::CryptoContext, ciphertext::Ciphertext)
+
+An alias for [`ModReduce`](@ref) method. `ModReduce` is called `Rescale` in CKKS.
+
+Scale down to the original scale of the `ciphertext` and return the resulting [`Ciphertext`](@ref).
+The input ciphertext needs to be derived from the given `crypto_context`.
+    
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`ModReduce`](@ref), [`RescaleInPlace`](@ref)
+"""
+Rescale
+
+"""
+    RescaleInPlace(crypto_context::CryptoContext, ciphertext::Ciphertext)
+
+An alias for [`ModReduceInPlace`](@ref) method. `ModReduceInPlace` is called `RescaleInPlace` in CKKS.
+        
+Scale down to the original scale of the `ciphertext` in-place. The input ciphertext needs to be
+derived from the given `crypto_context`.
+            
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`ModReduceInPlace`](@ref), [`Rescale`](@ref)
+"""
+RescaleInPlace
+
+"""
+    ModReduce(crypto_context::CryptoContext, ciphertext::Ciphertext)
+
+Scale down to the original scale of the `ciphertext` and return the resulting [`Ciphertext`](@ref).
+The input ciphertext needs to be derived from the given `crypto_context`.
+        
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`Rescale`](@ref), [`ModReduceInPlace`](@ref)
+"""
+ModReduce
+
+"""
+    ModReduceInPlace(crypto_context::CryptoContext, ciphertext::Ciphertext)
+            
+Scale down to the original scale of the `ciphertext` in-place. The input ciphertext needs to be
+derived from the given `crypto_context`.
+                
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`RescaleInPlace`](@ref), [`ModReduce`](@ref)
+"""
+ModReduceInPlace
+
+"""
+    EvalSin(crypto_context::CryptoContext, ciphertext::Ciphertext, a::Float64, b::Float64,
+            degree::Integer)
+
+Evaluate approximate sine function on a given `ciphertext` using the Chebyshev approximation over
+the range ``[a,b]``. Return the resulting [`Ciphertext`](@ref). The input ciphertext needs to be
+derived from the given `crypto_context`.
+
+`a` is a lower bound of elements contained in the given `ciphertext`.
+
+`b` is an upper bound of elements contained in the given `ciphertext`.
+
+`degree` is a desired degree of approximation.
+
+Supported only in CKKS.
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`EvalCos`](@ref)
+"""
+EvalSin
+
+"""
+    EvalCos(crypto_context::CryptoContext, ciphertext::Ciphertext, a::Float64, b::Float64,
+            degree::Integer)
+
+Evaluate approximate cosine function on a given `ciphertext` using the Chebyshev approximation over
+the range ``[a,b]``. Return the resulting [`Ciphertext`](@ref). The input ciphertext needs to be
+derived from the given `crypto_context`.
+
+`a` is a lower bound of elements contained in the given `ciphertext`.
+
+`b` is an upper bound of elements contained in the given `ciphertext`.
+
+`degree` is a desired degree of approximation.
+
+Supported only in CKKS.
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`EvalSin`](@ref)
+"""
+EvalCos
+
+"""
+    EvalLogistic(crypto_context::CryptoContext, ciphertext::Ciphertext, a::Float64, b::Float64,
+                 degree::Integer)
+
+Evaluate approximate logistic function ``\\frac{1}{1 + \\exp{-x}}`` on a given `ciphertext` using
+the Chebyshev approximation over the range ``[a,b]``. Return the resulting [`Ciphertext`](@ref).
+The input ciphertext needs to be derived from the given `crypto_context`.
+
+`x` is an element contained in the given `ciphertext`
+                    
+`a` is a lower bound of elements contained in the given `ciphertext`.
+                    
+`b` is an upper bound of elements contained in the given `ciphertext`.
+                    
+`degree` is a desired degree of approximation.
+                    
+Supported only in CKKS.
+                    
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)             
+"""
+EvalLogistic
+
+"""
+    EvalDivide(crypto_context::CryptoContext, ciphertext::Ciphertext, a::Float64, b::Float64,
+               degree::Integer)
+
+Evaluate approximate division function ``\\frac{1}{x}`` where ``x >= 1`` on a given `ciphertext`
+using the Chebyshev approximation over the range ``[a,b]``. Return the resulting [`Ciphertext`](@ref).
+The input ciphertext needs to be derived from the given `crypto_context`.
+
+`x` is an element contained in the given `ciphertext`
+                    
+`a` is a lower bound of elements contained in the given `ciphertext`.
+                    
+`b` is an upper bound of elements contained in the given `ciphertext`.
+                    
+`degree` is a desired degree of approximation.
+                    
+Supported only in CKKS.
+                    
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)             
+"""
+EvalDivide
+
+# `EvalSumKeyGen` is documented in `src/convenience.jl`
+
+"""
+    EvalSum(crypto_context::CryptoContext, ciphertext::Ciphertext, batch_size::Integer)
+    
+Calculate sum of all elements contained in the given `ciphertext` and return the resulting
+[`Ciphertext`](@ref). The input ciphertext needs to be derived from the given `crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref), [`EvalSumKeyGen`](@ref)
+"""
+EvalSum
 
 # `Decrypt` is documented in `src/convenience.jl`
 

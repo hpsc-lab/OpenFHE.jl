@@ -309,3 +309,18 @@ function GetBootstrapDepth(level_budget::Vector{<:Integer}, secret_key_distribut
     Int(GetBootstrapDepth(CxxWrap.StdVector(UInt32.(level_budget)), secret_key_distribution))
 end
 
+"""
+    EvalSumKeyGen(crypto_context::CryptoContext, private_key::PrivateKey;
+                  public_key::PublicKey = C_NULL)
+
+Generates the key map to be used by [`EvalSum`](@ref). `public_key` has to be set for NTRU schemes.
+                  
+Please refer to the OpenFHE documentation for more details.
+                  
+See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`PublicKey`](@ref), [`EvalSum`](@ref)
+"""
+function EvalSumKeyGen(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
+                       privateKey;
+                       publicKey = OpenFHE.CxxWrap.StdLib.SharedPtr{OpenFHE.PublicKeyImpl{OpenFHE.DCRTPoly}}())
+    EvalSumKeyGen(context, privateKey, publicKey)
+end
