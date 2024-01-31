@@ -166,7 +166,7 @@ See also: [`CryptoContext`](@ref)
 GetCyclotomicOrder
 
 """
-    GetModulus(crypto_context::CryptoContext)::Integer
+    GetModulus(crypto_context::CryptoContext)::UInt32
 
 Return the ciphertext modulus used for a given `crypto_context`.
 
@@ -184,7 +184,7 @@ See also: [`CryptoContext`](@ref)
 GetRingDimension
 
 """
-    GetRootOfUnity(crypto_context::CryptoContext)::Integer
+    GetRootOfUnity(crypto_context::CryptoContext)::UInt32
 
 Return the root of unity used for a given `crypto_context`.
 
