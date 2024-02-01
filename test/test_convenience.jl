@@ -27,7 +27,7 @@ using OpenFHE
     @test_nowarn show(PrivateKey{DCRTPoly}())
     println()
 
-    @test_nowarn show(DecryptResult())
+    @test_nowarn show(OpenFHE.DecryptResult())
     println()
 
     @test_nowarn show(EncodingParams())
