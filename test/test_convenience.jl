@@ -26,6 +26,12 @@ using OpenFHE
 
     @test_nowarn show(PrivateKey{DCRTPoly}())
     println()
+
+    @test_nowarn show(DecryptResult())
+    println()
+
+    @test_nowarn show(EncodingParams())
+    println()
 end
 
 end # @testset "test_convenience.jl"
