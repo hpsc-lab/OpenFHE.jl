@@ -23,7 +23,7 @@ end
 export DCRTPoly
 
 # CCParams
-export CCParams, CryptoContextCKKSRNS
+export CCParams, CryptoContextBFVRNS, CryptoContextCKKSRNS
 export SetMultiplicativeDepth, SetScalingModSize, SetBatchSize, SetSecretKeyDist,
        SetSecurityLevel, SetRingDim, SetScalingTechnique, SetFirstModSize,
        SetNumLargeDigits, SetKeySwitchTechnique
