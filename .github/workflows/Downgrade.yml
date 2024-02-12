@@ -1,0 +1,39 @@
+name: Downgrade
+on:
+  pull_request:
+    paths-ignore:
+      - 'CITATION.bib'
+      - 'LICENSE.md'
+      - 'README.md'
+      - '.zenodo.json'
+      - '.github/workflows/CompatHelper.yml'
+      - '.github/workflows/SpellCheck.yml'
+      - '.github/workflows/TagBot.yml'
+      - 'docs/**'
+  workflow_dispatch:
+
+# Cancel redundant CI tests automatically
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  downgrade-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: ['1']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v1
+        with:
+          version: ${{ matrix.version }}
+      - run: julia -e 'using InteractiveUtils; versioninfo(verbose=true)'
+      - uses: julia-actions/cache@v1
+      - uses: cjdoris/julia-downgrade-compat-action@v1
+        with:
+          skip: Pkg,TOML
+      - uses: julia-actions/julia-buildpkg@v1
+      - uses: julia-actions/julia-runtest@v1
+        with:
+          coverage: false
