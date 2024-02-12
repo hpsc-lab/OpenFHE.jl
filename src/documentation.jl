@@ -127,6 +127,118 @@ SetKeySwitchTechnique
 # FHECKKSRNS
 # `GetBootstrapDepth` is documented in `src/convenience.jl`
 
+
+# EncodingParams
+"""
+    GetPlaintextModulus(parameters::EncodingParams)
+
+FIXME!
+
+See also: [`EncodingParams`](@ref), [`SetPlaintextModulus`](@ref)
+"""
+GetPlaintextModulus
+
+"""
+    SetPlaintextModulus(parameters::EncodingParams, FIXME::Integer)
+
+FIXME!
+
+See also: [`EncodingParams`](@ref), [`GetPlaintextModulus`](@ref)
+"""
+SetPlaintextModulus
+
+"""
+    GetPlaintextRootOfUnity(parameters::EncodingParams)
+
+FIXME!
+
+See also: [`EncodingParams`](@ref), [`SetPlaintextRootOfUnity`](@ref)
+"""
+GetPlaintextRootOfUnity
+
+"""
+    SetPlaintextRootOfUnity(parameters::EncodingParams, FIXME::Integer)
+
+FIXME!
+
+See also: [`EncodingParams`](@ref), [`GetPlaintextRootOfUnity`](@ref)
+"""
+SetPlaintextRootOfUnity
+
+"""
+    GetPlaintextBigModulus(parameters::EncodingParams)
+
+FIXME!
+
+See also: [`EncodingParams`](@ref), [`SetPlaintextBigModulus`](@ref)
+"""
+GetPlaintextBigModulus
+
+"""
+    SetPlaintextBigModulus(parameters::EncodingParams, FIXME::Integer)
+
+FIXME!
+
+See also: [`EncodingParams`](@ref), [`GetPlaintextBigModulus`](@ref)
+"""
+SetPlaintextBigModulus
+
+"""
+    GetPlaintextBigRootOfUnity(parameters::EncodingParams)
+
+FIXME!
+
+See also: [`EncodingParams`](@ref), [`SetPlaintextBigRootOfUnity`](@ref)
+"""
+GetPlaintextBigRootOfUnity
+
+"""
+    SetPlaintextBigRootOfUnity(parameters::EncodingParams, FIXME::Integer)
+
+FIXME!
+
+See also: [`EncodingParams`](@ref), [`GetPlaintextBigRootOfUnity`](@ref)
+"""
+SetPlaintextBigRootOfUnity
+
+"""
+    GetPlaintextGenerator(parameters::EncodingParams)
+
+FIXME!
+
+See also: [`EncodingParams`](@ref), [`SetPlaintextGenerator`](@ref)
+"""
+GetPlaintextGenerator
+
+"""
+    SetPlaintextGenerator(parameters::EncodingParams, FIXME::Integer)
+
+FIXME!
+
+See also: [`EncodingParams`](@ref), [`GetPlaintextGenerator`](@ref)
+"""
+SetPlaintextGenerator
+
+"""
+    GetBatchSize(parameters::EncodingParams)
+
+FIXME!
+
+See also: [`EncodingParams`](@ref), [`SetBatchSize`](@ref)
+"""
+GetBatchSize
+
+"""
+    SetBatchSize(parameters::EncodingParams, FIXME::Integer)
+
+FIXME!
+
+See also: [`EncodingParams`](@ref), [`GetBatchSize`](@ref)
+"""
+SetBatchSize
+
+
+
 # CryptoContext
 """
     GenCryptoContext(parameters::CCParams)::CryptoContext
@@ -168,6 +280,15 @@ For future use: Set `level` at which evaluation keys should be generated for the
 See also: [`CryptoContext`](@ref), [`GetKeyGenLevel`](@ref)
 """
 SetKeyGenLevel
+
+"""
+    GetEncodingParams(crypto_context::CryptoContext)
+
+Return the [`EncodingParams`](@ref) used by a given `crypto_context`.
+
+See also: [`CryptoContext`](@ref), [`EncodingParams`](@ref)
+"""
+GetEncodingParams
 
 """
     GetCyclotomicOrder(crypto_context::CryptoContext)::UInt32

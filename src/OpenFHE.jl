@@ -40,18 +40,26 @@ export GetPlaintextModulus, GetDigitSize, GetStandardDeviation, GetSecretKeyDist
 # FHECKKSRNS
 export GetBootstrapDepth
 
+# EncodingParams
+export EncodingParams
+export GetPlaintextModulus, SetPlaintextModulus, GetPlaintextRootOfUnity,
+       SetPlaintextRootOfUnity, GetPlaintextBigModulus, SetPlaintextBigModulus,
+       GetPlaintextBigRootOfUnity, SetPlaintextBigRootOfUnity, GetPlaintextGenerator,
+       SetPlaintextGenerator, GetBatchSize, SetBatchSize
+
 # CryptoObject
 export GetCryptoContext
 
 # CryptoContext
 export CryptoContext
-export GenCryptoContext, Enable, GetKeyGenLevel, SetKeyGenLevel, GetCyclotomicOrder,
-       GetModulus, GetRingDimension, GetRootOfUnity, KeyGen, MakeCKKSPackedPlaintext,
-       Encrypt, Decrypt, EvalNegate, EvalAdd, EvalSub, EvalMultKeyGen, EvalMult, EvalSquare,
-       EvalMultNoRelin, Relinearize, RelinearizeInPlace, EvalRotate, EvalRotateKeyGen,
-       ComposedEvalMult, Rescale, RescaleInPlace, ModReduce, ModReduceInPlace, EvalSin,
-       EvalCos, EvalLogistic, EvalDivide, EvalSumKeyGen, EvalSum, EvalBootstrapSetup,
-       EvalBootstrapKeyGen, EvalBootstrap
+export GenCryptoContext, Enable, GetKeyGenLevel, SetKeyGenLevel, GetEncodingParams,
+       GetCyclotomicOrder, GetModulus, GetRingDimension, GetRootOfUnity, KeyGen,
+       MakeCKKSPackedPlaintext, Encrypt, Decrypt, EvalNegate, EvalAdd, EvalSub,
+       EvalMultKeyGen, EvalMult, EvalSquare, EvalMultNoRelin, Relinearize,
+       RelinearizeInPlace, EvalRotate, EvalRotateKeyGen, ComposedEvalMult, Rescale,
+       RescaleInPlace, ModReduce, ModReduceInPlace, EvalSin, EvalCos, EvalLogistic,
+       EvalDivide, EvalSumKeyGen, EvalSum, EvalBootstrapSetup, EvalBootstrapKeyGen,
+       EvalBootstrap
 
 # Plaintext
 export Plaintext
