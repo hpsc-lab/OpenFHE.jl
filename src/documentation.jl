@@ -13,6 +13,16 @@ DCRTPoly
 
 # CCParams
 """
+    CryptoContextBFVRNS
+
+A type used as a parameter to `CCParams` to indicate that parameters for BFV-based
+encryptions are to be stored.
+
+See also: [`CCParams`](@ref)
+"""
+CryptoContextBFVRNS
+
+"""
     CryptoContextCKKSRNS
 
 A type used as a parameter to `CCParams` to indicate that parameters for CKKS-based
@@ -28,28 +38,68 @@ CryptoContextCKKSRNS
 Type to store parameters for a generating a cryptographic context in OpenFHE using
 `GenCryptoContext`.
 
+Use `CCParams{CryptoContextBFVRNS}()` to create a parameter store that can be used to
+generate a cryptographic context for BFV-encrypted operations.
 Use `CCParams{CryptoContextCKKSRNS}()` to create a parameter store that can be used to
 generate a cryptographic context for CKKS-encrypted operations.
 
-See also: [`CryptoContextCKKSRNS`](@ref), [`GenCryptoContext`](@ref)
+See also: [`CryptoContextBFVRNS`](@ref), [`CryptoContextCKKSRNS`](@ref), [`GenCryptoContext`](@ref)
 """
 CCParams
 
-"""
-    SetMultiplicativeDepth(parameters::CCParams, depth::Integer)
-
-Set the required multiplicative `depth` for a set of `parameters`.
-"""
-SetMultiplicativeDepth
-
-"""
-    SetScalingModSize(parameters::CCParams, modulus::Integer)
-
-Set the scaling `modulus` for a set of `parameters`.
-
-See also: [`SetFirstModSize`](@ref)
-"""
-SetScalingModSize
+# FIXME: Add missing docstrings for the following functions
+#
+# Note: Those marked with * already have an entry for another type; in this case the
+# existing docstring needs to be extended by the CCParams type
+#
+# Note: Those marked as `~~NAME~~` are already there; they are just retained in the list to
+#       allow for adding the missing docstrings in the proper order
+#
+# GetPlaintextModulus*
+# GetDigitSize
+# GetStandardDeviation
+# GetSecretKeyDist
+# GetMaxRelinSkDeg
+# GetNoiseEstimate
+# GetDesiredPrecision
+# GetStatisticalSecurity
+# GetNumAdversarialQueries
+# GetThresholdNumOfParties
+# GetKeySwitchTechnique
+# GetScalingTechnique
+# GetBatchSize*
+# GetFirstModSize
+# GetNumLargeDigits
+# GetMultiplicativeDepth
+# GetScalingModSize
+# GetSecurityLevel
+# GetRingDim
+# GetEvalAddCount
+# GetKeySwitchCount
+# GetMultiHopModSize
+#
+# SetPlaintextModulus*
+# SetDigitSize
+# SetStandardDeviation
+# ~~SetSecretKeyDist~~
+# SetMaxRelinSkDeg
+# SetNoiseEstimate
+# SetDesiredPrecision
+# SetStatisticalSecurity
+# SetNumAdversarialQueries
+# SetThresholdNumOfParties
+# ~~SetKeySwitchTechnique~~
+# ~~SetScalingTechnique~~
+# SetBatchSize*
+# ~~SetFirstModSize~~
+# ~~SetNumLargeDigits~~
+# ~~SetMultiplicativeDepth~~
+# ~~SetScalingModSize~~
+# ~~SetSecurityLevel~~
+# ~~SetRingDim~~
+# SetEvalAddCount
+# SetKeySwitchCount
+# SetMultiHopModSize
 
 """
     SetSecretKeyDist(parameters::CCParams, distribution::SecretKeyDist)
@@ -61,21 +111,13 @@ See also: [`SecretKeyDist`](@ref)
 SetSecretKeyDist
 
 """
-    SetSecurityLevel(parameters::CCParams, level::SecurityLevel)
+    SetKeySwitchTechnique(parameters::CCParams, technique::KeySwitchTechnique)
 
-Set the encryption security `level` according to the homomogrphic encryption standard for a
-set of `parameters`.
+Set the key switching technique `technique` for a set of `parameters`.
 
-See also: [`SecurityLevel`](@ref)
+See also: [`KeySwitchTechnique`](@ref)
 """
-SetSecurityLevel
-
-"""
-    SetRingDim(parameters::CCParams, dimension::Integer)
-
-Set the polynomial ring `dimension` for a set of `parameters`.
-"""
-SetRingDim
+SetKeySwitchTechnique
 
 """
     SetScalingTechnique(parameters::CCParams, technique::ScalingTechnique)
@@ -103,13 +145,37 @@ Set the `number` of large digits for a set of `parameters`.
 SetNumLargeDigits
 
 """
-    SetKeySwitchTechnique(parameters::CCParams, technique::KeySwitchTechnique)
+    SetMultiplicativeDepth(parameters::CCParams, depth::Integer)
 
-Set the key switching technique `technique` for a set of `parameters`.
-
-See also: [`KeySwitchTechnique`](@ref)
+Set the required multiplicative `depth` for a set of `parameters`.
 """
-SetKeySwitchTechnique
+SetMultiplicativeDepth
+
+"""
+    SetScalingModSize(parameters::CCParams, modulus::Integer)
+
+Set the scaling `modulus` for a set of `parameters`.
+
+See also: [`SetFirstModSize`](@ref)
+"""
+SetScalingModSize
+
+"""
+    SetSecurityLevel(parameters::CCParams, level::SecurityLevel)
+
+Set the encryption security `level` according to the homomogrphic encryption standard for a
+set of `parameters`.
+
+See also: [`SecurityLevel`](@ref)
+"""
+SetSecurityLevel
+
+"""
+    SetRingDim(parameters::CCParams, dimension::Integer)
+
+Set the polynomial ring `dimension` for a set of `parameters`.
+"""
+SetRingDim
 
 
 # FHECKKSRNS
@@ -230,7 +296,8 @@ SetBatchSize
 # CryptoContext
 """
     GenCryptoContext(parameters::CCParams)::CryptoContext
-    GenCryptoContext(parameters::CCParams<CryptoContextCKKSRNS>)::CryptoContext<DCRTYPoly>
+    GenCryptoContext(parameters::CCParams{CryptoContextBFVRNS})::CryptoContext{DCRTYPoly}
+    GenCryptoContext(parameters::CCParams{CryptoContextCKKSRNS})::CryptoContext{DCRTYPoly}
 
 Generate a crypto context from a set of `parameters`. The exact return type depends on the
 parameter set type.
@@ -334,6 +401,8 @@ EvalMultKeyGen
 
 # EvalRotateKeyGen` is documented in `src/convenience.jl`
 
+# `MakePackedPlaintext` is documented in `src/convenience.jl`
+#
 # `MakeCKKSPackedPlaintext` is documented in `src/convenience.jl`
 
 """

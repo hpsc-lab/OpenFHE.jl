@@ -23,10 +23,19 @@ end
 export DCRTPoly
 
 # CCParams
-export CCParams, CryptoContextCKKSRNS
-export SetMultiplicativeDepth, SetScalingModSize, SetBatchSize, SetSecretKeyDist,
-       SetSecurityLevel, SetRingDim, SetScalingTechnique, SetFirstModSize,
-       SetNumLargeDigits, SetKeySwitchTechnique
+export CCParams, CryptoContextBFVRNS, CryptoContextCKKSRNS
+export GetPlaintextModulus, GetDigitSize, GetStandardDeviation, GetSecretKeyDist,
+       GetMaxRelinSkDeg, GetNoiseEstimate, GetDesiredPrecision, GetStatisticalSecurity,
+       GetNumAdversarialQueries, GetThresholdNumOfParties, GetKeySwitchTechnique,
+       GetScalingTechnique, GetBatchSize, GetFirstModSize, GetNumLargeDigits,
+       GetMultiplicativeDepth, GetScalingModSize, GetSecurityLevel, GetRingDim,
+       GetEvalAddCount, GetKeySwitchCount, GetMultiHopModSize,
+       SetPlaintextModulus, SetDigitSize, SetStandardDeviation, SetSecretKeyDist,
+       SetMaxRelinSkDeg, SetNoiseEstimate, SetDesiredPrecision, SetStatisticalSecurity,
+       SetNumAdversarialQueries, SetThresholdNumOfParties, SetKeySwitchTechnique,
+       SetScalingTechnique, SetBatchSize, SetFirstModSize, SetNumLargeDigits,
+       SetMultiplicativeDepth, SetScalingModSize, SetSecurityLevel, SetRingDim,
+       SetEvalAddCount, SetKeySwitchCount, SetMultiHopModSize
 
 # FHECKKSRNS
 export GetBootstrapDepth
@@ -45,8 +54,8 @@ export GetCryptoContext
 export CryptoContext
 export GenCryptoContext, Enable, GetKeyGenLevel, SetKeyGenLevel, GetEncodingParams,
        GetCyclotomicOrder, GetModulus, GetRingDimension, GetRootOfUnity, KeyGen,
-       MakeCKKSPackedPlaintext, Encrypt, Decrypt, EvalNegate, EvalAdd, EvalSub,
-       EvalMultKeyGen, EvalMult, EvalSquare, EvalMultNoRelin, Relinearize,
+       MakePackedPlaintext, MakeCKKSPackedPlaintext, Encrypt, Decrypt, EvalNegate, EvalAdd,
+       EvalSub, EvalMultKeyGen, EvalMult, EvalSquare, EvalMultNoRelin, Relinearize,
        RelinearizeInPlace, EvalRotate, EvalRotateKeyGen, ComposedEvalMult, Rescale,
        RescaleInPlace, ModReduce, ModReduceInPlace, EvalSin, EvalCos, EvalLogistic,
        EvalDivide, EvalSumKeyGen, EvalSum, EvalBootstrapSetup, EvalBootstrapKeyGen,
