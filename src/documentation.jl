@@ -120,7 +120,7 @@ SetKeySwitchTechnique
 """
     GetPlaintextModulus(parameters::EncodingParams)
 
-Return the plaintext modulus.
+Return the plaintext modulus used by the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextModulus`](@ref)
 """
@@ -129,7 +129,7 @@ GetPlaintextModulus
 """
     SetPlaintextModulus(parameters::EncodingParams, plaintextModulus::Integer)
 
-Set the plaintext modulus.
+Set the plaintext modulus for the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextModulus`](@ref)
 """
@@ -138,7 +138,7 @@ SetPlaintextModulus
 """
     GetPlaintextRootOfUnity(parameters::EncodingParams)
 
-Return the plaintext modulus root of unity.
+Return the plaintext modulus root of unity used by the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextRootOfUnity`](@ref)
 """
@@ -147,7 +147,7 @@ GetPlaintextRootOfUnity
 """
     SetPlaintextRootOfUnity(parameters::EncodingParams, plaintextRootOfUnity::Integer)
 
-Set the plaintext modulus root of unity.
+Set the plaintext modulus root of unity for the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextRootOfUnity`](@ref)
 """
@@ -156,7 +156,7 @@ SetPlaintextRootOfUnity
 """
     GetPlaintextBigModulus(parameters::EncodingParams)
 
-Return the big plaintext modulus.
+Return the big plaintext modulus used by the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextBigModulus`](@ref)
 """
@@ -165,7 +165,7 @@ GetPlaintextBigModulus
 """
     SetPlaintextBigModulus(parameters::EncodingParams, plaintextBigModulus::Integer)
 
-Set the big plaintext modulus.
+Set the big plaintext modulus for the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextBigModulus`](@ref)
 """
@@ -174,7 +174,7 @@ SetPlaintextBigModulus
 """
     GetPlaintextBigRootOfUnity(parameters::EncodingParams)
 
-Return the big plaintext modulus root of unity.
+Return the big plaintext modulus root of unity used by the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextBigRootOfUnity`](@ref)
 """
@@ -183,7 +183,7 @@ GetPlaintextBigRootOfUnity
 """
     SetPlaintextBigRootOfUnity(parameters::EncodingParams, plaintextBigRootOfUnity::Integer)
 
-Set the big plaintext modulus root of unity.
+Set the big plaintext modulus root of unity for the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextBigRootOfUnity`](@ref)
 """
@@ -192,7 +192,7 @@ SetPlaintextBigRootOfUnity
 """
     GetPlaintextGenerator(parameters::EncodingParams)::UInt32
 
-Return the plaintext generator.
+Return the plaintext generator used by the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextGenerator`](@ref)
 """
@@ -201,7 +201,7 @@ GetPlaintextGenerator
 """
     SetPlaintextGenerator(parameters::EncodingParams, plaintextGenerator::Integer)
 
-Set the plaintext generator.
+Set the plaintext generator for the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextGenerator`](@ref)
 """
@@ -210,7 +210,7 @@ SetPlaintextGenerator
 """
     GetBatchSize(parameters::EncodingParams)::UInt32
 
-Return the plaintext batch size.
+Return the plaintext batch size used by the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`SetBatchSize`](@ref)
 """
@@ -219,7 +219,7 @@ GetBatchSize
 """
     SetBatchSize(parameters::EncodingParams, batchSize::Integer)
 
-Set the plaintext batch size.
+Set the plaintext batch size for the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`GetBatchSize`](@ref)
 """
@@ -658,10 +658,11 @@ IsEncoded
 """
     GetEncodingParams(plaintext::Plaintext)
 
-Return the [`EncodingParams`](@ref) used by a given `plaintext`.
+Return the [`EncodingParams`](@ref) used by the given `plaintext`.
 
 See also: [`Plaintext`](@ref), [`EncodingParams`](@ref)
 """
+GetEncodingParams
 
 """
     GetElementRingDimension(plaintext::Plaintext)::UInt32

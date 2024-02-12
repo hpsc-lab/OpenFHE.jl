@@ -162,7 +162,6 @@ for (WrappedT, fun) in [
     :(EncodingParams) => :SetPlaintextGenerator,
     :(EncodingParams) => :GetBatchSize,
     :(EncodingParams) => :SetBatchSize,
-    :(CryptoObject) => :GetEncodingParameters,
 ]
     @eval function $fun(arg::$WrappedT, args...; kwargs...)
         $fun(arg[], args...; kwargs...)
@@ -294,6 +293,18 @@ function GetCryptoContext(object::Union{Ciphertext})
     # `CryptoContext` from it
     GetCryptoContext(GetCryptoContextProxy(object[]))
 end
+
+"""
+    GetEncodingParameters(object::Union{Ciphertext})
+
+Return the [`EncodingParams`](@ref) used by the given `object` that is is a subtype of `CryptoObject`.
+
+Currently, this is only implemented for [`Ciphertext`](@ref).
+
+See also: [`EncodingParams`](@ref), [`Ciphertext`](@ref)
+"""
+function GetEncodingParameters(object::Union{Ciphertext})
+    GetEncodingParameters(object[])
 
 """
     Decrypt(crypto_context::CryptoContext, ciphertext::Ciphertext, private_key::PrivateKey, plaintext::Plaintext)
