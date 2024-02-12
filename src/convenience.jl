@@ -1,4 +1,13 @@
-# Define CryptoContext for convenience
+"""
+    EncodingParams
+
+Type alias for `CxxWrap.StdLib.SharedPtr{EncodingParamsImpl}`.
+
+The `EncodingParams` store the parameters for encoding. These parameters are kept with
+multiple OpenFHE objects and are continually reused during the encoding of new values.
+"""
+const EncodingParams = CxxWrap.StdLib.SharedPtr{EncodingParamsImpl}
+
 """
     CryptoContext{T}
 
@@ -88,6 +97,7 @@ for (WrappedT, fun) in [
     :(CryptoContext{DCRTPoly}) => :Enable,
     :(CryptoContext{DCRTPoly}) => :GetKeyGenLevel,
     :(CryptoContext{DCRTPoly}) => :SetKeyGenLevel,
+    :(CryptoContext{DCRTPoly}) => :GetEncodingParams,
     :(CryptoContext{DCRTPoly}) => :GetCyclotomicOrder,
     :(CryptoContext{DCRTPoly}) => :GetModulus,
     :(CryptoContext{DCRTPoly}) => :GetRingDimension,
@@ -139,6 +149,18 @@ for (WrappedT, fun) in [
     :(Plaintext) => :GetCoefPackedValue,
     :(Plaintext) => :GetPackedValue,
     :(Plaintext) => :GetRealPackedValue,
+    :(EncodingParams) => :GetPlaintextModulus,
+    :(EncodingParams) => :SetPlaintextModulus,
+    :(EncodingParams) => :GetPlaintextRootOfUnity,
+    :(EncodingParams) => :SetPlaintextRootOfUnity,
+    :(EncodingParams) => :GetPlaintextBigModulus,
+    :(EncodingParams) => :SetPlaintextBigModulus,
+    :(EncodingParams) => :GetPlaintextBigRootOfUnity,
+    :(EncodingParams) => :SetPlaintextBigRootOfUnity,
+    :(EncodingParams) => :GetPlaintextGenerator,
+    :(EncodingParams) => :SetPlaintextGenerator,
+    :(EncodingParams) => :GetBatchSize,
+    :(EncodingParams) => :SetBatchSize,
 ]
     @eval function $fun(arg::$WrappedT, args...; kwargs...)
         $fun(arg[], args...; kwargs...)
@@ -157,6 +179,7 @@ for (T, str) in [
     :(PublicKey{DCRTPoly}) => "PublicKey{DCRTPoly}()",
     :(PrivateKey{DCRTPoly}) => "PrivateKey{DCRTPoly}()",
     :(DecryptResult) => "DecryptResult()",
+    :(EncodingParams) => "EncodingParams()",
 ]
     @eval function Base.show(io::IO, ::$T)
         print(io, $str)
