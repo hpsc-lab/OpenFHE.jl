@@ -104,6 +104,7 @@ for (WrappedT, fun) in [
     :(CryptoContext{DCRTPoly}) => :GetRootOfUnity,
     :(CryptoContext{DCRTPoly}) => :KeyGen,
     :(CryptoContext{DCRTPoly}) => :MakeCKKSPackedPlaintext,
+    :(CryptoContext{DCRTPoly}) => :MakePackedPlaintext,
     :(CryptoContext{DCRTPoly}) => :Encrypt,
     :(CryptoContext{DCRTPoly}) => :Decrypt,
     :(CryptoContext{DCRTPoly}) => :EvalNegate,
@@ -172,7 +173,9 @@ end
 # Convenience `show` methods to hide wrapping-induced ugliness
 # Note: remember to add tests to `test/test_convenience.jl` if you add something here
 for (T, str) in [
+    :(CCParams{<:CryptoContextBFVRNS}) => "CCParams{CryptoContextBFVRNS}()",
     :(CCParams{<:CryptoContextCKKSRNS}) => "CCParams{CryptoContextCKKSRNS}()",
+    :(CryptoContextBFVRNS) => "CryptoContextBFVRNS()",
     :(CryptoContextCKKSRNS) => "CryptoContextCKKSRNS()",
     :(CryptoContext{DCRTPoly}) => "CryptoContext{DCRTPoly}()",
     :(Ciphertext{DCRTPoly}) => "Ciphertext{DCRTPoly}()",
@@ -210,6 +213,30 @@ function MakeCKKSPackedPlaintext(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.Cry
                                  params = OpenFHE.CxxWrap.StdLib.SharedPtr{OpenFHE.ILDCRTParams{OpenFHE.ubint{UInt64}}}(),
                                  num_slots = 0)
     MakeCKKSPackedPlaintext(context, CxxWrap.StdVector(value), scale_degree, level, params, num_slots)
+end
+
+"""
+    MakePackedPlaintext(crypto_context::CryptoContext, value::Vector{<:Integer};
+                        noise_scale_degree = 1,
+                        level = 0)
+
+Encode a vector of integers `value` into a BFV-packed [`Plaintext`](@ref) using the
+given `crypto_context`.
+Please refer to the OpenFHE documentation for details on the remaining arguments.
+
+See also: [`CryptoContext`](@ref), [`Plaintext`](@ref)
+"""
+function MakePackedPlaintext(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
+                             value::Vector{<:Integer};
+                             noise_scale_degree = 1,
+                             level = 0)
+    MakePackedPlaintext(context, Int64.(value); noise_scale_degree, level)
+end
+function MakePackedPlaintext(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
+                             value::Vector{Int64};
+                             noise_scale_degree = 1,
+                             level = 0)
+    MakePackedPlaintext(context, CxxWrap.StdVector(value), noise_scale_degree, level)
 end
 
 """
