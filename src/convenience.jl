@@ -134,6 +134,7 @@ for (WrappedT, fun) in [
     :(Plaintext) => :GetScalingFactor,
     :(Plaintext) => :SetScalingFactor,
     :(Plaintext) => :IsEncoded,
+    :(Plaintext) => :GetEncodingParams,
     :(Plaintext) => :GetElementRingDimension,
     :(Plaintext) => :GetLength,
     :(Plaintext) => :SetLength,
@@ -161,6 +162,7 @@ for (WrappedT, fun) in [
     :(EncodingParams) => :SetPlaintextGenerator,
     :(EncodingParams) => :GetBatchSize,
     :(EncodingParams) => :SetBatchSize,
+    :(CryptoObject) => :GetEncodingParameters,
 ]
     @eval function $fun(arg::$WrappedT, args...; kwargs...)
         $fun(arg[], args...; kwargs...)

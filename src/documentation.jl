@@ -120,16 +120,16 @@ SetKeySwitchTechnique
 """
     GetPlaintextModulus(parameters::EncodingParams)
 
-FIXME!
+Return the plaintext modulus.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextModulus`](@ref)
 """
 GetPlaintextModulus
 
 """
-    SetPlaintextModulus(parameters::EncodingParams, FIXME::Integer)
+    SetPlaintextModulus(parameters::EncodingParams, plaintextModulus::Integer)
 
-FIXME!
+Set the plaintext modulus.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextModulus`](@ref)
 """
@@ -138,16 +138,16 @@ SetPlaintextModulus
 """
     GetPlaintextRootOfUnity(parameters::EncodingParams)
 
-FIXME!
+Return the plaintext modulus root of unity.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextRootOfUnity`](@ref)
 """
 GetPlaintextRootOfUnity
 
 """
-    SetPlaintextRootOfUnity(parameters::EncodingParams, FIXME::Integer)
+    SetPlaintextRootOfUnity(parameters::EncodingParams, plaintextRootOfUnity::Integer)
 
-FIXME!
+Set the plaintext modulus root of unity.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextRootOfUnity`](@ref)
 """
@@ -156,16 +156,16 @@ SetPlaintextRootOfUnity
 """
     GetPlaintextBigModulus(parameters::EncodingParams)
 
-FIXME!
+Return the big plaintext modulus.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextBigModulus`](@ref)
 """
 GetPlaintextBigModulus
 
 """
-    SetPlaintextBigModulus(parameters::EncodingParams, FIXME::Integer)
+    SetPlaintextBigModulus(parameters::EncodingParams, plaintextBigModulus::Integer)
 
-FIXME!
+Set the big plaintext modulus.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextBigModulus`](@ref)
 """
@@ -174,52 +174,52 @@ SetPlaintextBigModulus
 """
     GetPlaintextBigRootOfUnity(parameters::EncodingParams)
 
-FIXME!
+Return the big plaintext modulus root of unity.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextBigRootOfUnity`](@ref)
 """
 GetPlaintextBigRootOfUnity
 
 """
-    SetPlaintextBigRootOfUnity(parameters::EncodingParams, FIXME::Integer)
+    SetPlaintextBigRootOfUnity(parameters::EncodingParams, plaintextBigRootOfUnity::Integer)
 
-FIXME!
+Set the big plaintext modulus root of unity.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextBigRootOfUnity`](@ref)
 """
 SetPlaintextBigRootOfUnity
 
 """
-    GetPlaintextGenerator(parameters::EncodingParams)
+    GetPlaintextGenerator(parameters::EncodingParams)::UInt32
 
-FIXME!
+Return the plaintext generator.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextGenerator`](@ref)
 """
 GetPlaintextGenerator
 
 """
-    SetPlaintextGenerator(parameters::EncodingParams, FIXME::Integer)
+    SetPlaintextGenerator(parameters::EncodingParams, plaintextGenerator::Integer)
 
-FIXME!
+Set the plaintext generator.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextGenerator`](@ref)
 """
 SetPlaintextGenerator
 
 """
-    GetBatchSize(parameters::EncodingParams)
+    GetBatchSize(parameters::EncodingParams)::UInt32
 
-FIXME!
+Return the plaintext batch size.
 
 See also: [`EncodingParams`](@ref), [`SetBatchSize`](@ref)
 """
 GetBatchSize
 
 """
-    SetBatchSize(parameters::EncodingParams, FIXME::Integer)
+    SetBatchSize(parameters::EncodingParams, batchSize::Integer)
 
-FIXME!
+Set the plaintext batch size.
 
 See also: [`EncodingParams`](@ref), [`GetBatchSize`](@ref)
 """
@@ -654,6 +654,14 @@ Return true when encoding is done for a given `plaintext`.
 See also: [`Plaintext`](@ref)
 """
 IsEncoded
+
+"""
+    GetEncodingParams(plaintext::Plaintext)
+
+Return the [`EncodingParams`](@ref) used by a given `plaintext`.
+
+See also: [`Plaintext`](@ref), [`EncodingParams`](@ref)
+"""
 
 """
     GetElementRingDimension(plaintext::Plaintext)::UInt32
