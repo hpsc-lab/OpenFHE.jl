@@ -24,9 +24,18 @@ export DCRTPoly
 
 # CCParams
 export CCParams, CryptoContextBFVRNS, CryptoContextCKKSRNS
-export SetMultiplicativeDepth, SetScalingModSize, SetBatchSize, SetSecretKeyDist,
-       SetSecurityLevel, SetRingDim, SetScalingTechnique, SetFirstModSize,
-       SetNumLargeDigits, SetKeySwitchTechnique
+export GetPlaintextModulus, GetDigitSize, GetStandardDeviation, GetSecretKeyDist,
+       GetMaxRelinSkDeg, GetNoiseEstimate, GetDesiredPrecision, GetStatisticalSecurity,
+       GetNumAdversarialQueries, GetThresholdNumOfParties, GetKeySwitchTechnique,
+       GetScalingTechnique, GetBatchSize, GetFirstModSize, GetNumLargeDigits,
+       GetMultiplicativeDepth, GetScalingModSize, GetSecurityLevel, GetRingDim,
+       GetEvalAddCount, GetKeySwitchCount, GetMultiHopModSize,
+       SetPlaintextModulus, SetDigitSize, SetStandardDeviation, SetSecretKeyDist,
+       SetMaxRelinSkDeg, SetNoiseEstimate, SetDesiredPrecision, SetStatisticalSecurity,
+       SetNumAdversarialQueries, SetThresholdNumOfParties, SetKeySwitchTechnique,
+       SetScalingTechnique, SetBatchSize, SetFirstModSize, SetNumLargeDigits,
+       SetMultiplicativeDepth, SetScalingModSize, SetSecurityLevel, SetRingDim,
+       SetEvalAddCount, SetKeySwitchCount, SetMultiHopModSize
 
 # FHECKKSRNS
 export GetBootstrapDepth
