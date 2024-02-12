@@ -5,6 +5,10 @@ using OpenFHE
 
 @testset verbose=true showtiming=true "test_examples.jl" begin
 
+@testset verbose=true showtiming=true "examples/simple_integers.jl" begin
+    @test_nowarn include("../examples/simple_integers.jl")
+end
+
 @testset verbose=true showtiming=true "examples/simple_real_numbers.jl" begin
     @test_nowarn include("../examples/simple_real_numbers.jl")
 end
