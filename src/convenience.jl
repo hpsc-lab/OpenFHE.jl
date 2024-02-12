@@ -305,6 +305,7 @@ See also: [`EncodingParams`](@ref), [`Ciphertext`](@ref)
 """
 function GetEncodingParameters(object::Union{Ciphertext})
     GetEncodingParameters(object[])
+end
 
 """
     Decrypt(crypto_context::CryptoContext, ciphertext::Ciphertext, private_key::PrivateKey, plaintext::Plaintext)
