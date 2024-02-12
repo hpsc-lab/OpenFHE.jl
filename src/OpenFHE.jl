@@ -39,7 +39,7 @@ export GetPlaintextModulus, SetPlaintextModulus, GetPlaintextRootOfUnity,
        SetPlaintextGenerator, GetBatchSize, SetBatchSize
 
 # CryptoObject
-export GetCryptoContext
+export GetCryptoContext, GetEncodingParameters
 
 # CryptoContext
 export CryptoContext
