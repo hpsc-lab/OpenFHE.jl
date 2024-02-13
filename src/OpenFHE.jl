@@ -23,7 +23,7 @@ end
 export DCRTPoly
 
 # CCParams
-export CCParams, CryptoContextBFVRNS, CryptoContextCKKSRNS
+export CCParams, CryptoContextBFVRNS, CryptoContextBGVRNS, CryptoContextCKKSRNS
 export GetPlaintextModulus, GetDigitSize, GetStandardDeviation, GetSecretKeyDist,
        GetMaxRelinSkDeg, GetNoiseEstimate, GetDesiredPrecision, GetStatisticalSecurity,
        GetNumAdversarialQueries, GetThresholdNumOfParties, GetKeySwitchTechnique,
