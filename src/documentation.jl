@@ -247,7 +247,7 @@ See also: [`EncodingParams`](@ref), [`SetPlaintextBigRootOfUnity`](@ref)
 GetPlaintextBigRootOfUnity
 
 """
-    SetPlaintextBigRootOfUnity(parameters::EncodingParams, plaintextBigRootOfUnity::Integer)
+    SetPlaintextBigRootOfUnity(parameters::EncodingParams, plaintext_big_root_of_unity::Integer)
 
 Set the big plaintext modulus root of unity for the given `parameters`.
 
