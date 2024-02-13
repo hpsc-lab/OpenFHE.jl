@@ -175,8 +175,10 @@ end
 # Note: remember to add tests to `test/test_convenience.jl` if you add something here
 for (T, str) in [
     :(CCParams{<:CryptoContextBFVRNS}) => "CCParams{CryptoContextBFVRNS}()",
+    :(CCParams{<:CryptoContextBGVRNS}) => "CCParams{CryptoContextBGVRNS}()",
     :(CCParams{<:CryptoContextCKKSRNS}) => "CCParams{CryptoContextCKKSRNS}()",
     :(CryptoContextBFVRNS) => "CryptoContextBFVRNS()",
+    :(CryptoContextBGVRNS) => "CryptoContextBGVRNS()",
     :(CryptoContextCKKSRNS) => "CryptoContextCKKSRNS()",
     :(CryptoContext{DCRTPoly}) => "CryptoContext{DCRTPoly}()",
     :(Ciphertext{DCRTPoly}) => "Ciphertext{DCRTPoly}()",
@@ -221,7 +223,7 @@ end
                         noise_scale_degree = 1,
                         level = 0)
 
-Encode a vector of integers `value` into a BFV-packed [`Plaintext`](@ref) using the
+Encode a vector of integers `value` into a BFV/BGV-packed [`Plaintext`](@ref) using the
 given `crypto_context`.
 Please refer to the OpenFHE documentation for details on the remaining arguments.
 

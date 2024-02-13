@@ -9,6 +9,10 @@ using OpenFHE
     @test_nowarn include("../examples/simple_integers.jl")
 end
 
+@testset verbose=true showtiming=true "examples/simple_integers_bgvrns.jl" begin
+    @test_nowarn include("../examples/simple_integers_bgvrns.jl")
+end
+
 @testset verbose=true showtiming=true "examples/simple_real_numbers.jl" begin
     @test_nowarn include("../examples/simple_real_numbers.jl")
 end

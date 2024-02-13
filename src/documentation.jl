@@ -23,6 +23,16 @@ See also: [`CCParams`](@ref)
 CryptoContextBFVRNS
 
 """
+    CryptoContextBGVRNS
+
+A type used as a parameter to `CCParams` to indicate that parameters for BGV-based
+encryptions are to be stored.
+
+See also: [`CCParams`](@ref)
+"""
+CryptoContextBGVRNS
+
+"""
     CryptoContextCKKSRNS
 
 A type used as a parameter to `CCParams` to indicate that parameters for CKKS-based
@@ -40,10 +50,12 @@ Type to store parameters for a generating a cryptographic context in OpenFHE usi
 
 Use `CCParams{CryptoContextBFVRNS}()` to create a parameter store that can be used to
 generate a cryptographic context for BFV-encrypted operations.
+Use `CCParams{CryptoContextBGVRNS}()` to create a parameter store that can be used to
+generate a cryptographic context for BGV-encrypted operations.
 Use `CCParams{CryptoContextCKKSRNS}()` to create a parameter store that can be used to
 generate a cryptographic context for CKKS-encrypted operations.
 
-See also: [`CryptoContextBFVRNS`](@ref), [`CryptoContextCKKSRNS`](@ref), [`GenCryptoContext`](@ref)
+See also: [`CryptoContextBFVRNS`](@ref), [`CryptoContextBGVRNS`](@ref), [`CryptoContextCKKSRNS`](@ref), [`GenCryptoContext`](@ref)
 """
 CCParams
 
@@ -311,6 +323,7 @@ SetBatchSize
 """
     GenCryptoContext(parameters::CCParams)::CryptoContext
     GenCryptoContext(parameters::CCParams{CryptoContextBFVRNS})::CryptoContext{DCRTYPoly}
+    GenCryptoContext(parameters::CCParams{CryptoContextBGVRNS})::CryptoContext{DCRTYPoly}
     GenCryptoContext(parameters::CCParams{CryptoContextCKKSRNS})::CryptoContext{DCRTYPoly}
 
 Generate a crypto context from a set of `parameters`. The exact return type depends on the
