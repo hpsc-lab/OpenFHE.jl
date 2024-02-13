@@ -283,7 +283,7 @@ See also: [`EncodingParams`](@ref), [`SetBatchSize`](@ref)
 GetBatchSize
 
 """
-    SetBatchSize(parameters::EncodingParams, batchSize::Integer)
+    SetBatchSize(parameters::EncodingParams, batch_size::Integer)
 
 Set the plaintext batch size for the given `parameters`.
 
