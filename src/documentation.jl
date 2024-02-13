@@ -193,7 +193,7 @@ See also: [`EncodingParams`](@ref), [`SetPlaintextModulus`](@ref)
 GetPlaintextModulus
 
 """
-    SetPlaintextModulus(parameters::EncodingParams, plaintextModulus::Integer)
+    SetPlaintextModulus(parameters::EncodingParams, plaintext_modulus::Integer)
 
 Set the plaintext modulus for the given `parameters`.
 
