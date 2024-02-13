@@ -149,6 +149,10 @@ end
     @test GetCryptoContext(c1) isa CryptoContext
 end
 
+@testset verbose=true showtiming=true "GetEncodingParameters" begin
+    @test GetEncodingParameters(c1) isa EncodingParams
+end
+
 end # @testset "test_ckks.jl"
 
 end # module

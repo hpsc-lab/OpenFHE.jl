@@ -182,20 +182,34 @@ SetRingDim
 # `GetBootstrapDepth` is documented in `src/convenience.jl`
 
 
+# CryptoObject
+"""
+    GetEncodingParameters(object::Union{Ciphertext})
+
+Return the [`EncodingParams`](@ref) used by the given `object` that is is a subtype of `CryptoObject`.
+
+Currently, this is only implemented for [`Ciphertext`](@ref).
+
+See also: [`EncodingParams`](@ref), [`Ciphertext`](@ref)
+"""
+GetEncodingParameters
+
+
+
 # EncodingParams
 """
     GetPlaintextModulus(parameters::EncodingParams)
 
-FIXME!
+Return the plaintext modulus used by the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextModulus`](@ref)
 """
 GetPlaintextModulus
 
 """
-    SetPlaintextModulus(parameters::EncodingParams, FIXME::Integer)
+    SetPlaintextModulus(parameters::EncodingParams, plaintext_modulus::Integer)
 
-FIXME!
+Set the plaintext modulus for the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextModulus`](@ref)
 """
@@ -204,16 +218,16 @@ SetPlaintextModulus
 """
     GetPlaintextRootOfUnity(parameters::EncodingParams)
 
-FIXME!
+Return the plaintext modulus root of unity used by the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextRootOfUnity`](@ref)
 """
 GetPlaintextRootOfUnity
 
 """
-    SetPlaintextRootOfUnity(parameters::EncodingParams, FIXME::Integer)
+    SetPlaintextRootOfUnity(parameters::EncodingParams, plaintext_root_of_unity::Integer)
 
-FIXME!
+Set the plaintext modulus root of unity for the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextRootOfUnity`](@ref)
 """
@@ -222,16 +236,16 @@ SetPlaintextRootOfUnity
 """
     GetPlaintextBigModulus(parameters::EncodingParams)
 
-FIXME!
+Return the big plaintext modulus used by the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextBigModulus`](@ref)
 """
 GetPlaintextBigModulus
 
 """
-    SetPlaintextBigModulus(parameters::EncodingParams, FIXME::Integer)
+    SetPlaintextBigModulus(parameters::EncodingParams, plaintext_big_modulus::Integer)
 
-FIXME!
+Set the big plaintext modulus for the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextBigModulus`](@ref)
 """
@@ -240,52 +254,52 @@ SetPlaintextBigModulus
 """
     GetPlaintextBigRootOfUnity(parameters::EncodingParams)
 
-FIXME!
+Return the big plaintext modulus root of unity used by the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextBigRootOfUnity`](@ref)
 """
 GetPlaintextBigRootOfUnity
 
 """
-    SetPlaintextBigRootOfUnity(parameters::EncodingParams, FIXME::Integer)
+    SetPlaintextBigRootOfUnity(parameters::EncodingParams, plaintext_big_root_of_unity::Integer)
 
-FIXME!
+Set the big plaintext modulus root of unity for the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextBigRootOfUnity`](@ref)
 """
 SetPlaintextBigRootOfUnity
 
 """
-    GetPlaintextGenerator(parameters::EncodingParams)
+    GetPlaintextGenerator(parameters::EncodingParams)::UInt32
 
-FIXME!
+Return the plaintext generator used by the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`SetPlaintextGenerator`](@ref)
 """
 GetPlaintextGenerator
 
 """
-    SetPlaintextGenerator(parameters::EncodingParams, FIXME::Integer)
+    SetPlaintextGenerator(parameters::EncodingParams, plaintext_generator::Integer)
 
-FIXME!
+Set the plaintext generator for the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`GetPlaintextGenerator`](@ref)
 """
 SetPlaintextGenerator
 
 """
-    GetBatchSize(parameters::EncodingParams)
+    GetBatchSize(parameters::EncodingParams)::UInt32
 
-FIXME!
+Return the plaintext batch size used by the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`SetBatchSize`](@ref)
 """
 GetBatchSize
 
 """
-    SetBatchSize(parameters::EncodingParams, FIXME::Integer)
+    SetBatchSize(parameters::EncodingParams, batch_size::Integer)
 
-FIXME!
+Set the plaintext batch size for the given `parameters`.
 
 See also: [`EncodingParams`](@ref), [`GetBatchSize`](@ref)
 """
@@ -723,6 +737,15 @@ Return true when encoding is done for a given `plaintext`.
 See also: [`Plaintext`](@ref)
 """
 IsEncoded
+
+"""
+    GetEncodingParams(plaintext::Plaintext)
+
+Return the [`EncodingParams`](@ref) used by the given `plaintext`.
+
+See also: [`Plaintext`](@ref), [`EncodingParams`](@ref)
+"""
+GetEncodingParams
 
 """
     GetElementRingDimension(plaintext::Plaintext)::UInt32
