@@ -48,7 +48,7 @@ export GetPlaintextModulus, SetPlaintextModulus, GetPlaintextRootOfUnity,
        SetPlaintextGenerator, GetBatchSize, SetBatchSize
 
 # CryptoObject
-export GetCryptoContext
+export GetCryptoContext, GetEncodingParameters
 
 # CryptoContext
 export CryptoContext
@@ -63,7 +63,7 @@ export GenCryptoContext, Enable, GetKeyGenLevel, SetKeyGenLevel, GetEncodingPara
 
 # Plaintext
 export Plaintext
-export GetScalingFactor, SetScalingFactor, IsEncoded, GetElementRingDimension,
+export GetScalingFactor, SetScalingFactor, IsEncoded, GetEncodingParams, GetElementRingDimension,
        GetLength, SetLength, GetNoiseScaleDeg, SetNoiseScaleDeg, GetLevel, SetLevel,
        GetSlots, SetSlots, GetLogError, GetLogPrecision, GetStringValue,
        GetCoefPackedValue, GetPackedValue, GetRealPackedValue
