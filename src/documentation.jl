@@ -182,6 +182,20 @@ SetRingDim
 # `GetBootstrapDepth` is documented in `src/convenience.jl`
 
 
+# CryptoObject
+"""
+    GetEncodingParameters(object::Union{Ciphertext})
+
+Return the [`EncodingParams`](@ref) used by the given `object` that is is a subtype of `CryptoObject`.
+
+Currently, this is only implemented for [`Ciphertext`](@ref).
+
+See also: [`EncodingParams`](@ref), [`Ciphertext`](@ref)
+"""
+GetEncodingParameters
+
+
+
 # EncodingParams
 """
     GetPlaintextModulus(parameters::EncodingParams)
