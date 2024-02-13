@@ -211,7 +211,7 @@ See also: [`EncodingParams`](@ref), [`SetPlaintextRootOfUnity`](@ref)
 GetPlaintextRootOfUnity
 
 """
-    SetPlaintextRootOfUnity(parameters::EncodingParams, plaintextRootOfUnity::Integer)
+    SetPlaintextRootOfUnity(parameters::EncodingParams, plaintext_root_of_unity::Integer)
 
 Set the plaintext modulus root of unity for the given `parameters`.
 
