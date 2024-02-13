@@ -330,9 +330,7 @@ Currently, this is only implemented for [`Ciphertext`](@ref).
 
 See also: [`EncodingParams`](@ref), [`Ciphertext`](@ref)
 """
-function GetEncodingParameters(object::Union{Ciphertext})
-    GetEncodingParameters(object[])
-end
+GetEncodingParameters
 
 """
     Decrypt(crypto_context::CryptoContext, ciphertext::Ciphertext, private_key::PrivateKey, plaintext::Plaintext)
