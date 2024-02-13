@@ -1,7 +1,7 @@
 name = "OpenFHE"
 uuid = "77ce9b8e-ecf5-45d1-bd8a-d31f384f2f95"
 authors = ["Michael Schlottke-Lakemper <michael@sloede.com>"]
-version = "0.1.8-dev"
+version = "0.1.8"
 
 [deps]
 CxxWrap = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
