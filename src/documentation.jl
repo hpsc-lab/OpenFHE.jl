@@ -229,7 +229,7 @@ See also: [`EncodingParams`](@ref), [`SetPlaintextBigModulus`](@ref)
 GetPlaintextBigModulus
 
 """
-    SetPlaintextBigModulus(parameters::EncodingParams, plaintextBigModulus::Integer)
+    SetPlaintextBigModulus(parameters::EncodingParams, plaintext_big_modulus::Integer)
 
 Set the big plaintext modulus for the given `parameters`.
 
