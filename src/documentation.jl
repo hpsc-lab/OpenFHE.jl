@@ -265,7 +265,7 @@ See also: [`EncodingParams`](@ref), [`SetPlaintextGenerator`](@ref)
 GetPlaintextGenerator
 
 """
-    SetPlaintextGenerator(parameters::EncodingParams, plaintextGenerator::Integer)
+    SetPlaintextGenerator(parameters::EncodingParams, plaintext_generator::Integer)
 
 Set the plaintext generator for the given `parameters`.
 
