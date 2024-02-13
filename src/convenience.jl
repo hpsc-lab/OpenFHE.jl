@@ -94,6 +94,7 @@ for (WrappedT, fun) in [
     :(Ciphertext{DCRTPoly}) => :SetSlots,
     :(Ciphertext{DCRTPoly}) => :Clone,
     :(Ciphertext{DCRTPoly}) => :CloneZero,
+    :(Ciphertext{DCRTPoly}) => :GetEncodingParameters,
     :(CryptoContext{DCRTPoly}) => :Enable,
     :(CryptoContext{DCRTPoly}) => :GetKeyGenLevel,
     :(CryptoContext{DCRTPoly}) => :SetKeyGenLevel,
@@ -163,7 +164,6 @@ for (WrappedT, fun) in [
     :(EncodingParams) => :SetPlaintextGenerator,
     :(EncodingParams) => :GetBatchSize,
     :(EncodingParams) => :SetBatchSize,
-    :(CryptoObject) => :GetEncodingParameters,
 ]
     @eval function $fun(arg::$WrappedT, args...; kwargs...)
         $fun(arg[], args...; kwargs...)
