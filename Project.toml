@@ -5,14 +5,13 @@ version = "0.1.9-dev"
 
 [deps]
 CxxWrap = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
-OpenFHE_jll = "a2687184-f17b-54bc-b2bb-b849352af807"
 Preferences = "21216c6a-2e73-6563-6e65-726566657250"
 UUIDs = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
 openfhe_julia_jll = "e5e97983-1b8c-50fe-92b7-0e05c8c202e2"
 
 [compat]
-CxxWrap = "0.14"
-OpenFHE_jll = "=1.1.2"
+CxxWrap = "0.15"
 Preferences = "1.4"
 UUIDs = "1"
+openfhe_julia_jll = "0.3.0"
 julia = "1.8"
