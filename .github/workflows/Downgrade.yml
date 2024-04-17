@@ -25,12 +25,12 @@ jobs:
         version: ['1']
     steps:
       - uses: actions/checkout@v4
-      - uses: julia-actions/setup-julia@v1
+      - uses: julia-actions/setup-julia@v2
         with:
           version: ${{ matrix.version }}
       - run: julia -e 'using InteractiveUtils; versioninfo(verbose=true)'
       - uses: julia-actions/cache@v1
-      - uses: cjdoris/julia-downgrade-compat-action@v1
+      - uses: julia-actions/julia-downgrade-compat@v1
         with:
           skip: Pkg,TOML,UUIDs
       - uses: julia-actions/julia-buildpkg@v1
