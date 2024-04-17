@@ -11,7 +11,6 @@ openfhe_julia_jll = "e5e97983-1b8c-50fe-92b7-0e05c8c202e2"
 
 [compat]
 CxxWrap = "0.15"
-
 Preferences = "1.4"
 UUIDs = "1"
 julia = "1.8"
