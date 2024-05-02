@@ -6,6 +6,10 @@ using UUIDs: UUID
 
 
 # Load library path from preferences or JLL package and wrap OpenFHE module
+# Note: We hide loading the JLL package behind the preferences check since otherwise
+#       we will not be able to test new versions of `libopenfhe_julia` that require an
+#       incompatible version of `libcxxwrap_julia`
+# xref: https://github.com/sloede/OpenFHE.jl/issues/46
 if @has_preference("libopenfhe_julia")
     const libopenfhe_julia_path = @load_preference("libopenfhe_julia")
 else
