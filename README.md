@@ -144,9 +144,8 @@ If you use OpenFHE.jl in your own research, please cite this repository as follo
 
 
 ## Authors
-OpenFHE.jl was initiated by [Michael Schlottke-Lakemper](https://lakemper.eu) (RWTH
-Aachen University/High-Performance Computing Center Stuttgart (HLRS), Germany), who is also
-its principal maintainer.
+OpenFHE.jl was initiated by [Michael Schlottke-Lakemper](https://www.uni-augsburg.de/fakultaet/mntf/math/prof/hpsc)
+(University of Augsburg, Germany), who is also its principal maintainer.
 
 Further contributions to OpenFHE.jl have been made by the following people:
 * [Arseniy Kholod](https://www.github.com/ArseniyKholod) (RWTH Aachen University, Germany)
