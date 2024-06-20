@@ -19,7 +19,7 @@ open(joinpath(@__DIR__, "src", "index.md"), "w") do io
     # Point to source file
     println(io, """
     ```@meta
-    EditURL = "https://github.com/sloede/OpenFHE.jl/blob/main/README.md"
+    EditURL = "https://github.com/hpsc-lab/OpenFHE.jl/blob/main/README.md"
     ```
     """)
     # Write the modified contents
@@ -33,7 +33,7 @@ open(joinpath(@__DIR__, "src", "license.md"), "w") do io
     # Point to source file
     println(io, """
     ```@meta
-    EditURL = "https://github.com/sloede/OpenFHE/blob/main/LICENSE.md"
+    EditURL = "https://github.com/hpsc-lab/OpenFHE/blob/main/LICENSE.md"
     ```
     """)
     # Write the modified contents
@@ -55,7 +55,7 @@ makedocs(
         # Disable pretty URLs during manual testing
         prettyurls = get(ENV, "CI", nothing) == "true",
         # Set canonical URL to GitHub pages URL
-        canonical = "https://openfhe-jl.lakemper.eu/stable"
+        canonical = "https://hpsc-lab.github.io/OpenFHE.jl/stable"
     ),
     # Explicitly specify documentation structure
     pages = [
@@ -70,7 +70,7 @@ makedocs(
 
 
 deploydocs(;
-    repo = "github.com/sloede/OpenFHE.jl",
+    repo = "github.com/hpsc-lab/OpenFHE.jl",
     devbranch = "main",
     push_preview = true
 )
