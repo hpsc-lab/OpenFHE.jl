@@ -153,6 +153,34 @@ end
     @test GetEncodingParameters(c1) isa EncodingParams
 end
 
+@testset verbose=true showtiming=true "GetFullContextByDeserializedContext" begin
+    @test GetFullContextByDeserializedContext(cc) isa CryptoContext
+end
+
+@testset verbose=true showtiming=true "GetAllContexts" begin
+    @test GetAllContexts() isa Vector{CryptoContext}
+end
+
+@testset verbose=true showtiming=true "GetAllContexts" begin
+    ReleaseAllContexts()
+end
+
+@testset verbose=true showtiming=true "GetAllContexts" begin
+    @test GetContextCount() == 0
+end
+
+@testset verbose=true showtiming=true "ClearEvalMultKeys" begin
+    ClearEvalMultKeys()
+end
+
+@testset verbose=true showtiming=true "ClearEvalSumKeys" begin
+    ClearEvalSumKeys()
+end
+
+@testset verbose=true showtiming=true "ClearEvalAutomorphismKeys" begin
+    ClearEvalAutomorphismKeys()
+end
+
 end # @testset "test_ckks.jl"
 
 end # module
