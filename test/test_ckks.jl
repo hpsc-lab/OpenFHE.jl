@@ -171,14 +171,20 @@ end
 end
 
 @testset verbose=true showtiming=true "ClearEvalMultKeys" begin
+    ClearEvalMultKeys("42")
+    ClearEvalMultKeys(cc)
     ClearEvalMultKeys()
 end
 
 @testset verbose=true showtiming=true "ClearEvalSumKeys" begin
+    ClearEvalSumKeys("42")
+    ClearEvalSumKeys(cc)
     ClearEvalSumKeys()
 end
 
 @testset verbose=true showtiming=true "ClearEvalAutomorphismKeys" begin
+    ClearEvalAutomorphismKeys("42")
+    ClearEvalAutomorphismKeys(cc)
     ClearEvalAutomorphismKeys()
 end
 
