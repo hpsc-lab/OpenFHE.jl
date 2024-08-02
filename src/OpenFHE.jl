@@ -69,6 +69,10 @@ export GenCryptoContext, Enable, GetKeyGenLevel, SetKeyGenLevel, GetEncodingPara
        EvalDivide, EvalSumKeyGen, ClearEvalSumKeys, EvalSum, EvalBootstrapSetup, EvalBootstrapKeyGen,
        ClearEvalAutomorphismKeys, EvalBootstrap
 
+# CryptoContextFactory
+export CryptoContextFactory
+export ReleaseAllContexts, GetContextCount, GetFullContextByDeserializedContex, GetAllContexts
+
 # Plaintext
 export Plaintext
 export GetScalingFactor, SetScalingFactor, IsEncoded, GetEncodingParams, GetElementRingDimension,
