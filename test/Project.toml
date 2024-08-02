@@ -1,4 +1,5 @@
 [deps]
+OpenFHE = "77ce9b8e-ecf5-45d1-bd8a-d31f384f2f95"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [compat]

@@ -71,7 +71,7 @@ export GenCryptoContext, Enable, GetKeyGenLevel, SetKeyGenLevel, GetEncodingPara
 
 # CryptoContextFactory
 export CryptoContextFactory
-export ReleaseAllContexts, GetContextCount, GetFullContextByDeserializedContex, GetAllContexts
+export ReleaseAllContexts, GetContextCount, GetFullContextByDeserializedContext, GetAllContexts
 
 # Plaintext
 export Plaintext

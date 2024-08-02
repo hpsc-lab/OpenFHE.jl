@@ -158,14 +158,15 @@ end
 end
 
 @testset verbose=true showtiming=true "GetAllContexts" begin
-    @test GetAllContexts() isa Vector{CryptoContext}
+    @test GetAllContexts() isa
+      OpenFHE.CxxWrap.CxxWrapCore.ConstCxxRef{OpenFHE.CxxWrap.StdLib.StdVector{CryptoContext{DCRTPoly}}}
 end
 
-@testset verbose=true showtiming=true "GetAllContexts" begin
+@testset verbose=true showtiming=true "ReleaseAllContexts" begin
     ReleaseAllContexts()
 end
 
-@testset verbose=true showtiming=true "GetAllContexts" begin
+@testset verbose=true showtiming=true "GetContextCount" begin
     @test GetContextCount() == 0
 end
 
