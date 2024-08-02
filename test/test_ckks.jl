@@ -162,31 +162,23 @@ end
       OpenFHE.CxxWrap.CxxWrapCore.ConstCxxRef{OpenFHE.CxxWrap.StdLib.StdVector{CryptoContext{DCRTPoly}}}
 end
 
-@testset verbose=true showtiming=true "ReleaseAllContexts" begin
-    ReleaseAllContexts()
-end
+ReleaseAllContexts()
 
 @testset verbose=true showtiming=true "GetContextCount" begin
     @test GetContextCount() == 0
 end
 
-@testset verbose=true showtiming=true "ClearEvalMultKeys" begin
-    ClearEvalMultKeys("42")
-    ClearEvalMultKeys(cc)
-    ClearEvalMultKeys()
-end
+ClearEvalMultKeys("42")
+ClearEvalMultKeys(cc)
+ClearEvalMultKeys()
 
-@testset verbose=true showtiming=true "ClearEvalSumKeys" begin
-    ClearEvalSumKeys("42")
-    ClearEvalSumKeys(cc)
-    ClearEvalSumKeys()
-end
+ClearEvalSumKeys("42")
+ClearEvalSumKeys(cc)
+ClearEvalSumKeys()
 
-@testset verbose=true showtiming=true "ClearEvalAutomorphismKeys" begin
-    ClearEvalAutomorphismKeys("42")
-    ClearEvalAutomorphismKeys(cc)
-    ClearEvalAutomorphismKeys()
-end
+ClearEvalAutomorphismKeys("42")
+ClearEvalAutomorphismKeys(cc)
+ClearEvalAutomorphismKeys()
 
 end # @testset "test_ckks.jl"
 
