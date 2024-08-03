@@ -817,7 +817,7 @@ GetFullContextByDeserializedContext
 """
     GetAllContexts()
 
-Return all `CryptoContext`s stored in `CryptoContextFactory` as a `Vector`.
+Return all `CryptoContext`s stored in `CryptoContextFactory`.
 """
 GetAllContexts
 
