@@ -437,7 +437,7 @@ Clear EvalMultKey cache for a given key `id`.
 
 Clear EvalMultKey cache for a given `crypto_context`
 
-See also: [`CryptoContext`](@ref), [`EvalMultKeyGen`](@ref), [`EvalMult`](@ref)
+See also: [`CryptoContext`](@ref), [`EvalMultKeyGen`](@ref), [`EvalMult`](@ref), [`ClearEvalSumKeys`](@ref), [`ClearEvalAutomorphismKeys`](@ref)
 """
 ClearEvalMultKeys
 
@@ -737,7 +737,7 @@ Clear EvalSumKey cache for a given key `id`.
 
 Clear EvalSumKey cache for a given `crypto_context`
 
-See also: [`CryptoContext`](@ref), [`EvalSumKeyGen`](@ref), [`EvalSum`](@ref)
+See also: [`CryptoContext`](@ref), [`EvalSumKeyGen`](@ref), [`EvalSum`](@ref), [`ClearEvalMultKeys`](@ref), [`ClearEvalAutomorphismKeys`](@ref)
 """
 ClearEvalSumKeys
 
@@ -777,7 +777,7 @@ Clear EvalAutomorphismKey cache for a given key `id`.
 Clear EvalAutomorphismKey cache for a given `crypto_context`
 
 See also: [`CryptoContext`](@ref), [`EvalBootstrapKeyGen`](@ref), [`EvalBootstrap`](@ref),
-[`EvalRotateKeyGen`](@ref), [`EvalRotate`](@ref)
+[`EvalRotateKeyGen`](@ref), [`EvalRotate`](@ref), [`ClearEvalMultKeys`](@ref), [`ClearEvalSumKeys`](@ref)
 """
 ClearEvalAutomorphismKeys
 
