@@ -71,6 +71,16 @@ x1 rotate by 1 = (0.5, 0.75, 1, 2, 3, 4, 5, 0.25,  ... ); Estimated precision: 4
 x1 rotate by -2 = (4, 5, 0.25, 0.5, 0.75, 1, 2, 3,  ... ); Estimated precision: 43 bits
 ```
 
+OpenFHE optimizes memory usage in C++ by storing evaluation keys in static objects.
+These keys, being substantial in size, remain in memory until the Julia REPL is closed.
+To release them while the REPL is still running, execute the following functions:
+```julia
+ClearEvalMultKeys()
+ClearEvalSumKeys()
+ClearEvalAutomorphismKeys()
+ReleaseAllContexts()
+``` 
+
 ### Using a custom OpenFHE-julia library
 By default, OpenFHE.jl uses the [OpenFHE-julia](https://github.com/hpsc-lab/openfhe-julia)
 library provided by the openfhe\_julia\_jll.jl package, which is automatically obtained when
