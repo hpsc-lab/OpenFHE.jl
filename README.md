@@ -71,14 +71,34 @@ x1 rotate by 1 = (0.5, 0.75, 1, 2, 3, 4, 5, 0.25,  ... ); Estimated precision: 4
 x1 rotate by -2 = (4, 5, 0.25, 0.5, 0.75, 1, 2, 3,  ... ); Estimated precision: 43 bits
 ```
 
-OpenFHE optimizes memory usage in C++ by storing evaluation keys in static objects.
-These keys, being substantial in size, remain in memory until the Julia REPL is closed.
-To release them while the REPL is still running, execute the following functions:
+### Memory issues
+OpenFHE is a memory-optimized C++ library, but these optimizations can cause
+memory issues when transitioning to Julia.
+
+In OpenFHE, large objects like `Ciphertext`, `Plaintext`, and `CryptoContext` are managed
+using `std::shared_ptr`. These objects are not freed until all associated `std::shared_ptr`s
+are destroyed. Although `std::shared_ptr`s are relatively small, Julia's garbage collector
+doesn't always free them automatically. This is because Julia's garbage collector primarily
+focuses on "young" objects during its incremental collections, leaving some `std::shared_ptr`s
+in memory even when they are no longer in use. This can result in significant memory consumption,
+as a single `Ciphertext` object can occupy over 60 MB. Consequently, complex operations may lead
+to gigabytes of memory being lost. The solution is to manually trigger Julia's garbage collector
+to perform a full collection:
+```julia
+GC.gc()
+```
+
+Additionally, OpenFHE optimizes memory usage in C++ by storing evaluation keys in static objects.
+These keys, being quite large, remain in memory until the Julia REPL is closed. To release them
+while the REPL is still running, you can execute the following functions:
 ```julia
 ClearEvalMultKeys()
 ClearEvalSumKeys()
 ClearEvalAutomorphismKeys()
 ReleaseAllContexts()
+
+By running these commands at appropriate points in your code, you can prevent excessive memory
+usage and ensure efficient memory management when using OpenFHE.jl.
 ``` 
 
 ### Using a custom OpenFHE-julia library
