@@ -96,6 +96,7 @@ ClearEvalMultKeys()
 ClearEvalSumKeys()
 ClearEvalAutomorphismKeys()
 ReleaseAllContexts()
+```
 
 By running these commands at appropriate points in your code, you can prevent excessive memory
 usage and ensure efficient memory management when using OpenFHE.jl.
