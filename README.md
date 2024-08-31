@@ -88,9 +88,9 @@ to perform a full collection:
 GC.gc()
 ```
 
-Additionally, OpenFHE optimizes memory usage in C++ by storing evaluation keys in static objects.
-These keys, being quite large, remain in memory until the Julia REPL is closed. To release them
-while the REPL is still running, you can execute the following functions:
+Additionally, OpenFHE optimizes memory usage in C++ by storing evaluation keys and `CryptoContext`s
+in static objects. These objects, being quite large, remain in memory until the Julia REPL is
+closed. To release them while the REPL is still running, you can execute the following functions:
 ```julia
 ClearEvalMultKeys()
 ClearEvalSumKeys()
@@ -98,9 +98,11 @@ ClearEvalAutomorphismKeys()
 ReleaseAllContexts()
 ```
 
+For more details, please refer to the documentation for [`ClearEvalMultKeys`](@ref),
+[`ClearEvalSumKeys`](@ref), [`ClearEvalAutomorphismKeys`](@ref), and [`ReleaseAllContexts`](@ref).
+
 By running these commands at appropriate points in your code, you can prevent excessive memory
 usage and ensure efficient memory management when using OpenFHE.jl.
-``` 
 
 ### Using a custom OpenFHE-julia library
 By default, OpenFHE.jl uses the [OpenFHE-julia](https://github.com/hpsc-lab/openfhe-julia)
