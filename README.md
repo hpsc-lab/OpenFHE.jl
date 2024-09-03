@@ -77,13 +77,14 @@ memory issues when transitioning to Julia.
 
 In OpenFHE, large objects like `Ciphertext`, `Plaintext`, and `CryptoContext` are managed
 using `std::shared_ptr`. These objects are not freed until all associated `std::shared_ptr`s
-are destroyed. Although `std::shared_ptr`s are relatively small, Julia's garbage collector
-doesn't always free them automatically. This is because Julia's garbage collector primarily
+are destroyed. Since the Julia objects that hold a reference to these shared pointers are relatively small, Julia's garbage collector
+does not always free them automatically, as they are not considered a high priority for garbage collection. This is because Julia's garbage collector primarily
 focuses on "young" objects during its incremental collections, leaving some `std::shared_ptr`s
-in memory even when they are no longer in use. This can result in significant memory consumption,
+in memory even when they are no longer in use. This may result in a significant increase in memory consumption over time,
 as a single `Ciphertext` object can occupy over 60 MB. Consequently, complex operations may lead
-to gigabytes of memory being lost. The solution is to manually trigger Julia's garbage collector
-to perform a full collection:
+to gigabytes of memory being occupied without being freed until the Julia session is terminated.
+One possible solution is to manually trigger Julia's garbage collector
+to perform a full collection, which will also clean up these "small" objects:
 ```julia
 GC.gc()
 ```
@@ -97,10 +98,20 @@ ClearEvalSumKeys()
 ClearEvalAutomorphismKeys()
 ReleaseAllContexts()
 ```
-
+Note that this will invalidate all currently existing contexts, even those which are
+still in use. Thus you should only call these functions once you are done with a given
+FHE setup and want to start a new one.
 For more details, please refer to the documentation for [`ClearEvalMultKeys`](@ref),
 [`ClearEvalSumKeys`](@ref), [`ClearEvalAutomorphismKeys`](@ref), and [`ReleaseAllContexts`](@ref).
 
+Therefore, for a full cleanup of all OpenFHE-occupied memory, first ensure that all variables holding references to OpenFHE objects are out of scope and then execute
+```julia
+ClearEvalMultKeys()
+ClearEvalSumKeys()
+ClearEvalAutomorphismKeys()
+ReleaseAllContexts()
+GC.gc()
+```
 By running these commands at appropriate points in your code, you can prevent excessive memory
 usage and ensure efficient memory management when using OpenFHE.jl.
 
