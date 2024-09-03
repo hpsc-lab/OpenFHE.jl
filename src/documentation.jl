@@ -426,6 +426,21 @@ See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`EvalMult`](@ref)
 """
 EvalMultKeyGen
 
+"""
+    ClearEvalMultKeys()
+    ClearEvalMultKeys(id::String)
+    ClearEvalMultKeys(crypto_context::CryptoContext)
+
+Clear EvalMultKey cache fully.
+
+Clear EvalMultKey cache for a given key `id`.
+
+Clear EvalMultKey cache for a given `crypto_context`
+
+See also: [`CryptoContext`](@ref), [`EvalMultKeyGen`](@ref), [`EvalMult`](@ref), [`ClearEvalSumKeys`](@ref), [`ClearEvalAutomorphismKeys`](@ref)
+"""
+ClearEvalMultKeys
+
 # EvalRotateKeyGen` is documented in `src/convenience.jl`
 
 # `MakePackedPlaintext` is documented in `src/convenience.jl`
@@ -712,6 +727,21 @@ EvalDivide
 # `EvalSumKeyGen` is documented in `src/convenience.jl`
 
 """
+    ClearEvalSumKeys()
+    ClearEvalSumKeys(id::String)
+    ClearEvalSumKeys(crypto_context::CryptoContext)
+
+Clear EvalSumKey cache fully.
+
+Clear EvalSumKey cache for a given key `id`.
+
+Clear EvalSumKey cache for a given `crypto_context`
+
+See also: [`CryptoContext`](@ref), [`EvalSumKeyGen`](@ref), [`EvalSum`](@ref), [`ClearEvalMultKeys`](@ref), [`ClearEvalAutomorphismKeys`](@ref)
+"""
+ClearEvalSumKeys
+
+"""
     EvalSum(crypto_context::CryptoContext, ciphertext::Ciphertext, batch_size::Integer)
     
 Calculate sum of all elements contained in the given `ciphertext` and return the resulting
@@ -735,7 +765,61 @@ See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`EvalBootstrapSetup`](
 """
 EvalBootstrapKeyGen
 
+"""
+    ClearEvalAutomorphismKeys()
+    ClearEvalAutomorphismKeys(id::String)
+    ClearEvalAutomorphismKeys(crypto_context::CryptoContext)
+
+Clear EvalAutomorphismKey cache fully.
+
+Clear EvalAutomorphismKey cache for a given key `id`.
+
+Clear EvalAutomorphismKey cache for a given `crypto_context`
+
+See also: [`CryptoContext`](@ref), [`EvalBootstrapKeyGen`](@ref), [`EvalBootstrap`](@ref),
+[`EvalRotateKeyGen`](@ref), [`EvalRotate`](@ref), [`ClearEvalMultKeys`](@ref), [`ClearEvalSumKeys`](@ref)
+"""
+ClearEvalAutomorphismKeys
+
 # `EvalBootstrap` is documented in `src/convenience.jl`
+
+
+# CryptoContextFactory
+
+"""
+    ReleaseAllContexts()
+
+Clear all generated `CryptoContext`s from `CryptoContextFactory`.
+
+See also: [`CryptoContext`](@ref)
+"""
+ReleaseAllContexts
+
+"""
+    GetContextCount()
+
+Return number of `CryptoContext`s stored in `CryptoContextFactory`.
+
+See also: [`CryptoContext`](@ref)
+"""
+GetContextCount
+
+"""
+    GetFullContextByDeserializedContext(crypto_context::CryptoContext)
+
+Return the full `CryptoContext` based on partial information we usually get from a de-serialized
+`crypto_context`.
+
+See also: [`CryptoContext`](@ref)
+"""
+GetFullContextByDeserializedContext
+
+"""
+    GetAllContexts()
+
+Return all `CryptoContext`s stored in `CryptoContextFactory`.
+"""
+GetAllContexts
 
 
 # Plaintext
