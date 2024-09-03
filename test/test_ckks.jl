@@ -153,6 +153,33 @@ end
     @test GetEncodingParameters(c1) isa EncodingParams
 end
 
+@testset verbose=true showtiming=true "GetFullContextByDeserializedContext" begin
+    @test GetFullContextByDeserializedContext(cc) isa CryptoContext
+end
+
+@testset verbose=true showtiming=true "GetAllContexts" begin
+    @test GetAllContexts() isa
+      OpenFHE.CxxWrap.CxxWrapCore.ConstCxxRef{OpenFHE.CxxWrap.StdLib.StdVector{CryptoContext{DCRTPoly}}}
+end
+
+ReleaseAllContexts()
+
+@testset verbose=true showtiming=true "GetContextCount" begin
+    @test GetContextCount() == 0
+end
+
+ClearEvalMultKeys("42")
+ClearEvalMultKeys(cc)
+ClearEvalMultKeys()
+
+ClearEvalSumKeys("42")
+ClearEvalSumKeys(cc)
+ClearEvalSumKeys()
+
+ClearEvalAutomorphismKeys("42")
+ClearEvalAutomorphismKeys(cc)
+ClearEvalAutomorphismKeys()
+
 end # @testset "test_ckks.jl"
 
 end # module
