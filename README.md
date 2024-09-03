@@ -2,7 +2,7 @@
 
 [![Docs-stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://hpsc-lab.github.io/OpenFHE.jl/stable)
 [![Docs-dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://hpsc-lab.github.io/OpenFHE.jl/dev)
-[![Build Status](https://github.com/hpsc-lab/OpenFHE.jl/workflows/CI/badge.svg)](https://github.com/hpsc-lab/OpenFHE.jl/actions?query=workflow%3ACI)
+[![Build Status](https://github.com/hpsc-lab/OpenFHE.jl/actions/workflows/ci.yml/badge.svg)](https://github.com/hpsc-lab/OpenFHE.jl/actions?query=workflow%3ACI)
 [![Coveralls](https://coveralls.io/repos/github/hpsc-lab/OpenFHE.jl/badge.svg)](https://coveralls.io/github/hpsc-lab/OpenFHE.jl)
 [![Codecov](https://codecov.io/gh/hpsc-lab/OpenFHE.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/hpsc-lab/OpenFHE.jl)
 [![License: MIT](https://img.shields.io/badge/License-MIT-success.svg)](https://opensource.org/license/mit/)
