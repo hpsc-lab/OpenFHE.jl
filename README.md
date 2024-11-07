@@ -34,7 +34,7 @@ julia> import Pkg; Pkg.add("OpenFHE")
 ```
 Internally, OpenFHE.jl relies on [OpenFHE-julia](https://github.com/hpsc-lab/openfhe-julia) to
 provide bindings for the C++ library
-[OpenFHE](https://github.com/openfheorg/openfhe-development). Precompiled binares for
+[OpenFHE](https://github.com/openfheorg/openfhe-development). Precompiled binaries for
 OpenFHE-julia and OpenFHE are automatically for your platform when you install OpenFHE.jl,
 thus there is no need to compile anything manually.
 
