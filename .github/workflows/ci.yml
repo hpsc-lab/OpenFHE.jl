@@ -40,17 +40,12 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - '1.8'
-          - '1.9'
           - '1.10'
+          - '1.11'
         os:
           - ubuntu-latest
           - macOS-latest
           - windows-latest
-        exclude:
-          # FIXME: Figure out why this crashes
-          - os: windows-latest
-            version: '1.8'
     steps:
       - uses: actions/checkout@v4
       - uses: julia-actions/setup-julia@v2

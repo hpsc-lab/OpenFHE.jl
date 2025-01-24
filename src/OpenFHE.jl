@@ -13,7 +13,18 @@ using UUIDs: UUID
 if @has_preference("libopenfhe_julia")
     const libopenfhe_julia_path = @load_preference("libopenfhe_julia")
 else
-    using openfhe_julia_jll: libopenfhe_julia
+    native_int = 64
+    if @has_preference("native_int")
+        native_int = @load_preference("native_int")
+    end
+    if native_int == 64
+        using openfhe_julia_jll: libopenfhe_julia
+    elseif native_int == 128
+        using openfhe_julia_int128_jll: libopenfhe_julia
+    else
+        throw(ErrorException("Unsupported value `native_int` = '$native_int' loaded from LocalPreferences.toml (must be `64` or `128`)"))
+    end
+    const NATIVEINT = native_int
     const libopenfhe_julia_path = libopenfhe_julia
 end
 @wrapmodule(() -> libopenfhe_julia_path)
@@ -103,6 +114,9 @@ export ScalingTechnique, FIXEDMANUAL, FIXEDAUTO, FLEXIBLEAUTO, FLEXIBLEAUTOEXT, 
 export SecretKeyDist, GAUSSIAN, UNIFORM_TERNARY, SPARSE_TERNARY
 export SecurityLevel, HEStd_128_classic, HEStd_192_classic, HEStd_256_classic,
        HEStd_128_quantum, HEStd_192_quantum, HEStd_256_quantum, HEStd_NotSet
+
+# NATIVEINT
+export NATIVEINT
 
 
 include("auxiliary.jl")
