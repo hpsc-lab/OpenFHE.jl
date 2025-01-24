@@ -3,6 +3,8 @@ module TestAuxiliary
 using Test
 using OpenFHE
 
+println("Tests for NATIVEINT = $NATIVEINT")
+
 @testset verbose=true showtiming=true "test_auxiliary.jl" begin
 
 @testset verbose=true showtiming=true "library_path" begin
