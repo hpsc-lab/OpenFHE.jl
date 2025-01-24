@@ -1,4 +1,6 @@
-using Test
+using Test, Pkg
+# rebuild packages to ensure the change in NATIVEINT
+Pkg.build()
 
 @time @testset verbose=true showtiming=true "OpenFHE.jl tests" begin
     include("test_auxiliary.jl")
@@ -9,7 +11,7 @@ using Test
     include("test_examples.jl")
 end
 
-# Set NATIVEINT = 128 for the next run
+# set NATIVEINT = 128 for the next run
 using OpenFHE
 OpenFHE.set_native_int!(128)
 # exit julia to reenter
