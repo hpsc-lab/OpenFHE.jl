@@ -12,3 +12,5 @@ end
 # Set NATIVEINT = 128 for the next run
 using OpenFHE
 OpenFHE.set_native_int!(128)
+# exit julia to reenter
+exit()
