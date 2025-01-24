@@ -58,9 +58,10 @@ jobs:
         uses: julia-actions/julia-runtest@v1
       - name: Set NATIVEINT = 128
         run: |
-          #using OpenFHE
-          #OpenFHE.set_native_int!(128)
-        shell: julia --color=yes {0}
+          using Preferences: set_preferences!
+          using UUIDs: UUID
+          set_preferences!(UUID("77ce9b8e-ecf5-45d1-bd8a-d31f384f2f95"), "native_int" => 128; force=true)
+        shell: julia --project=. --color=yes {0}
       - name: Run julia-actions/julia-runtest@v1 for NATIVEINT = 128
         uses: julia-actions/julia-runtest@v1
       - uses: julia-actions/julia-processcoverage@v1
