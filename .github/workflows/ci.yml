@@ -58,8 +58,8 @@ jobs:
         uses: julia-actions/julia-runtest@v1
       - name: Set NATIVEINT = 128
         run: |
-          using OpenFHE
-          OpenFHE.set_native_int!(128)
+          #using OpenFHE
+          #OpenFHE.set_native_int!(128)
         shell: julia --color=yes {0}
       - name: Run julia-actions/julia-runtest@v1 for NATIVEINT = 128
         uses: julia-actions/julia-runtest@v1
