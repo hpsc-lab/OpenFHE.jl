@@ -24,7 +24,6 @@ else
     else
         throw(ErrorException("Unsupported value `native_int` = '$native_int' loaded from LocalPreferences.toml (must be `64` or `128`)"))
     end
-    const NATIVEINT = native_int
     const libopenfhe_julia_path = libopenfhe_julia
 end
 @wrapmodule(() -> libopenfhe_julia_path)
@@ -115,8 +114,8 @@ export SecretKeyDist, GAUSSIAN, UNIFORM_TERNARY, SPARSE_TERNARY
 export SecurityLevel, HEStd_128_classic, HEStd_192_classic, HEStd_256_classic,
        HEStd_128_quantum, HEStd_192_quantum, HEStd_256_quantum, HEStd_NotSet
 
-# NATIVEINT
-export NATIVEINT
+# native_int
+export get_native_int
 
 
 include("auxiliary.jl")

@@ -12,7 +12,7 @@ rescale_technique = FLEXIBLEAUTO
 dcrt_bits = 59;
 first_modulus = 60;
 
-if NATIVEINT == 128
+if get_native_int() == 128
     rescale_technique = FIXEDAUTO;
     dcrt_bits = 78;
     first_modulus = 89;

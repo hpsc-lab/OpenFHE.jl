@@ -7,6 +7,7 @@ using OpenFHE
 
 multDepth = 1
 scaleModSize = 50
+scaleModSize_int128 = 71
 batchSize = 8
 
 @testset verbose=true showtiming=true "CCParams" begin
@@ -18,9 +19,23 @@ batchSize = 8
     @test_nowarn SetBatchSize(parameters, batchSize)
 end
 
+@testset verbose=true showtiming=true "get_native_int" begin
+    parameters = CCParams{CryptoContextCKKSRNS}()
+    @test_nowarn SetScalingModSize(parameters, scaleModSize_int128)
+    if get_native_int() == 128
+        @test_nowarn GenCryptoContext(parameters)
+    elseif get_native_int() == 64
+        @test_throws "" GenCryptoContext(parameters)
+    end
+end
+
 parameters = CCParams{CryptoContextCKKSRNS}()
 SetMultiplicativeDepth(parameters, multDepth)
-SetScalingModSize(parameters, scaleModSize)
+if get_native_int() == 128
+    SetScalingModSize(parameters, scaleModSize_int128)
+elseif get_native_int() == 64
+    SetScalingModSize(parameters, scaleModSize)
+end
 SetBatchSize(parameters, batchSize)
 
 @testset verbose=true showtiming=true "CryptoContext" begin

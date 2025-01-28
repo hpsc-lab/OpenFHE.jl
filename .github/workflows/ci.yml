@@ -54,15 +54,15 @@ jobs:
       - run: julia -e 'using InteractiveUtils; versioninfo(verbose=true)'
       - uses: julia-actions/cache@v2
       - uses: julia-actions/julia-buildpkg@v1
-      - name: Run tests for NATIVEINT=64 (default)
+      - name: Run tests for native_int=64 (default)
         uses: julia-actions/julia-runtest@v1
-      - name: Set NATIVEINT=128
+      - name: Set native_int=128
         run: |
           using Preferences: set_preferences!
           using UUIDs: UUID
           set_preferences!(UUID("77ce9b8e-ecf5-45d1-bd8a-d31f384f2f95"), "native_int" => 128; force=true)
         shell: julia --project=. --color=yes {0}
-      - name: Run tests for NATIVEINT=128
+      - name: Run tests for native_int=128
         uses: julia-actions/julia-runtest@v1
       - uses: julia-actions/julia-processcoverage@v1
         with:
