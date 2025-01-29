@@ -127,8 +127,10 @@ julia> OpenFHE.set_native_int!(128)
 ```
 This will create a `LocalPreferences.toml` file in your current project directory with the
 `native_int` preference set accordingly. As advised, you need to restart Julia for
-the change to take effect. By calling `set_native_int!()` without an argument, you revert to
+the change to take effect. By calling `OpenFHE.set_native_int!()` without an argument, you revert to
 using 64-bit integers again.
+With `OpenFHE.get_native_int()` you can query the native integer size of the
+currently loaded OpenFHE library.
 
 ### Using a custom OpenFHE-julia library
 By default, OpenFHE.jl uses the [OpenFHE-julia](https://github.com/hpsc-lab/openfhe-julia)
@@ -145,10 +147,8 @@ julia> OpenFHE.set_library!("/abs/path/to/library.so")
 ```
 This will create a `LocalPreferences.toml` file in your current project directory with the
 `libopenfhe_julia` preference set accordingly. As advised, you need to restart Julia for
-the change to take effect. By calling `set_library!()` without an argument, you revert to
+the change to take effect. By calling `OpenFHE.set_library!()` without an argument, you revert to
 using JLL-provided library again.
-With `OpenFHE.get_native_int()` you can query the native integer size of the
-currently loaded OpenFHE library.
 
 In case the custom library has been deleted, loading OpenFHE.jl will fail. In that case,
 either remove the `LocalPreferences.toml` file or manually reset the preferences by
