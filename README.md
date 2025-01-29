@@ -115,11 +115,11 @@ GC.gc()
 By running these commands at appropriate points in your code, you can prevent excessive memory
 usage and ensure efficient memory management when using OpenFHE.jl.
 
-### Using 128-bit Native Integers
+### Using 128-bit integers
 By default, OpenFHE uses 64-bit integers, but for CKKS, 128-bit integers are also available
 to increase precision at the cost of additional computational overhead. You can switch between
 64 and 128 bits by using the `OpenFHE.set_native_int!` function, i.e., by running
-```julia
+```julia-repl
 julia> using OpenFHE
 
 julia> OpenFHE.set_native_int!(128)

@@ -27,11 +27,11 @@ Restart the Julia session after executing this function such that the changes ta
 
 See also: [`get_native_int`](@ref)
 """
-function set_native_int!(native_int::Integer = 64; force = true)
+function set_native_int!(native_int::Integer = 64)
     if native_int != 64 && native_int != 128
         throw(ArgumentError("Unsupported value '$native_int' passed to `native_int` (must be `64` or `128`)"))
     end
-    set_preferences!(OPENFHE_PACKAGE_UUID, "native_int" => native_int; force)
+    @set_preferences!("native_int" => native_int)
     @info "Please restart Julia and reload OpenFHE.jl for the library changes to take effect"
 end
 

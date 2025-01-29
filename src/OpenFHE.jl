@@ -114,9 +114,6 @@ export SecretKeyDist, GAUSSIAN, UNIFORM_TERNARY, SPARSE_TERNARY
 export SecurityLevel, HEStd_128_classic, HEStd_192_classic, HEStd_256_classic,
        HEStd_128_quantum, HEStd_192_quantum, HEStd_256_quantum, HEStd_NotSet
 
-# native_int
-export get_native_int
-
 
 include("auxiliary.jl")
 include("convenience.jl")
