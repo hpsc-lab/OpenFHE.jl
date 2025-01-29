@@ -1,7 +1,7 @@
 module OpenFHE
 
 using CxxWrap # need to use everything to avoid `UndefVarError`s
-using Preferences: @has_preference, @load_preference, set_preferences!, delete_preferences!
+using Preferences: @has_preference, @load_preference, set_preferences!, @set_preferences!, delete_preferences!
 using UUIDs: UUID
 
 

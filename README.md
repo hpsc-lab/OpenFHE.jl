@@ -147,6 +147,8 @@ This will create a `LocalPreferences.toml` file in your current project director
 `libopenfhe_julia` preference set accordingly. As advised, you need to restart Julia for
 the change to take effect. By calling `set_library!()` without an argument, you revert to
 using JLL-provided library again.
+With `OpenFHE.get_native_int()` you can query the native integer size of the
+currently loaded OpenFHE library.
 
 In case the custom library has been deleted, loading OpenFHE.jl will fail. In that case,
 either remove the `LocalPreferences.toml` file or manually reset the preferences by

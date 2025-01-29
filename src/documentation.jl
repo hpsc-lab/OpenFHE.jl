@@ -1157,7 +1157,7 @@ See also: [`KeyPair`](@ref), [`public_key`](@ref)
 private_key
 
 """
-    get_native_int()
+    OpenFHE.get_native_int()
 
 Return the native integer size for an OpenFHE-julia installation, it can be `64` or `128` bits.
 
