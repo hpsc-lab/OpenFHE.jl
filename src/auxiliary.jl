@@ -20,7 +20,7 @@ function set_library!(path = nothing; force = true)
 end
 
 """
-    OpenFHE.set_native_int!(native_int::Integer = 64; force = true)
+    OpenFHE.set_native_int!(native_int::Integer = 64)
 
 Set the native integer size for an OpenFHE-julia installation, it can be `64` or `128` bits.
 Restart the Julia session after executing this function such that the changes take effect.
