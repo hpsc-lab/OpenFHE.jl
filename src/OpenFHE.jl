@@ -1,7 +1,7 @@
 module OpenFHE
 
 using CxxWrap # need to use everything to avoid `UndefVarError`s
-using Preferences: @has_preference, @load_preference, set_preferences!, delete_preferences!
+using Preferences: @has_preference, @load_preference, set_preferences!, @set_preferences!, delete_preferences!
 using UUIDs: UUID
 
 
@@ -13,7 +13,17 @@ using UUIDs: UUID
 if @has_preference("libopenfhe_julia")
     const libopenfhe_julia_path = @load_preference("libopenfhe_julia")
 else
-    using openfhe_julia_jll: libopenfhe_julia
+    native_int = 64
+    if @has_preference("native_int")
+        native_int = @load_preference("native_int")
+    end
+    if native_int == 64
+        using openfhe_julia_jll: libopenfhe_julia
+    elseif native_int == 128
+        using openfhe_julia_int128_jll: libopenfhe_julia
+    else
+        throw(ErrorException("Unsupported value `native_int` = '$native_int' loaded from LocalPreferences.toml (must be `64` or `128`)"))
+    end
     const libopenfhe_julia_path = libopenfhe_julia
 end
 @wrapmodule(() -> libopenfhe_julia_path)

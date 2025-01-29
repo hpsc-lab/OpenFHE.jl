@@ -115,6 +115,23 @@ GC.gc()
 By running these commands at appropriate points in your code, you can prevent excessive memory
 usage and ensure efficient memory management when using OpenFHE.jl.
 
+### Using 128-bit integers
+By default, OpenFHE uses 64-bit integers, but for CKKS, 128-bit integers are also available
+to increase precision at the cost of additional computational overhead. You can switch between
+64 and 128 bits by using the `OpenFHE.set_native_int!` function, i.e., by running
+```julia-repl
+julia> using OpenFHE
+
+julia> OpenFHE.set_native_int!(128)
+[ Info: Please restart Julia and reload OpenFHE.jl for the library changes to take effect
+```
+This will create a `LocalPreferences.toml` file in your current project directory with the
+`native_int` preference set accordingly. As advised, you need to restart Julia for
+the change to take effect. By calling `OpenFHE.set_native_int!()` without an argument, you revert to
+using 64-bit integers again.
+With `OpenFHE.get_native_int()` you can query the native integer size of the
+currently loaded OpenFHE library.
+
 ### Using a custom OpenFHE-julia library
 By default, OpenFHE.jl uses the [OpenFHE-julia](https://github.com/hpsc-lab/openfhe-julia)
 library provided by the openfhe\_julia\_jll.jl package, which is automatically obtained when
@@ -130,7 +147,7 @@ julia> OpenFHE.set_library!("/abs/path/to/library.so")
 ```
 This will create a `LocalPreferences.toml` file in your current project directory with the
 `libopenfhe_julia` preference set accordingly. As advised, you need to restart Julia for
-the change to take effect. By calling `set_library!()` without an argument, you revert to
+the change to take effect. By calling `OpenFHE.set_library!()` without an argument, you revert to
 using JLL-provided library again.
 
 In case the custom library has been deleted, loading OpenFHE.jl will fail. In that case,
