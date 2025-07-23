@@ -306,6 +306,23 @@ function EvalBootstrap(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContext
 end
 
 """
+    Compress(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
+             ciphertext;
+             levels_left = 1)
+
+Return a compressed ciphertext with modulus reduced to a number of multiplicative levels
+`levels_left`.
+
+See also: [`CryptoContext`](@ref)
+"""
+function Compress(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
+                  ciphertext;
+                  levels_left = 1)
+    Compress(context, ciphertext, levels_left)
+end
+
+
+"""
     GetCryptoContext(object::Union{Ciphertext})
 
 Return a the crypto context for a an `object` that is is a subtype of `CryptoObject`.

@@ -5,7 +5,7 @@ using OpenFHE
 
 @testset verbose=true showtiming=true "test_ckks.jl" begin
 
-multDepth = 1
+multDepth = 3
 scaleModSize = 50
 scaleModSize_int128 = 71
 batchSize = 8
@@ -158,6 +158,12 @@ end
     result_dec = Plaintext()
     Decrypt(cc, privkey, result_enc, result_dec)
     @test GetRealPackedValue(result_dec) ≈ [sum(x1) for _ in range(1, batchSize)]
+end
+
+@testset verbose=true showtiming=true "Compress" begin
+    levels_left = 1
+    result_compressed = Compress(cc, c1, levels_left)
+    @test levels_left == GetLevel(result_compressed)
 end
 
 @testset verbose=true showtiming=true "GetCryptoContext" begin
