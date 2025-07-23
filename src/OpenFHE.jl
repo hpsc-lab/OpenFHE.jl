@@ -77,7 +77,7 @@ export GenCryptoContext, Enable, GetKeyGenLevel, SetKeyGenLevel, GetEncodingPara
        Relinearize, RelinearizeInPlace, EvalRotate, EvalRotateKeyGen, ComposedEvalMult, Rescale,
        RescaleInPlace, ModReduce, ModReduceInPlace, EvalSin, EvalCos, EvalLogistic,
        EvalDivide, EvalSumKeyGen, ClearEvalSumKeys, EvalSum, EvalBootstrapSetup, EvalBootstrapKeyGen,
-       ClearEvalAutomorphismKeys, EvalBootstrap
+       ClearEvalAutomorphismKeys, EvalBootstrap, Compress
 
 # CryptoContextFactory
 export CryptoContextFactory
