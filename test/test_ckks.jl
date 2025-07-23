@@ -163,7 +163,7 @@ end
 @testset verbose=true showtiming=true "Compress" begin
     levels_left = 1
     result_compressed = Compress(cc, c1, levels_left)
-    @test levels_left == GetLevel(result_compressed)
+    @test levels_left == Int(GetLevel(result_compressed))
 end
 
 @testset verbose=true showtiming=true "GetCryptoContext" begin
