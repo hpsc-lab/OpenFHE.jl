@@ -36,9 +36,9 @@ if OpenFHE.get_native_int() == 128
 elseif OpenFHE.get_native_int() == 64
     SetScalingModSize(parameters, scaleModSize)
 end
+SetScalingTechnique(parameters, FIXEDAUTO)
 SetSecurityLevel(parameters, HEStd_NotSet)
 SetRingDim(parameters, 1 << 12)
-SetScalingTechnique(parameters, FLEXIBLEAUTO)
 SetBatchSize(parameters, batchSize)
 
 @testset verbose=true showtiming=true "CryptoContext" begin
