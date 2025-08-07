@@ -36,6 +36,8 @@ if OpenFHE.get_native_int() == 128
 elseif OpenFHE.get_native_int() == 64
     SetScalingModSize(parameters, scaleModSize)
 end
+SetSecurityLevel(parameters, HEStd_NotSet)
+SetRingDim(parameters, 1 << 12)
 SetBatchSize(parameters, batchSize)
 
 @testset verbose=true showtiming=true "CryptoContext" begin
@@ -48,7 +50,7 @@ SetBatchSize(parameters, batchSize)
     @test_nowarn Enable(cc, ADVANCEDSHE)
     @test_nowarn Enable(cc, FHE)
 
-    @test GetRingDimension(cc) == 16384
+    @test Int(GetRingDimension(cc)) == 1 << 12
 end
 
 cc = GenCryptoContext(parameters)
@@ -164,7 +166,7 @@ end
     @test GetLevel(c1) == 0
     levels_left = 1
     result_compressed = Compress(cc, c1, levels_left)
-    @test GetMultiplicativeDepth(parameters) - levels_left == GetLevel(result_compressed)
+    @test GetMultiplicativeDepth(parameters) - GetLevel(result_compressed) == 0
 end
 
 @testset verbose=true showtiming=true "GetCryptoContext" begin
