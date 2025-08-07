@@ -38,6 +38,7 @@ elseif OpenFHE.get_native_int() == 64
 end
 SetSecurityLevel(parameters, HEStd_NotSet)
 SetRingDim(parameters, 1 << 12)
+SetScalingTechnique(parameters, FLEXIBLEAUTO)
 SetBatchSize(parameters, batchSize)
 
 @testset verbose=true showtiming=true "CryptoContext" begin
@@ -166,7 +167,7 @@ end
     @test Int(GetLevel(c1)) == 0
     levels_left = 1
     result_compressed = Compress(cc, c1, levels_left)
-    @test GetMultiplicativeDepth(parameters) - Int(GetLevel(result_compressed)) == 0
+    @test multDepth - Int(GetLevel(result_compressed)) == 0
 end
 
 @testset verbose=true showtiming=true "GetCryptoContext" begin
