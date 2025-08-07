@@ -51,7 +51,7 @@ SetBatchSize(parameters, batchSize)
     @test_nowarn Enable(cc, ADVANCEDSHE)
     @test_nowarn Enable(cc, FHE)
 
-    @test Int(GetRingDimension(cc)) == 16384
+    @test GetRingDimension(cc) == 16384
 end
 
 cc = GenCryptoContext(parameters)
