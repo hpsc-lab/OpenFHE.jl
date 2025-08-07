@@ -38,7 +38,7 @@ elseif OpenFHE.get_native_int() == 64
 end
 SetScalingTechnique(parameters, FIXEDAUTO)
 SetSecurityLevel(parameters, HEStd_NotSet)
-SetRingDim(parameters, 1 << 12)
+SetRingDim(parameters, 16384)
 SetBatchSize(parameters, batchSize)
 
 @testset verbose=true showtiming=true "CryptoContext" begin
@@ -51,7 +51,7 @@ SetBatchSize(parameters, batchSize)
     @test_nowarn Enable(cc, ADVANCEDSHE)
     @test_nowarn Enable(cc, FHE)
 
-    @test Int(GetRingDimension(cc)) == 1 << 12
+    @test Int(GetRingDimension(cc)) == 16384
 end
 
 cc = GenCryptoContext(parameters)
