@@ -5,7 +5,7 @@ using OpenFHE
 
 @testset verbose=true showtiming=true "test_ckks.jl" begin
 
-multDepth = 1
+multDepth = 3
 scaleModSize = 50
 scaleModSize_int128 = 71
 batchSize = 8
@@ -36,6 +36,9 @@ if OpenFHE.get_native_int() == 128
 elseif OpenFHE.get_native_int() == 64
     SetScalingModSize(parameters, scaleModSize)
 end
+SetScalingTechnique(parameters, FIXEDAUTO)
+SetSecurityLevel(parameters, HEStd_NotSet)
+SetRingDim(parameters, 16384)
 SetBatchSize(parameters, batchSize)
 
 @testset verbose=true showtiming=true "CryptoContext" begin
@@ -158,6 +161,13 @@ end
     result_dec = Plaintext()
     Decrypt(cc, privkey, result_enc, result_dec)
     @test GetRealPackedValue(result_dec) ≈ [sum(x1) for _ in range(1, batchSize)]
+end
+
+@testset verbose=true showtiming=true "Compress" begin
+    @test Int(GetLevel(c1)) == 0
+    levels_left = 1
+    result_compressed = Compress(cc, c1, levels_left)
+    @test multDepth - Int(GetLevel(result_compressed)) == 0
 end
 
 @testset verbose=true showtiming=true "GetCryptoContext" begin
