@@ -166,7 +166,8 @@ end
 @testset verbose=true showtiming=true "Compress" begin
     @test Int(GetLevel(c1)) == 0
     levels_left = 1
-    result_compressed = Compress(cc, c1, levels_left)
+    noise_scale_deg = 1
+    result_compressed = Compress(cc, c1, levels_left, noise_scale_deg)
     @test multDepth - Int(GetLevel(result_compressed)) == 0
 end
 
