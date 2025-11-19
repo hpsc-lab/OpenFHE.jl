@@ -822,7 +822,7 @@ Return all `CryptoContext`s stored in `CryptoContextFactory`.
 GetAllContexts
 
 """
-    Compress(rypto_context::CryptoContext, ciphertext::Ciphertext; levels_left = 1)
+    Compress(Crypto_context::CryptoContext, ciphertext::Ciphertext; levels_left = 1)
 
 Return a compressed ciphertext with modulus reduced to a number of multiplicative levels
 `levels_left`.
