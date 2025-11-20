@@ -133,7 +133,6 @@ for (WrappedT, fun) in [
     :(CryptoContext{DCRTPoly}) => :EvalBootstrapSetup,
     :(CryptoContext{DCRTPoly}) => :EvalBootstrapKeyGen,
     :(CryptoContext{DCRTPoly}) => :EvalBootstrap,
-    :(CryptoContext{DCRTPoly}) => :Compress,
     :(Plaintext) => :GetScalingFactor,
     :(Plaintext) => :SetScalingFactor,
     :(Plaintext) => :IsEncoded,
