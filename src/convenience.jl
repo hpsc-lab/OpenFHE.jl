@@ -392,8 +392,4 @@ function Compress(crypto_context::CryptoContext, ciphertext::Ciphertext; levels_
     Compress(crypto_context, ciphertext, levels_left, noise_scale_deg)
 end
 
-function _compress_forward(crypto_context, ciphertext, levels_left)
-    Compress(crypto_context, ciphertext; levels_left = levels_left, noise_scale_deg = 1)
-end
-
-@deprecate Compress(crypto_context::CryptoContext, ciphertext::Ciphertext, levels_left) _compress_forward(crypto_context, ciphertext, levels_left)
+@deprecate Compress(crypto_context::CryptoContext, ciphertext::Ciphertext, levels_left) Compress(crypto_context, ciphertext, levels_left)
