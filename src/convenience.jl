@@ -391,5 +391,3 @@ See also: [`CryptoContext`](@ref), [Ciphertext](@ref)
 function Compress(crypto_context::CryptoContext, ciphertext::Ciphertext; levels_left = 1, noise_scale_deg = 1)
     Compress(crypto_context, ciphertext, levels_left, noise_scale_deg)
 end
-
-@deprecate Compress(crypto_context::CryptoContext, ciphertext::Ciphertext, levels_left) Compress(crypto_context, ciphertext, levels_left)
