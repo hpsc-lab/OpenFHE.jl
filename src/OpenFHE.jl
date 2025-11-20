@@ -119,7 +119,4 @@ include("auxiliary.jl")
 include("convenience.jl")
 include("documentation.jl")
 
-# Export the Compress overloads defined in convenience.jl again
-export Compress
-
 end # module OpenFHE
