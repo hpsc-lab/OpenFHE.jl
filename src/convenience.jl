@@ -388,6 +388,9 @@ Return a compressed ciphertext with modulus reduced to a number of multiplicativ
 
 See also: [`CryptoContext`](@ref), [Ciphertext](@ref)
 """
-function Compress(crypto_context::CryptoContext, ciphertext::Ciphertext; levels_left = 1, noise_scale_deg = 1)
+function Compress(crypto_context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
+                  ciphertext;
+                  levels_left = 1,
+                  noise_scale_deg = 1)
     Compress(crypto_context, ciphertext, levels_left, noise_scale_deg)
 end
