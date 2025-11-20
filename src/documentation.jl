@@ -822,10 +822,10 @@ Return all `CryptoContext`s stored in `CryptoContextFactory`.
 GetAllContexts
 
 """
-    Compress(crypto_context::CryptoContext, ciphertext::Ciphertext; levels_left = 1)
+    Compress(crypto_context::CryptoContext, ciphertext::Ciphertext; levels_left = 1, noise_scale_deg = 1)
 
 Return a compressed ciphertext with modulus reduced to a number of multiplicative levels
-`levels_left`.
+`levels_left` and noise scale degree `noise_scale_deg`.
 
 See also: [`CryptoContext`](@ref), [Ciphertext](@ref)
 """

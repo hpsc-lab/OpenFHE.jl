@@ -163,11 +163,26 @@ end
     @test GetRealPackedValue(result_dec) ≈ [sum(x1) for _ in range(1, batchSize)]
 end
 
-@testset verbose=true showtiming=true "Compress" begin
+@testset verbose=true showtiming=true "Compress_Positional4" begin
     @test Int(GetLevel(c1)) == 0
     levels_left = 1
     noise_scale_deg = 1
     result_compressed = Compress(cc, c1, levels_left, noise_scale_deg)
+    @test multDepth - Int(GetLevel(result_compressed)) == 0
+end
+
+@testset verbose=true showtiming=true "Compress_Positional3" begin
+    @test Int(GetLevel(c1)) == 0
+    levels_left = 1
+    result_compressed = Compress(cc, c1, levels_left)
+    @test multDepth - Int(GetLevel(result_compressed)) == 0
+end
+
+@testset verbose=true showtiming=true "Compress_Keyword" begin
+    @test Int(GetLevel(c1)) == 0
+    levels_left = 1
+    noise_scale_deg = 1
+    result_compressed = Compress(cc, c1, levels_left=levels_left, noise_scale_deg=noise_scale_deg)
     @test multDepth - Int(GetLevel(result_compressed)) == 0
 end
 
