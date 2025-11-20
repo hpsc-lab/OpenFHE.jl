@@ -394,3 +394,6 @@ function Compress(crypto_context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoConte
                   noise_scale_deg = 1)
     Compress(crypto_context, ciphertext, levels_left, noise_scale_deg)
 end
+
+# Deprecate old three-positional-argument version by forwarding to kwargs version
+@deprecate Compress(crypto_context, ciphertext, levels_left) Compress(crypto_context, ciphertext; levels_left)
