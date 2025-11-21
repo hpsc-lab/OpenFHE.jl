@@ -210,6 +210,7 @@ OpenFHE.jl was initiated by [Michael Schlottke-Lakemper](https://www.uni-augsbur
 
 Further contributions to OpenFHE.jl have been made by the following people:
 * [Arseniy Kholod](https://www.github.com/ArseniyKholod) (RWTH Aachen University, Germany)
+* [Max Grübmeyer](https://www.github.com/MaxGruebmeyer) (University of Augsburg, Germany)
 
 
 ## License and contributing
