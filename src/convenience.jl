@@ -379,3 +379,21 @@ function EvalSumKeyGen(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContext
                        publicKey = OpenFHE.CxxWrap.StdLib.SharedPtr{OpenFHE.PublicKeyImpl{OpenFHE.DCRTPoly}}())
     EvalSumKeyGen(context, privateKey, publicKey)
 end
+
+"""
+    Compress(crypto_context::CryptoContext, ciphertext::Ciphertext; levels_left = 1, noise_scale_deg = 1)
+
+Return a compressed ciphertext with modulus reduced to a number of multiplicative levels
+`levels_left` and noise scale degree `noise_scale_deg`.
+
+See also: [`CryptoContext`](@ref), [Ciphertext](@ref)
+"""
+function Compress(crypto_context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
+                  ciphertext;
+                  levels_left = 1,
+                  noise_scale_deg = 1)
+    Compress(crypto_context, ciphertext, levels_left, noise_scale_deg)
+end
+
+# Deprecate old three-positional-argument version by forwarding to kwargs version
+@deprecate Compress(crypto_context, ciphertext, levels_left) Compress(crypto_context, ciphertext; levels_left)
