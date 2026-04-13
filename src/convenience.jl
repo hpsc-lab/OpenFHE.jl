@@ -246,20 +246,18 @@ end
 """
     EvalRotateKeyGen(crypto_context::CryptoContext,
                      private_key::PrivateKey,
-                     index_list::Vector{<:Integer};
-                     public_key::PublicKey = C_NULL)
+                     index_list::Vector{<:Integer})
 
 Generate rotation keys for use with [`EvalRotate`](@ref) using the `private_key` and for the
 rotation indices in `index_list. The keys are stored in the  given `crypto_context`.
 Please refer to the OpenFHE documentation for details on the remaining arguments.
 
-See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`PublicKey`](@ref), [`EvalRotate`](@ref)
+See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`EvalRotate`](@ref)
 """
 function EvalRotateKeyGen(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
                           privateKey,
-                          indexList::Vector{<:Integer};
-                          publicKey = OpenFHE.CxxWrap.StdLib.SharedPtr{OpenFHE.PublicKeyImpl{OpenFHE.DCRTPoly}}())
-    EvalRotateKeyGen(context, privateKey, CxxWrap.StdVector(Int32.(indexList)), publicKey)
+                          indexList::Vector{<:Integer})
+    EvalRotateKeyGen(context, privateKey, CxxWrap.StdVector(Int32.(indexList)))
 end
 
 """
