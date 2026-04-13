@@ -1,4 +1,27 @@
+The purpose of OpenFHE.jl is to make functionality from OpenFHE[^openfhe][^openfhegit] available in Julia.
+The mapping is supposed to be as close as possible so that users of OpenFHE.jl can mostly rely on the OpenFHE documentation[^openfhedocs]. 
+The wrapping is constructed thus:
+- make a prebuilt .so of the OpenFHE C++ library[^openfhegit] available as a Julia package via a JLL[^JLL]
+- map the C++ library using openfhe-julia, which uses libcxxwrap[^libcxxwrap] to define the explicit C++ → Julia mapping.
+The output is a new .so that is also made available as a JLL[^JLL]
+- finally, make the mappings available in native Julia with OpenFHE.jl (this package). This is made available as a regular Julia package.
+
+
+This architecture and what depends on what can be seen in the carts below.
+
+This structure has direct consequences for the release process once a new version of openfhe-development becomes available:
+- make the new version of openfhe-development available as a JLL by creating a PR against Yggdrasil
+- release a new version of openfhe-julia which uses the new OpenFHE_jll version. Downstream tests (OpenFHE.jl) will fail if there was a breaking change in openfhe-development.
+- make the new version of openfhe-julia available as a JLL by creating a PR against Yggdrasil
+- release a new version of OpenFHE.jl which uses the new openfhe_julia_jll version.
+Each step has to wait for the step before to be completed, because otherwise pipelines will fail due to build errors. But everything can be built locally and created as a Draft PR.
+
+[^openfhe]: https://openfhe.org/
+[^openfhedocs]: https://openfhe-development.readthedocs.io/en/latest/
+[^openfhegit]: https://github.com/openfheorg/openfhe-development
+[^JLL]: JLLs are prebuilt binaries of libraries which can then used in downstream julia applications. See https://docs.binarybuilder.org/stable/jll/
 Build flow Chart
+[^libcxxwrap]: libcxxwrap-julia is "the C++ library component of the CxxWrap.jl package". See https://github.com/JuliaInterop/libcxxwrap-julia
 
 ```mermaid
 %%{init: {"flowchart": {"defaultRenderer": "elk"}} }%%
