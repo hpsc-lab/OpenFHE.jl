@@ -366,20 +366,6 @@ function GetBootstrapDepth(level_budget::Vector{<:Integer}, secret_key_distribut
 end
 
 """
-    EvalSumKeyGen(crypto_context::CryptoContext, private_key::PrivateKey)
-
-Generates the key map to be used by [`EvalSum`](@ref). `public_key` has to be set for NTRU schemes.
-                  
-Please refer to the OpenFHE documentation for more details.
-                  
-See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`EvalSum`](@ref)
-"""
-function EvalSumKeyGen(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
-                       privateKey::OpenFHE.PrivateKeyImpl{OpenFHE.DCRTPoly})
-    EvalSumKeyGen(context, privateKey)
-end
-
-"""
     Compress(crypto_context::CryptoContext, ciphertext::Ciphertext; levels_left = 1, noise_scale_deg = 1)
 
 Return a compressed ciphertext with modulus reduced to a number of multiplicative levels
