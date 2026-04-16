@@ -267,7 +267,7 @@ end
                        slots = 0,
                        correction_factor = 0,
                        precompute = true,
-                       BTSlotsEncoding = false)
+                       bt_slots_encoding = false)
 
 Set up a given `crypto_context` for bootstrapping. Supported for CKKS only.
 Please refer to the OpenFHE documentation for details on the remaining arguments.
@@ -280,14 +280,14 @@ function EvalBootstrapSetup(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoCo
                             slots = 0,
                             correction_factor = 0,
                             precompute = true,
-                            BTSlotsEncoding = false)
+                            bt_slots_encoding = false)
     EvalBootstrapSetup(context,
                        CxxWrap.StdVector(UInt32.(level_budget)),
                        CxxWrap.StdVector(UInt32.(dim1)),
                        slots,
                        correction_factor,
                        precompute,
-                       BTSlotsEncoding)
+                       bt_slots_encoding)
 end
 
 """
