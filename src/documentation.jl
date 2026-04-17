@@ -724,7 +724,16 @@ See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
 """
 EvalDivide
 
-# `EvalSumKeyGen` is documented in `src/convenience.jl`
+"""
+    EvalSumKeyGen(crypto_context::CryptoContext, private_key::PrivateKey)
+
+Generates the key map to be used by [`EvalSum`](@ref).
+                  
+Please refer to the OpenFHE documentation for more details.
+                  
+See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`EvalSum`](@ref)
+"""
+EvalSumKeyGen
 
 """
     ClearEvalSumKeys()

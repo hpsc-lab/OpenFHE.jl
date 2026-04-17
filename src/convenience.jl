@@ -246,20 +246,18 @@ end
 """
     EvalRotateKeyGen(crypto_context::CryptoContext,
                      private_key::PrivateKey,
-                     index_list::Vector{<:Integer};
-                     public_key::PublicKey = C_NULL)
+                     index_list::Vector{<:Integer})
 
 Generate rotation keys for use with [`EvalRotate`](@ref) using the `private_key` and for the
 rotation indices in `index_list. The keys are stored in the  given `crypto_context`.
 Please refer to the OpenFHE documentation for details on the remaining arguments.
 
-See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`PublicKey`](@ref), [`EvalRotate`](@ref)
+See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`EvalRotate`](@ref)
 """
 function EvalRotateKeyGen(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
                           privateKey,
-                          indexList::Vector{<:Integer};
-                          publicKey = OpenFHE.CxxWrap.StdLib.SharedPtr{OpenFHE.PublicKeyImpl{OpenFHE.DCRTPoly}}())
-    EvalRotateKeyGen(context, privateKey, CxxWrap.StdVector(Int32.(indexList)), publicKey)
+                          indexList::Vector{<:Integer})
+    EvalRotateKeyGen(context, privateKey, CxxWrap.StdVector(Int32.(indexList)))
 end
 
 """
@@ -268,7 +266,8 @@ end
                        dim1::Vector{<:Integer} = [0, 0],
                        slots = 0,
                        correction_factor = 0,
-                       precompute = true)
+                       precompute = true,
+                       bt_slots_encoding = false)
 
 Set up a given `crypto_context` for bootstrapping. Supported for CKKS only.
 Please refer to the OpenFHE documentation for details on the remaining arguments.
@@ -280,13 +279,15 @@ function EvalBootstrapSetup(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoCo
                             dim1 = [0, 0],
                             slots = 0,
                             correction_factor = 0,
-                            precompute = true)
+                            precompute = true,
+                            bt_slots_encoding = false)
     EvalBootstrapSetup(context,
                        CxxWrap.StdVector(UInt32.(level_budget)),
                        CxxWrap.StdVector(UInt32.(dim1)),
                        slots,
                        correction_factor,
-                       precompute)
+                       precompute,
+                       bt_slots_encoding)
 end
 
 """
@@ -362,22 +363,6 @@ See also: [`SecretKeyDist`](@ref)
 """
 function GetBootstrapDepth(level_budget::Vector{<:Integer}, secret_key_distribution)
     Int(GetBootstrapDepth(CxxWrap.StdVector(UInt32.(level_budget)), secret_key_distribution))
-end
-
-"""
-    EvalSumKeyGen(crypto_context::CryptoContext, private_key::PrivateKey;
-                  public_key::PublicKey = C_NULL)
-
-Generates the key map to be used by [`EvalSum`](@ref). `public_key` has to be set for NTRU schemes.
-                  
-Please refer to the OpenFHE documentation for more details.
-                  
-See also: [`CryptoContext`](@ref), [`PrivateKey`](@ref), [`PublicKey`](@ref), [`EvalSum`](@ref)
-"""
-function EvalSumKeyGen(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
-                       privateKey;
-                       publicKey = OpenFHE.CxxWrap.StdLib.SharedPtr{OpenFHE.PublicKeyImpl{OpenFHE.DCRTPoly}}())
-    EvalSumKeyGen(context, privateKey, publicKey)
 end
 
 """
