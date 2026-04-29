@@ -27,40 +27,35 @@ Build flow Chart
 ```mermaid
 %%{init: {"flowchart": {"defaultRenderer": "elk"}} }%%
 flowchart LR
-    subgraph JuliaRegistriesGeneral["`<a href='https://github.com/JuliaRegistries/General'>**JuliaRegistries/General**</a>
-    `"]
-    OpenFHE["`<a href='https://github.com/JuliaRegistries/General/tree/master/O/OpenFHE'>OpenFHE</a>`"]
-    OpenFHE_jll["`<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/OpenFHE_jll'>OpenFHE_jll</a>`"]
-    OpenFHE_int128_jll["`<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/OpenFHE_int128_jll'>OpenFHE_int128_jll</a>`"]
-    openfhe_julia_jll["`<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/openfhe_julia_jll'>openfhe_julia_jll</a>`"]
-    openfhe_julia_int128_jll["`<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/openfhe_julia_int128_jll'>openfhe_julia_int128_jll</a>`"]
+    subgraph JuliaRegistriesGeneral["<a href='https://github.com/JuliaRegistries/General'><b>JuliaRegistries/General</b></a>"]
+    OpenFHE["<a href='https://github.com/JuliaRegistries/General/tree/master/O/OpenFHE'>OpenFHE</a>"]
+    OpenFHE_jll["<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/OpenFHE_jll'>OpenFHE_jll</a>"]
+    OpenFHE_int128_jll["<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/OpenFHE_int128_jll'>OpenFHE_int128_jll</a>"]
+    openfhe_julia_jll["<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/openfhe_julia_jll'>openfhe_julia_jll</a>"]
+    openfhe_julia_int128_jll["<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/openfhe_julia_int128_jll'>openfhe_julia_int128_jll</a>"]
     end
     
     subgraph JuliaBinaryWrappers
-        OpenFHE_jll.jl["`<a href='https://github.com/JuliaBinaryWrappers/OpenFHE_jll.jl'>OpenFHE_jll</a>`"]
-        OpenFHE_int128_jll.jl["`<a href='https://github.com/JuliaBinaryWrappers/OpenFHE_int128_jll.jl'>OpenFHE_int128_jll</a>`"]
+        OpenFHE_jll.jl["<a href='https://github.com/JuliaBinaryWrappers/OpenFHE_jll.jl'>OpenFHE_jll</a>"]
+        OpenFHE_int128_jll.jl["<a href='https://github.com/JuliaBinaryWrappers/OpenFHE_int128_jll.jl'>OpenFHE_int128_jll</a>"]
         openfhe_julia_jll.jl["<a href='https://github.com/JuliaBinaryWrappers/openfhe_julia_jll.jl'>openfhe_julia_jll</a>"]
         openfhe_julia_int128_jll.jl["<a href='https://github.com/JuliaBinaryWrappers/openfhe_julia_int128_jll.jl'>openfhe_julia_int128_jll</a>"]
     end
 
-    subgraph yggdrasil["`<a href="https://github.com/JuliaPackaging/Yggdrasil/tree/master">Yggdrasil</a>`"]
-    ygg_OpenFHE["`<a href='https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/OpenFHE'>OpenFHE</a>`"]
-    ygg_OpenFHE_int128["`<a href='https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/OpenFHE_int128'>OpenFHE_int128</a>`"]
+    subgraph yggdrasil["<a href='https://github.com/JuliaPackaging/Yggdrasil/tree/master'>Yggdrasil</a>"]
+    ygg_OpenFHE["<a href='https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/OpenFHE'>OpenFHE</a>"]
+    ygg_OpenFHE_int128["<a href='https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/OpenFHE_int128'>OpenFHE_int128</a>"]
     ygg_openfhe_julia["<a href='https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/openfhe_julia'>openfhe_julia</a>"]
     ygg_openfhe_julia_int128["<a href='https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/openfhe_julia_int128'>openfhe_julia_int128</a>"]
     end
         
     subgraph openfhe
-    openfhe-development["`<a href='https://github.com/openfheorg/openfhe-development'>**openfhe-development**</a>`"]
+    openfhe-development["<a href='https://github.com/openfheorg/openfhe-development'><b>openfhe-development</b></a>"]
     end
     
     subgraph hpsc-lab
-    OpenFHE.jl["`
-      <a href='https://github.com/hpsc-lab/OpenFHE.jl'>**OpenFHE.jl**</a> 
-    `"]
-    openfhe_julia["`
-        <a href="https://github.com/hpsc-lab/openfhe-julia">**openfhe_julia**</a>
-    `"]
+    OpenFHE.jl["<a href='https://github.com/hpsc-lab/OpenFHE.jl'><b>OpenFHE.jl</b></a>"]
+    openfhe_julia["<a href='https://github.com/hpsc-lab/openfhe-julia'><b>openfhe_julia</b></a>"]
     end
 
 
@@ -88,41 +83,36 @@ Dependency flow chart
 ```mermaid
 %%{init: {"flowchart": {"defaultRenderer": "elk"}} }%%
 flowchart RL
-    subgraph JuliaRegistriesGeneral["`<a href='https://github.com/JuliaRegistries/General'>**JuliaRegistries/General**</a>
-    `"]
-    OpenFHE["`<a href='https://github.com/JuliaRegistries/General/tree/master/O/OpenFHE'>OpenFHE</a>`"]
-    OpenFHE_jll["`<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/OpenFHE_jll'>OpenFHE_jll</a>`"]
-    OpenFHE_int128_jll["`<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/OpenFHE_int128_jll'>OpenFHE_int128_jll</a>`"]
-    openfhe_julia_jll["`<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/openfhe_julia_jll'>openfhe_julia_jll</a>`"]
-    openfhe_julia_int128_jll["`<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/openfhe_julia_int128_jll'>openfhe_julia_int128_jll</a>`"]
+    subgraph JuliaRegistriesGeneral["<a href='https://github.com/JuliaRegistries/General'><b>JuliaRegistries/General</b></a>"]
+    OpenFHE["<a href='https://github.com/JuliaRegistries/General/tree/master/O/OpenFHE'>OpenFHE</a>"]
+    OpenFHE_jll["<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/OpenFHE_jll'>OpenFHE_jll</a>"]
+    OpenFHE_int128_jll["<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/OpenFHE_int128_jll'>OpenFHE_int128_jll</a>"]
+    openfhe_julia_jll["<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/openfhe_julia_jll'>openfhe_julia_jll</a>"]
+    openfhe_julia_int128_jll["<a href='https://github.com/JuliaRegistries/General/tree/master/jll/O/openfhe_julia_int128_jll'>openfhe_julia_int128_jll</a>"]
     end
 
     subgraph JuliaBinaryWrappers
-        OpenFHE_jll.jl["`<a href='https://github.com/JuliaBinaryWrappers/OpenFHE_jll.jl'>OpenFHE_jll</a>`"]
-        OpenFHE_int128_jll.jl["`<a href='https://github.com/JuliaBinaryWrappers/OpenFHE_int128_jll.jl'>OpenFHE_int128_jll</a>`"]
+        OpenFHE_jll.jl["<a href='https://github.com/JuliaBinaryWrappers/OpenFHE_jll.jl'>OpenFHE_jll</a>"]
+        OpenFHE_int128_jll.jl["<a href='https://github.com/JuliaBinaryWrappers/OpenFHE_int128_jll.jl'>OpenFHE_int128_jll</a>"]
         openfhe_julia_jll.jl["<a href='https://github.com/JuliaBinaryWrappers/openfhe_julia_jll.jl'>openfhe_julia_jll</a>"]
         openfhe_julia_int128_jll.jl["<a href='https://github.com/JuliaBinaryWrappers/openfhe_julia_int128_jll.jl'>openfhe_julia_int128_jll</a>"]
     end
 
-    subgraph yggdrasil["`<a href="https://github.com/JuliaPackaging/Yggdrasil/tree/master">Yggdrasil</a>`"]
-    ygg_OpenFHE["`<a href='https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/OpenFHE'>OpenFHE</a>`"]
-    ygg_OpenFHE_int128["`<a href='https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/OpenFHE_int128'>OpenFHE_int128</a>`"]
+    subgraph yggdrasil["<a href='https://github.com/JuliaPackaging/Yggdrasil/tree/master'>Yggdrasil</a>"]
+    ygg_OpenFHE["<a href='https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/OpenFHE'>OpenFHE</a>"]
+    ygg_OpenFHE_int128["<a href='https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/OpenFHE_int128'>OpenFHE_int128</a>"]
     ygg_openfhe_julia["<a href='https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/openfhe_julia'>openfhe_julia</a>"]
     ygg_openfhe_julia_int128["<a href='https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/openfhe_julia_int128'>openfhe_julia_int128</a>"]
     end
     
     subgraph openfhe
-    openfhe-development["`<a href='https://github.com/openfheorg/openfhe-development'>**openfhe-development**</a>`"]
+    openfhe-development["<a href='https://github.com/openfheorg/openfhe-development'><b>openfhe-development</b></a>"]
     end
     
 
     subgraph hpsc-lab
-    OpenFHE.jl["`
-      <a href='https://github.com/hpsc-lab/OpenFHE.jl'>**OpenFHE.jl**</a> 
-    `"]
-    openfhe_julia["`
-        <a href="https://github.com/hpsc-lab/openfhe-julia">**openfhe_julia**</a>
-    `"]
+    OpenFHE.jl["<a href='https://github.com/hpsc-lab/OpenFHE.jl'><b>OpenFHE.jl</b></a>"]
+    openfhe_julia["<a href='https://github.com/hpsc-lab/openfhe-julia'><b>openfhe_julia</b></a>"]
     end
 
 
