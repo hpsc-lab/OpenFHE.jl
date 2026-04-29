@@ -76,14 +76,11 @@ flowchart LR
     
 
     ygg_OpenFHE--"git hash in <a href='https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/OpenFHE/build_tarballs.jl'>build_tarballs.jl</a><br>git url in <a href='https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/OpenFHE/common.jl'>common.jl</a>"-->openfhe-development
-    ygg_OpenFHE_int128--"git hash in <a href='https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/OpenFHE_int128/build_tarballs.jl'>build_tarballs.jl</a><br>git url in <a href='https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/OpenFHE/common.jl'>common.jl</a> [^1]"-->openfhe-development
+    ygg_OpenFHE_int128--"git hash in <a href='https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/OpenFHE_int128/build_tarballs.jl'>build_tarballs.jl</a><br>git url in <a href='https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/OpenFHE/common.jl'>common.jl</a>"-->openfhe-development
     ygg_openfhe_julia--"git hash in <a href='https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/openfhe_julia/build_tarballs.jl'>build_tarballs.jl</a><br>git url in <a href='https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/openfhe_julia/common.jl'>common.jl</a>"-->openfhe_julia
     ygg_openfhe_julia_int128--"git hash in <a href='https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/openfhe_julia_int128/build_tarballs.jl'>build_tarballs.jl</a><br>git url in <a href='https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/openfhe_julia/common.jl'>common.jl</a>"-->openfhe_julia
     
 ```
-
-[^1]: The 128 bit version gets build as 128 bit because common.jl sets native_size=128 instead of 64 if the package name (set in build_tarballs.jl) is "OpenFHE_int128"
-
 
 
 Dependency flow chart
