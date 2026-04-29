@@ -1,4 +1,5 @@
 using Documenter
+using DocumenterMermaid
 
 # Get OpenFHE.jl root directory
 openfhe_root_dir = dirname(@__DIR__)
