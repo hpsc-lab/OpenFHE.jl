@@ -20,8 +20,9 @@ Each step has to wait for the step before to be completed, because otherwise pip
 [^openfhedocs]: https://openfhe-development.readthedocs.io/en/latest/
 [^openfhegit]: https://github.com/openfheorg/openfhe-development
 [^JLL]: JLLs are prebuilt binaries of libraries which can then used in downstream julia applications. See https://docs.binarybuilder.org/stable/jll/
-Build flow Chart
 [^libcxxwrap]: libcxxwrap-julia is "the C++ library component of the CxxWrap.jl package". See https://github.com/JuliaInterop/libcxxwrap-julia
+
+Build flow Chart
 
 ```mermaid
 %%{init: {"flowchart": {"defaultRenderer": "elk"}} }%%
