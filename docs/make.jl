@@ -63,6 +63,7 @@ makedocs(
         "Home" => "index.md",
         "Advanced topics & developers" => [
             "Release management" => "release-management.md",
+            "Architecture" => "architecture.md",
         ],
         "API reference" => "reference.md",
         "License" => "license.md"
