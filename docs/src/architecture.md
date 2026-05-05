@@ -9,7 +9,7 @@ The output is a new `.so` that is also made available as a JLL[^JLL]
 
 This architecture and what depends on what can be seen in the carts below.
 
-This structure has direct consequences for the release process once a new version of openfhe-development becomes available:
+This structure has direct consequences for the release process (see [Release management](@ref)) once a new version of openfhe-development becomes available:
 - make the new version of openfhe-development available as a JLL by creating a PR against Yggdrasil
 - release a new version of openfhe-julia which uses the new OpenFHE_jll version. Downstream tests (OpenFHE.jl) will fail if there was a breaking change in openfhe-development.
 - make the new version of openfhe-julia available as a JLL by creating a PR against Yggdrasil
