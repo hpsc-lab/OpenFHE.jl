@@ -2,7 +2,7 @@ The purpose of OpenFHE.jl is to make functionality from OpenFHE[^openfhe][^openf
 The mapping is supposed to be as close as possible so that users of OpenFHE.jl can mostly rely on the OpenFHE documentation[^openfhedocs]. 
 The wrapping is constructed thus:
 - make a prebuilt .so of the OpenFHE C++ library[^openfhegit] available as a Julia package via a JLL[^JLL]
-- map the C++ library using openfhe-julia, which uses libcxxwrap[^libcxxwrap] to define the explicit C++ → Julia mapping.
+- map the C++ library using openfhe-julia[^openfhejulia], which uses libcxxwrap[^libcxxwrap] to define the explicit C++ → Julia mapping.
 The output is a new .so that is also made available as a JLL[^JLL]
 - finally, make the mappings available in native Julia with OpenFHE.jl (this package). This is made available as a regular Julia package.
 
@@ -19,6 +19,7 @@ Each step has to wait for the step before to be completed, because otherwise pip
 [^openfhe]: https://openfhe.org/
 [^openfhedocs]: https://openfhe-development.readthedocs.io/en/latest/
 [^openfhegit]: https://github.com/openfheorg/openfhe-development
+[^openfhejulia]: https://github.com/hpsc-lab/openfhe-julia
 [^JLL]: JLLs are prebuilt binaries of libraries which can then used in downstream julia applications. See https://docs.binarybuilder.org/stable/jll/
 [^libcxxwrap]: libcxxwrap-julia is "the C++ library component of the CxxWrap.jl package". See https://github.com/JuliaInterop/libcxxwrap-julia
 
