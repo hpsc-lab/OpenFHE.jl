@@ -1,4 +1,5 @@
 using Documenter
+using DocumenterMermaid
 
 # Get OpenFHE.jl root directory
 openfhe_root_dir = dirname(@__DIR__)
@@ -62,6 +63,7 @@ makedocs(
         "Home" => "index.md",
         "Advanced topics & developers" => [
             "Release management" => "release-management.md",
+            "Architecture" => "architecture.md",
         ],
         "API reference" => "reference.md",
         "License" => "license.md"
