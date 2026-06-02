@@ -70,9 +70,11 @@ makedocs(
     ],
 )
 
-
-deploydocs(;
-    repo = "github.com/hpsc-lab/OpenFHE.jl",
-    devbranch = "main",
-    push_preview = true
-)
+if get(ENV, "GITHUB_ACTOR", "") != "dependabot[bot]"
+    # Dependabot has no permissions to deploy the docs. Thus, we skip the deploy step. See https://github.com/hpsc-lab/OpenFHE.jl/issues/119.
+    deploydocs(;
+        repo = "github.com/hpsc-lab/OpenFHE.jl",
+        devbranch = "main",
+        push_preview = true
+    )
+end
