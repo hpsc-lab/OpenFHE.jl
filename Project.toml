@@ -1,7 +1,7 @@
 name = "OpenFHE"
 uuid = "77ce9b8e-ecf5-45d1-bd8a-d31f384f2f95"
 authors = ["Michael Schlottke-Lakemper <michael@sloede.com>"]
-version = "0.2.1-dev"
+version = "0.2.1"
 
 [deps]
 CxxWrap = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
@@ -15,7 +15,7 @@ OpenFHE_jll = "a2687184-f17b-54bc-b2bb-b849352af807"
 CxxWrap = "0.17.3"
 Preferences = "1.4"
 UUIDs = "1"
-openfhe_julia_int128_jll = "0.6.0"
-openfhe_julia_jll = "0.6.0"
+openfhe_julia_int128_jll = "=0.6.1"
+openfhe_julia_jll = "=0.6.1"
 OpenFHE_jll = "1.5.0 - 1.5.1"
 julia = "1.10"
