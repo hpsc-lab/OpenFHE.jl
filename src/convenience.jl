@@ -132,6 +132,7 @@ for (WrappedT, fun) in [
     :(CryptoContext{DCRTPoly}) => :EvalSum,
     :(CryptoContext{DCRTPoly}) => :EvalBootstrapSetup,
     :(CryptoContext{DCRTPoly}) => :EvalBootstrapKeyGen,
+    :(CryptoContext{DCRTPoly}) => :EvalBootstrapPrecompute,
     :(CryptoContext{DCRTPoly}) => :EvalBootstrap,
     :(CryptoContext{DCRTPoly}) => :Compress,
     :(Plaintext) => :GetScalingFactor,
@@ -305,6 +306,11 @@ function EvalBootstrap(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContext
                        num_iterations = 1,
                        precision = 0)
     EvalBootstrap(context, ciphertext, num_iterations, precision)
+end
+
+function EvalBootstrapPrecompute(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}};
+                                slots = 0)
+    EvalBootstrapPrecompute(context, slots)
 end
 
 """
