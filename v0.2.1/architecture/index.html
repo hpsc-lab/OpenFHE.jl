@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Architecture · OpenFHE.jl</title><meta name="title" content="Architecture · OpenFHE.jl"/><meta property="og:title" content="Architecture · OpenFHE.jl"/><meta property="twitter:title" content="Architecture · OpenFHE.jl"/><meta name="description" content="Documentation for OpenFHE.jl."/><meta property="og:description" content="Documentation for OpenFHE.jl."/><meta property="twitter:description" content="Documentation for OpenFHE.jl."/><meta property="og:url" content="https://hpsc-lab.github.io/OpenFHE.jl/stable/architecture/"/><meta property="twitter:url" content="https://hpsc-lab.github.io/OpenFHE.jl/stable/architecture/"/><link rel="canonical" href="https://hpsc-lab.github.io/OpenFHE.jl/stable/architecture/"/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../">OpenFHE.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Advanced topics &amp; developers</span><ul><li><a class="tocitem" href="../release-management/">Release management</a></li><li class="is-active"><a class="tocitem" href>Architecture</a></li></ul></li><li><a class="tocitem" href="../reference/">API reference</a></li><li><a class="tocitem" href="../license/">License</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Advanced topics &amp; developers</a></li><li class="is-active"><a href>Architecture</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Architecture</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/hpsc-lab/OpenFHE.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/hpsc-lab/OpenFHE.jl/blob/main/docs/src/architecture.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><p>The purpose of OpenFHE.jl is to make functionality from OpenFHE<sup class="footnote-reference"><a id="citeref-openfhe" href="#footnote-openfhe" class="footnote-ref">[openfhe]</a><span class="footnote-preview" id="fn-openfhe"></span></sup><sup class="footnote-reference"><a id="citeref-openfhegit" href="#footnote-openfhegit" class="footnote-ref">[openfhegit]</a><span class="footnote-preview" id="fn-openfhegit"></span></sup> available in Julia. The mapping is supposed to be as close as possible so that users of OpenFHE.jl can mostly rely on the OpenFHE documentation<sup class="footnote-reference"><a id="citeref-openfhedocs" href="#footnote-openfhedocs" class="footnote-ref">[openfhedocs]</a><span class="footnote-preview" id="fn-openfhedocs"></span></sup>.  The wrapping is constructed thus:</p><ul><li>make a prebuilt <code>.so</code> of the OpenFHE C++ library<sup class="footnote-reference"><a id="citeref-openfhegit" href="#footnote-openfhegit" class="footnote-ref">[openfhegit]</a><span class="footnote-preview" id="fn-openfhegit"></span></sup> available as a Julia package via a JLL<sup class="footnote-reference"><a id="citeref-JLL" href="#footnote-JLL" class="footnote-ref">[JLL]</a><span class="footnote-preview" id="fn-JLL"></span></sup></li><li>map the C++ library using openfhe-julia<sup class="footnote-reference"><a id="citeref-openfhejulia" href="#footnote-openfhejulia" class="footnote-ref">[openfhejulia]</a><span class="footnote-preview" id="fn-openfhejulia"></span></sup>, which uses libcxxwrap<sup class="footnote-reference"><a id="citeref-libcxxwrap" href="#footnote-libcxxwrap" class="footnote-ref">[libcxxwrap]</a><span class="footnote-preview" id="fn-libcxxwrap"></span></sup> to define the explicit C++ → Julia mapping.</li></ul><p>The output is a new <code>.so</code> that is also made available as a JLL<sup class="footnote-reference"><a id="citeref-JLL" href="#footnote-JLL" class="footnote-ref">[JLL]</a><span class="footnote-preview" id="fn-JLL"></span></sup></p><ul><li>finally, make the mappings available in native Julia with OpenFHE.jl (this package). This is made available as a regular Julia package.</li></ul><p>This architecture and what depends on what can be seen in the carts below.</p><p>This structure has direct consequences for the release process (see <a href="../release-management/#Release-management">Release management</a>) once a new version of openfhe-development becomes available:</p><ul><li>make the new version of openfhe-development available as a JLL by creating a PR against Yggdrasil</li><li>release a new version of openfhe-julia which uses the new OpenFHE_jll version. Downstream tests (OpenFHE.jl) will fail if there was a breaking change in openfhe-development.</li><li>make the new version of openfhe-julia available as a JLL by creating a PR against Yggdrasil</li><li>release a new version of OpenFHE.jl which uses the new openfhe<em>julia</em>jll version.</li></ul><p>Each step has to wait for the step before to be completed, because otherwise pipelines will fail due to build errors. But everything can be built locally and created as a Draft PR.</p><p>Build flow Chart</p><div class="mermaid">%%{init: {&quot;flowchart&quot;: {&quot;defaultRenderer&quot;: &quot;elk&quot;}} }%%
+flowchart LR
+    subgraph JuliaRegistriesGeneral[&quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General&#39;&gt;&lt;b&gt;JuliaRegistries/General&lt;/b&gt;&lt;/a&gt;&quot;]
+    OpenFHE[&quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General/tree/master/O/OpenFHE&#39;&gt;OpenFHE&lt;/a&gt;&quot;]
+    OpenFHE_jll[&quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General/tree/master/jll/O/OpenFHE_jll&#39;&gt;OpenFHE_jll&lt;/a&gt;&quot;]
+    OpenFHE_int128_jll[&quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General/tree/master/jll/O/OpenFHE_int128_jll&#39;&gt;OpenFHE_int128_jll&lt;/a&gt;&quot;]
+    openfhe_julia_jll[&quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General/tree/master/jll/O/openfhe_julia_jll&#39;&gt;openfhe_julia_jll&lt;/a&gt;&quot;]
+    openfhe_julia_int128_jll[&quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General/tree/master/jll/O/openfhe_julia_int128_jll&#39;&gt;openfhe_julia_int128_jll&lt;/a&gt;&quot;]
+    end
+    
+    subgraph JuliaBinaryWrappers
+        OpenFHE_jll.jl[&quot;&lt;a href=&#39;https://github.com/JuliaBinaryWrappers/OpenFHE_jll.jl&#39;&gt;OpenFHE_jll&lt;/a&gt;&quot;]
+        OpenFHE_int128_jll.jl[&quot;&lt;a href=&#39;https://github.com/JuliaBinaryWrappers/OpenFHE_int128_jll.jl&#39;&gt;OpenFHE_int128_jll&lt;/a&gt;&quot;]
+        openfhe_julia_jll.jl[&quot;&lt;a href=&#39;https://github.com/JuliaBinaryWrappers/openfhe_julia_jll.jl&#39;&gt;openfhe_julia_jll&lt;/a&gt;&quot;]
+        openfhe_julia_int128_jll.jl[&quot;&lt;a href=&#39;https://github.com/JuliaBinaryWrappers/openfhe_julia_int128_jll.jl&#39;&gt;openfhe_julia_int128_jll&lt;/a&gt;&quot;]
+    end
+
+    subgraph yggdrasil[&quot;&lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/tree/master&#39;&gt;Yggdrasil&lt;/a&gt;&quot;]
+    ygg_OpenFHE[&quot;&lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/OpenFHE&#39;&gt;OpenFHE&lt;/a&gt;&quot;]
+    ygg_OpenFHE_int128[&quot;&lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/OpenFHE_int128&#39;&gt;OpenFHE_int128&lt;/a&gt;&quot;]
+    ygg_openfhe_julia[&quot;&lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/openfhe_julia&#39;&gt;openfhe_julia&lt;/a&gt;&quot;]
+    ygg_openfhe_julia_int128[&quot;&lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/openfhe_julia_int128&#39;&gt;openfhe_julia_int128&lt;/a&gt;&quot;]
+    end
+        
+    subgraph openfhe
+    openfhe-development[&quot;&lt;a href=&#39;https://github.com/openfheorg/openfhe-development&#39;&gt;&lt;b&gt;openfhe-development&lt;/b&gt;&lt;/a&gt;&quot;]
+    end
+    
+    subgraph hpsc-lab
+    OpenFHE.jl[&quot;&lt;a href=&#39;https://github.com/hpsc-lab/OpenFHE.jl&#39;&gt;&lt;b&gt;OpenFHE.jl&lt;/b&gt;&lt;/a&gt;&quot;]
+    openfhe_julia[&quot;&lt;a href=&#39;https://github.com/hpsc-lab/openfhe-julia&#39;&gt;&lt;b&gt;openfhe_julia&lt;/b&gt;&lt;/a&gt;&quot;]
+    end
+
+
+    OpenFHE_jll.jl -- built using &lt;a href=&#39;https://github.com/JuliaPackaging/BinaryBuilder.jl&#39;&gt;BinaryBuilder&lt;/a&gt; and &lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/OpenFHE/build_tarballs.jl&#39;&gt;build_tarballs.jl&lt;/a&gt; from  --&gt; ygg_OpenFHE
+    OpenFHE_int128_jll.jl -- built using &lt;a href=&#39;https://github.com/JuliaPackaging/BinaryBuilder.jl&#39;&gt;BinaryBuilder&lt;/a&gt; and &lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/OpenFHE_int128/build_tarballs.jl&#39;&gt;build_tarballs.jl&lt;/a&gt; from --&gt; ygg_OpenFHE_int128
+    openfhe_julia_jll.jl -- built using &lt;a href=&#39;https://github.com/JuliaPackaging/BinaryBuilder.jl&#39;&gt;BinaryBuilder&lt;/a&gt; and &lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/openfhe_julia/build_tarballs.jl&#39;&gt;build_tarballs.jl&lt;/a&gt; from  --&gt; ygg_openfhe_julia
+    openfhe_julia_int128_jll.jl -- built using &lt;a href=&#39;https://github.com/JuliaPackaging/BinaryBuilder.jl&#39;&gt;BinaryBuilder&lt;/a&gt; and &lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/openfhe_julia_int128/build_tarballs.jl&#39;&gt;build_tarballs.jl&lt;/a&gt; from  --&gt; ygg_openfhe_julia_int128
+ 
+    OpenFHE-- repo and uuid in &lt;a href=&#39;https://github.com/JuliaRegistries/General/blob/master/O/OpenFHE/Package.toml&#39;&gt;Package.toml&lt;/a&gt; --&gt; OpenFHE.jl
+    OpenFHE_jll -- repo and uuid in &lt;a href=&#39;https://github.com/JuliaRegistries/General/blob/master/jll/O/OpenFHE_jll/Package.toml&#39;&gt;Package.toml&lt;/a&gt; --&gt; OpenFHE_jll.jl
+    OpenFHE_int128_jll -- repo and uuid in &lt;a href=&#39;https://github.com/JuliaRegistries/General/blob/master/jll/O/OpenFHE_int128_jll/Package.toml&#39;&gt;Package.toml&lt;/a&gt; --&gt; OpenFHE_int128_jll.jl
+    openfhe_julia_jll -- repo and uuid in &lt;a href=&#39;https://github.com/JuliaRegistries/General/blob/master/jll/O/openfhe_julia_jll/Package.toml&#39;&gt;Package.toml&lt;/a&gt; --&gt; openfhe_julia_jll.jl
+    openfhe_julia_int128_jll -- repo and uuid in &lt;a href=&#39;https://github.com/JuliaRegistries/General/blob/master/jll/O/openfhe_julia_int128_jll/Package.toml&#39;&gt;Package.toml&lt;/a&gt; --&gt; openfhe_julia_int128_jll.jl
+    
+
+    ygg_OpenFHE--&quot;git hash in &lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/OpenFHE/build_tarballs.jl&#39;&gt;build_tarballs.jl&lt;/a&gt;&lt;br&gt;git url in &lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/OpenFHE/common.jl&#39;&gt;common.jl&lt;/a&gt;&quot;--&gt;openfhe-development
+    ygg_OpenFHE_int128--&quot;git hash in &lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/OpenFHE_int128/build_tarballs.jl&#39;&gt;build_tarballs.jl&lt;/a&gt;&lt;br&gt;git url in &lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/OpenFHE/common.jl&#39;&gt;common.jl&lt;/a&gt;&quot;--&gt;openfhe-development
+    ygg_openfhe_julia--&quot;git hash in &lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/openfhe_julia/build_tarballs.jl&#39;&gt;build_tarballs.jl&lt;/a&gt;&lt;br&gt;git url in &lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/openfhe_julia/common.jl&#39;&gt;common.jl&lt;/a&gt;&quot;--&gt;openfhe_julia
+    ygg_openfhe_julia_int128--&quot;git hash in &lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/openfhe_julia_int128/build_tarballs.jl&#39;&gt;build_tarballs.jl&lt;/a&gt;&lt;br&gt;git url in &lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/openfhe_julia/common.jl&#39;&gt;common.jl&lt;/a&gt;&quot;--&gt;openfhe_julia
+    </div><p>Dependency flow chart</p><div class="mermaid">%%{init: {&quot;flowchart&quot;: {&quot;defaultRenderer&quot;: &quot;elk&quot;}} }%%
+flowchart RL
+    subgraph JuliaRegistriesGeneral[&quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General&#39;&gt;&lt;b&gt;JuliaRegistries/General&lt;/b&gt;&lt;/a&gt;&quot;]
+    OpenFHE[&quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General/tree/master/O/OpenFHE&#39;&gt;OpenFHE&lt;/a&gt;&quot;]
+    OpenFHE_jll[&quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General/tree/master/jll/O/OpenFHE_jll&#39;&gt;OpenFHE_jll&lt;/a&gt;&quot;]
+    OpenFHE_int128_jll[&quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General/tree/master/jll/O/OpenFHE_int128_jll&#39;&gt;OpenFHE_int128_jll&lt;/a&gt;&quot;]
+    openfhe_julia_jll[&quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General/tree/master/jll/O/openfhe_julia_jll&#39;&gt;openfhe_julia_jll&lt;/a&gt;&quot;]
+    openfhe_julia_int128_jll[&quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General/tree/master/jll/O/openfhe_julia_int128_jll&#39;&gt;openfhe_julia_int128_jll&lt;/a&gt;&quot;]
+    end
+
+    subgraph JuliaBinaryWrappers
+        OpenFHE_jll.jl[&quot;&lt;a href=&#39;https://github.com/JuliaBinaryWrappers/OpenFHE_jll.jl&#39;&gt;OpenFHE_jll&lt;/a&gt;&quot;]
+        OpenFHE_int128_jll.jl[&quot;&lt;a href=&#39;https://github.com/JuliaBinaryWrappers/OpenFHE_int128_jll.jl&#39;&gt;OpenFHE_int128_jll&lt;/a&gt;&quot;]
+        openfhe_julia_jll.jl[&quot;&lt;a href=&#39;https://github.com/JuliaBinaryWrappers/openfhe_julia_jll.jl&#39;&gt;openfhe_julia_jll&lt;/a&gt;&quot;]
+        openfhe_julia_int128_jll.jl[&quot;&lt;a href=&#39;https://github.com/JuliaBinaryWrappers/openfhe_julia_int128_jll.jl&#39;&gt;openfhe_julia_int128_jll&lt;/a&gt;&quot;]
+    end
+
+    subgraph yggdrasil[&quot;&lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/tree/master&#39;&gt;Yggdrasil&lt;/a&gt;&quot;]
+    ygg_OpenFHE[&quot;&lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/OpenFHE&#39;&gt;OpenFHE&lt;/a&gt;&quot;]
+    ygg_OpenFHE_int128[&quot;&lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/OpenFHE_int128&#39;&gt;OpenFHE_int128&lt;/a&gt;&quot;]
+    ygg_openfhe_julia[&quot;&lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/openfhe_julia&#39;&gt;openfhe_julia&lt;/a&gt;&quot;]
+    ygg_openfhe_julia_int128[&quot;&lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/tree/master/O/openfhe_julia_int128&#39;&gt;openfhe_julia_int128&lt;/a&gt;&quot;]
+    end
+    
+    subgraph openfhe
+    openfhe-development[&quot;&lt;a href=&#39;https://github.com/openfheorg/openfhe-development&#39;&gt;&lt;b&gt;openfhe-development&lt;/b&gt;&lt;/a&gt;&quot;]
+    end
+    
+
+    subgraph hpsc-lab
+    OpenFHE.jl[&quot;&lt;a href=&#39;https://github.com/hpsc-lab/OpenFHE.jl&#39;&gt;&lt;b&gt;OpenFHE.jl&lt;/b&gt;&lt;/a&gt;&quot;]
+    openfhe_julia[&quot;&lt;a href=&#39;https://github.com/hpsc-lab/openfhe-julia&#39;&gt;&lt;b&gt;openfhe_julia&lt;/b&gt;&lt;/a&gt;&quot;]
+    end
+
+
+
+      ygg_OpenFHE       ~~~                    OpenFHE_jll.jl
+      ygg_OpenFHE_int128        ~~~                 OpenFHE_int128_jll.jl
+     ygg_openfhe_julia      ~~~                   openfhe_julia_jll.jl
+      ygg_openfhe_julia_int128      ~~~                   openfhe_julia_int128_jll.jl
+    
+    OpenFHE.jl ~~~ OpenFHE
+    OpenFHE_jll.jl ~~~ OpenFHE_jll
+    
+     OpenFHE_int128_jll.jl      ~~~   OpenFHE_int128_jll
+     openfhe_julia_jll.jl       ~~~   openfhe_julia_jll
+    openfhe_julia_int128_jll.jl     ~~~   openfhe_julia_int128_jll
+    openfhe-development      ~~~   ygg_OpenFHE
+    openfhe-development      ~~~   ygg_OpenFHE_int128
+    openfhe_julia        ~~~   ygg_openfhe_julia
+    openfhe_julia        ~~~   ygg_openfhe_julia_int128
+
+
+
+    OpenFHE.jl -. &quot;&lt;a href=&#39;https://github.com/hpsc-lab/OpenFHE.jl/blob/main/Project.toml&#39;&gt;depends on&lt;/a&gt;&quot; .-&gt; openfhe_julia_jll
+    OpenFHE.jl -. &quot;&lt;a href=&#39;https://github.com/hpsc-lab/OpenFHE.jl/blob/main/Project.toml&#39;&gt;depends on&lt;/a&gt;&quot; .-&gt; openfhe_julia_int128_jll
+    openfhe_julia_jll -. &quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General/blob/master/jll/O/openfhe_julia_jll/Deps.toml&#39;&gt;depends on&lt;/a&gt;&quot; .-&gt; OpenFHE_jll
+    openfhe_julia_int128_jll -. &quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General/blob/master/jll/O/openfhe_julia_int128_jll/Deps.toml&#39;&gt;depends on&lt;/a&gt;&quot; .-&gt; OpenFHE_int128_jll
+    
+    
+    ygg_openfhe_julia -. &quot;&lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/openfhe_julia/build_tarballs.jl&#39;&gt; depends on&lt;/a&gt;&quot; .-&gt; OpenFHE_jll
+    ygg_openfhe_julia_int128 -. &quot;&lt;a href=&#39;https://github.com/JuliaPackaging/Yggdrasil/blob/master/O/openfhe_julia_int128/build_tarballs.jl&#39;&gt; depends on&lt;/a&gt;&quot; .-&gt; OpenFHE_int128_jll
+    
+    
+    OpenFHE -. &quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General/blob/master/O/OpenFHE/Deps.toml&#39;&gt; depends on&lt;/a&gt;&quot; .-&gt; openfhe_julia_jll
+    OpenFHE -. &quot;&lt;a href=&#39;https://github.com/JuliaRegistries/General/blob/master/O/OpenFHE/Deps.toml&#39;&gt; depends on&lt;/a&gt;&quot; .-&gt; openfhe_julia_int128_jll
+    openfhe_julia_int128_jll.jl -. &quot;&lt;a href=&#39;https://github.com/JuliaBinaryWrappers/openfhe_julia_int128_jll.jl/blob/main/Project.toml&#39;&gt; depends on&lt;/a&gt;&quot; .-&gt; OpenFHE_int128_jll.jl
+    openfhe_julia_jll.jl -. &quot;&lt;a href=&#39;https://github.com/JuliaBinaryWrappers/openfhe_julia_jll.jl/blob/main/Project.toml&#39;&gt; depends on&lt;/a&gt;&quot; .-&gt; OpenFHE_jll.jl
+</div><script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+mermaid.initialize({
+    startOnLoad: true,
+    theme: "neutral"
+});
+</script><section class="footnotes is-size-7"><ul><li class="footnote" id="footnote-openfhe"><a class="tag is-link" href="#citeref-openfhe">openfhe</a>https://openfhe.org/</li><li class="footnote" id="footnote-openfhedocs"><a class="tag is-link" href="#citeref-openfhedocs">openfhedocs</a>https://openfhe-development.readthedocs.io/en/latest/</li><li class="footnote" id="footnote-openfhegit"><a class="tag is-link" href="#citeref-openfhegit">openfhegit</a>https://github.com/openfheorg/openfhe-development</li><li class="footnote" id="footnote-openfhejulia"><a class="tag is-link" href="#citeref-openfhejulia">openfhejulia</a>https://github.com/hpsc-lab/openfhe-julia</li><li class="footnote" id="footnote-JLL"><a class="tag is-link" href="#citeref-JLL">JLL</a>JLLs are prebuilt binaries of libraries which can then used in downstream julia applications. See https://docs.binarybuilder.org/stable/jll/</li><li class="footnote" id="footnote-libcxxwrap"><a class="tag is-link" href="#citeref-libcxxwrap">libcxxwrap</a>libcxxwrap-julia is &quot;the C++ library component of the CxxWrap.jl package&quot;. See https://github.com/JuliaInterop/libcxxwrap-julia</li></ul></section></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../release-management/">« Release management</a><a class="docs-footer-nextpage" href="../reference/">API reference »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.17.0 on <span class="colophon-date" title="Monday 6 July 2026 08:47">Monday 6 July 2026</span>. Using Julia version 1.12.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
