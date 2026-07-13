@@ -308,6 +308,17 @@ function EvalBootstrap(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContext
     EvalBootstrap(context, ciphertext, num_iterations, precision)
 end
 
+"""
+    EvalBootstrapPrecompute(crypto_context::CryptoContext; slots = 0)
+
+Precomputes and stores the plaintexts for encoding and decoding used in bootstrapping, if not already done in EvalBootstrapSetup.
+Supported only in CKKS.
+
+# Arguments
+- `slots::Unsigned`: The number of slots to be bootstrapped.
+
+See also: [`CryptoContext`](@ref), [`EvalBootstrapSetup`](@ref), [`EvalBootstrap`](@ref)
+"""
 function EvalBootstrapPrecompute(context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}};
                                 slots = 0)
     EvalBootstrapPrecompute(context, slots)
