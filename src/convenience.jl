@@ -388,7 +388,7 @@ end
 Return a compressed ciphertext with modulus reduced to a number of multiplicative levels
 `levels_left` and noise scale degree `noise_scale_deg`.
 
-See also: [`CryptoContext`](@ref), [Ciphertext](@ref)
+See also: [`CryptoContext`](@ref), [`Ciphertext`](@ref)
 """
 function Compress(crypto_context::CxxWrap.CxxWrapCore.CxxRef{OpenFHE.CryptoContextImpl{OpenFHE.DCRTPoly}},
                   ciphertext;
