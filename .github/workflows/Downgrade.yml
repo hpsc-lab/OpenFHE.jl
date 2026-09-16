@@ -24,13 +24,13 @@ jobs:
       matrix:
         version: ['1.12']
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: julia-actions/setup-julia@v3
         with:
           version: ${{ matrix.version }}
       - run: julia -e 'using InteractiveUtils; versioninfo(verbose=true)'
       - uses: julia-actions/cache@v3
-      - uses: julia-actions/julia-downgrade-compat@v2
+      - uses: julia-actions/julia-downgrade-compat@v2.7.0
         with:
           skip: Pkg,TOML,UUIDs
       - uses: julia-actions/julia-buildpkg@v1
