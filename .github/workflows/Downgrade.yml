@@ -22,7 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: ['1.12']
+        version: # LTS and Latest, see https://julialang.org/downloads/support/#supported_julia_versions
+          - '1.10' # LTS
+          - '1.13' # Latest
     steps:
       - uses: actions/checkout@v7
       - uses: julia-actions/setup-julia@v3
