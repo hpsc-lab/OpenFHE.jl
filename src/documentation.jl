@@ -364,10 +364,11 @@ SetKeyGenLevel
 
 """
     GetEncodingParams(crypto_context::CryptoContext)
+    GetEncodingParams(plaintext::Plaintext)
 
-Return the [`EncodingParams`](@ref) used by a given `crypto_context`.
+Return the [`EncodingParams`](@ref) used by the given `crypto_context` or `plaintext`.
 
-See also: [`CryptoContext`](@ref), [`EncodingParams`](@ref)
+See also: [`CryptoContext`](@ref), [`Plaintext`](@ref), [`EncodingParams`](@ref)
 """
 GetEncodingParams
 
@@ -844,14 +845,7 @@ See also: [`Plaintext`](@ref)
 """
 IsEncoded
 
-"""
-    GetEncodingParams(plaintext::Plaintext)
-
-Return the [`EncodingParams`](@ref) used by the given `plaintext`.
-
-See also: [`Plaintext`](@ref), [`EncodingParams`](@ref)
-"""
-GetEncodingParams
+# `GetEncodingParams` is documented in the `CryptoContext` section above
 
 """
     GetElementRingDimension(plaintext::Plaintext)::UInt32
