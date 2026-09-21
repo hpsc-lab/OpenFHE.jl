@@ -34,7 +34,7 @@ jobs:
       - uses: julia-actions/cache@v3
       - uses: julia-actions/julia-downgrade-compat@v2.7.0
         with:
-          skip: Pkg,TOML,UUIDs
+          skip: Pkg,TOML,UUIDs,openfhe_julia_jll,openfhe_julia_int128_jll
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1
         with:
