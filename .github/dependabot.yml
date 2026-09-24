@@ -22,3 +22,7 @@ updates:
       all-julia-packages:
         patterns:
           - "*"
+    ignore:
+      # No updates for openfhe_julia, since we fix it to one specific version anyways
+      - dependency-name: "openfhe_julia_jll"
+      - dependency-name: "openfhe_julia_int128_jll"
