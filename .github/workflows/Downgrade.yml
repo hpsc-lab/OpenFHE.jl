@@ -35,7 +35,7 @@ jobs:
       - uses: Tom-Finke/julia-downgrade-compat@resolver-min-patch
         with:
           skip: Pkg,TOML,UUIDs
-          min-patch: true
+          min_patch: true
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1
         with:
