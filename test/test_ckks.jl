@@ -194,6 +194,22 @@ end
     @test GetEncodingParameters(c1) isa EncodingParams
 end
 
+@testset verbose=true showtiming=true "Clone" begin
+    c1_clone = Clone(c1)
+    @test c1_clone isa Ciphertext
+    result_dec = Plaintext()
+    Decrypt(cc, privkey, c1_clone, result_dec)
+    @test GetRealPackedValue(result_dec) ≈ x1
+end
+
+@testset verbose=true showtiming=true "CloneZero" begin
+    c1_clone_zero = CloneZero(c1)
+    @test c1_clone_zero isa Ciphertext
+    result_dec = Plaintext()
+    Decrypt(cc, privkey, c1_clone_zero, result_dec)
+    @test all(v -> abs(v) < 1e-6, GetRealPackedValue(result_dec))
+end
+
 @testset verbose=true showtiming=true "GetFullContextByDeserializedContext" begin
     @test GetFullContextByDeserializedContext(cc) isa CryptoContext
 end
