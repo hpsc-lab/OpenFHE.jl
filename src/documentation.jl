@@ -1023,9 +1023,23 @@ SetSlots
 
 Clone the given `ciphertext` *including* its encrypted data.
 
-See also: [`Ciphertext`](@ref), [`CloneZero`](@ref)
+See also: [`Ciphertext`](@ref), [`CloneEmpty`](@ref)
 """
 Clone
+
+"""
+    CloneZero(ciphertext::Ciphertext)
+
+!!! deprecated "Deprecated since OpenFHE v1.3.1"
+    `CloneZero` has been renamed to [`CloneEmpty`](@ref) in OpenFHE v1.3.1. See https://github.com/openfheorg/openfhe-development/pull/1005.
+    Use `CloneEmpty` instead. See also https://github.com/hpsc-lab/OpenFHE.jl/issues/153.
+    `CloneZero` is only an alias for `CloneEmpty` now and will get removed in the future.
+
+Clone the given `ciphertext` *without* its encrypted data.
+
+See also: [`CloneEmpty`](@ref), [`Ciphertext`](@ref), [`Clone`](@ref)
+"""
+CloneZero
 
 """
     CloneZero(ciphertext::Ciphertext)
@@ -1034,7 +1048,7 @@ Clone the given `ciphertext` *without* its encrypted data.
 
 See also: [`Ciphertext`](@ref), [`Clone`](@ref)
 """
-CloneZero
+CloneEmpty
 
 
 # Enums

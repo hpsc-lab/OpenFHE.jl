@@ -93,7 +93,7 @@ export GetScalingFactor, SetScalingFactor, IsEncoded, GetEncodingParams, GetElem
 # Ciphertext
 export Ciphertext
 export GetNoiseScaleDeg, SetNoiseScaleDeg, GetLevel, SetLevel, GetHopLevel, SetHopLevel,
-       GetScalingFactor, SetScalingFactor, GetSlots, SetSlots, Clone, CloneZero
+       GetScalingFactor, SetScalingFactor, GetSlots, SetSlots, Clone, CloneEmpty, CloneZero
 
 # KeyPair
 export KeyPair

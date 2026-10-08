@@ -194,6 +194,32 @@ end
     @test GetEncodingParameters(c1) isa EncodingParams
 end
 
+@testset verbose=true showtiming=true "Clone" begin
+    c1_clone = Clone(c1)
+    @test c1_clone isa Ciphertext
+    result_dec = Plaintext()
+    Decrypt(cc, privkey, c1_clone, result_dec)
+    @test GetRealPackedValue(result_dec) ≈ x1
+end
+
+@testset verbose=true showtiming=true "CloneZero (deprecated)" begin
+    c1_clone_zero = @test_deprecated CloneZero(c1)
+    @test c1_clone_zero isa Ciphertext
+    @test GetLevel(c1_clone_zero) == GetLevel(c1)
+    @test GetSlots(c1_clone_zero) == GetSlots(c1)
+    @test GetNoiseScaleDeg(c1_clone_zero) == GetNoiseScaleDeg(c1)
+    @test GetScalingFactor(c1_clone_zero) == GetScalingFactor(c1)
+end
+
+@testset verbose=true showtiming=true "CloneEmpty" begin
+    c1_clone_empty = CloneEmpty(c1)
+    @test c1_clone_empty isa Ciphertext
+    @test GetLevel(c1_clone_empty) == GetLevel(c1)
+    @test GetSlots(c1_clone_empty) == GetSlots(c1)
+    @test GetNoiseScaleDeg(c1_clone_empty) == GetNoiseScaleDeg(c1)
+    @test GetScalingFactor(c1_clone_empty) == GetScalingFactor(c1)
+end
+
 @testset verbose=true showtiming=true "GetFullContextByDeserializedContext" begin
     @test GetFullContextByDeserializedContext(cc) isa CryptoContext
 end
