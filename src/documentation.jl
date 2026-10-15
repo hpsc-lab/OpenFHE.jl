@@ -1042,7 +1042,7 @@ See also: [`CloneEmpty`](@ref), [`Ciphertext`](@ref), [`Clone`](@ref)
 CloneZero
 
 """
-    CloneZero(ciphertext::Ciphertext)
+    CloneEmpty(ciphertext::Ciphertext)
 
 Clone the given `ciphertext` *without* its encrypted data.
 
