@@ -1,0 +1,54 @@
+name: ABI Compatibility
+
+on:
+  pull_request:
+    paths:
+      - 'Project.toml'
+  workflow_dispatch:
+
+permissions:
+  pull-requests: write
+
+jobs:
+  check:
+    name: Check JLL ABI compatibility
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: julia-actions/setup-julia@v3
+        with:
+          version: '1.12'
+
+      - name: Check ABI compatibility
+        id: abi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          bash .github/scripts/check-abi-compat.sh > report.md
+          echo "status=$?" >> "$GITHUB_OUTPUT"
+          cat report.md >> "$GITHUB_STEP_SUMMARY"
+          cat report.md
+
+      - name: Find existing comment
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/find-comment@v3
+        id: find-comment
+        with:
+          issue-number: ${{ github.event.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: '<!-- abi-compat -->'
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.number }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          body-path: report.md
+          edit-mode: replace
+
+      - name: Fail on incompatibility
+        if: steps.abi.outputs.status != '0'
+        run: exit 1

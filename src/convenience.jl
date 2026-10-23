@@ -93,7 +93,7 @@ for (WrappedT, fun) in [
     :(Ciphertext{DCRTPoly}) => :GetSlots,
     :(Ciphertext{DCRTPoly}) => :SetSlots,
     :(Ciphertext{DCRTPoly}) => :Clone,
-    :(Ciphertext{DCRTPoly}) => :CloneZero,
+    :(Ciphertext{DCRTPoly}) => :CloneEmpty,
     :(Ciphertext{DCRTPoly}) => :GetEncodingParameters,
     :(CryptoContext{DCRTPoly}) => :Enable,
     :(CryptoContext{DCRTPoly}) => :GetKeyGenLevel,
@@ -399,3 +399,7 @@ end
 
 # Deprecate old three-positional-argument version by forwarding to kwargs version
 @deprecate Compress(crypto_context, ciphertext, levels_left) Compress(crypto_context, ciphertext; levels_left)
+
+# `CloneZero` was renamed to `CloneEmpty` in OpenFHE v1.3.1, see https://github.com/openfheorg/openfhe-development/pull/1005
+# xref: https://github.com/hpsc-lab/OpenFHE.jl/issues/153
+@deprecate CloneZero(ciphertext) CloneEmpty(ciphertext)
